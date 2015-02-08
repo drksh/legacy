@@ -17,16 +17,17 @@ var publicPath = "public"
 
 elixir(function(mix) {
     // Move vendor packages to appropriate locations
-    mix.copy(bowerPath+"/bootstrap-sass-official/assets/stylesheets", resourcePath+"/sass/bootstrap");
-    mix.copy(bowerPath+"/bootstrap-sass-official/assets/javascripts/bootstrap.js", publicPath+"/js/vendor/bootstrap.js");
-    mix.copy(bowerPath+"/bootstrap-sass-official/assets/fonts/bootstrap", publicPath+"/fonts");
-    mix.copy(bowerPath+"/jquery/dist/jquery.js", publicPath+"/js/vendor/jquery.js")
+    mix
+    .copy(bowerPath+"/bootstrap-sass-official/assets/stylesheets", resourcePath+"/sass/bootstrap")
+    .copy(bowerPath+"/bootstrap-sass-official/assets/javascripts/bootstrap.js", publicPath+"/js/vendor/bootstrap.js")
+    .copy(bowerPath+"/bootstrap-sass-official/assets/fonts/bootstrap", publicPath+"/fonts")
+    .copy(bowerPath+"/jquery/dist/jquery.js", publicPath+"/js/vendor/jquery.js")
 
     // Stylesheets
-    mix.sass('app.scss');
+    .sass('app.scss')
 
     // ACE scripts
-    mix.scripts([
+    .scripts([
         "theme-tomorrow_night.js",
         "mode-css.js",
         "mode-html.js",
@@ -36,22 +37,21 @@ elixir(function(mix) {
         "mode-plain_text.js",
         "mode-scss.js",
         "ace.js"
-    ], publicPath+"/js/vendor/ace", publicPath+"/js/vendor/ace");
+    ], publicPath+"/js/vendor/ace", publicPath+"/js/vendor/ace")
 
     // VENDOR scripts
-    mix.scripts([
+    .scripts([
         "jquery.js",
         "bootstrap.js",
-        "ace/all.js"
-    ], publicPath+"/js/vendor.js", publicPath+"/js/vendor");
+        "/ace/all.js"
+    ], publicPath+"/js/vendor.js", publicPath+"/js/vendor")
 
     // CACHE assets
-    mix.version([
-        // Javascript
+    .version([
         "js/vendor.js",
         "js/app.js",
-        // Stylesheets
         "css/app.css"
     ]);
+
 
 });

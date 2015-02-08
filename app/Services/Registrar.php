@@ -1,6 +1,6 @@
-<?php namespace App\Services;
+<?php namespace MediShare\Services;
 
-use App\User;
+use MediShare\User;
 use Validator;
 use Illuminate\Contracts\Auth\Registrar as RegistrarContract;
 

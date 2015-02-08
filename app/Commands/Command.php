@@ -1,4 +1,4 @@
-<?php namespace App\Commands;
+<?php namespace MediShare\Commands;
 
 abstract class Command {
 
