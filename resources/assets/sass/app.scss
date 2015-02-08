@@ -1,9 +1,10 @@
-@import "bootstrap-variables";
+// Bootstrap variables
+@import "bootstrap-darkly/variables";
 
+// Bootstrap Defaults
 @import "bootstrap/bootstrap-sprockets";
 @import "bootstrap/bootstrap";
 
-
 // Bootstrap customization
-@import "bootstrap-custom";
+@import "bootstrap-darkly/theme";
 
