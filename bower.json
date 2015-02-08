@@ -1,0 +1,28 @@
+{
+  "name": "medi-share",
+  "version": "0.0.0",
+  "description": "A simple media sharing platform",
+  "main": "public/index.php",
+  "keywords": [
+    "media",
+    "laravel",
+    "php"
+  ],
+  "authors": [
+    "Jakob Steinn"
+  ],
+  "license": "MIT",
+  "homepage": "http://github.com/jstoone/medi-share",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-sass-official": "~3.3.3",
+  }
+}
