@@ -18,24 +18,40 @@ var publicPath = "public"
 elixir(function(mix) {
     // Move vendor packages to appropriate locations
     mix.copy(bowerPath+"/bootstrap-sass-official/assets/stylesheets", resourcePath+"/sass/bootstrap");
-    mix.copy(bowerPath+"/bootstrap-sass-official/assets/javascripts/bootstrap.min.js", publicPath+"/js/vendor/bootstrap.js");
+    mix.copy(bowerPath+"/bootstrap-sass-official/assets/javascripts/bootstrap.js", publicPath+"/js/vendor/bootstrap.js");
     mix.copy(bowerPath+"/bootstrap-sass-official/assets/fonts/bootstrap", publicPath+"/fonts");
-    mix.copy(bowerPath+"/jquery/dist/jquery.min.js", publicPath+"/js/vendor/jquery.js")
+    mix.copy(bowerPath+"/jquery/dist/jquery.js", publicPath+"/js/vendor/jquery.js")
 
     // Stylesheets
     mix.sass('app.scss');
 
-    // Scripts
+    // ACE scripts
     mix.scripts([
-        publicPath+"/js/vendor/ace/theme-tomorrow_night.js",
-        publicPath+"/js/vendor/ace/mode-css.js",
-        publicPath+"/js/vendor/ace/mode-html.js",
-        publicPath+"/js/vendor/ace/mode-less.js",
-        publicPath+"/js/vendor/ace/mode-mysql.js",
-        publicPath+"/js/vendor/ace/mode-php.js",
-        publicPath+"/js/vendor/ace/mode-plain_text.js",
-        publicPath+"/js/vendor/ace/mode-scss.js",
-        publicPath+"/js/vendor/ace/ace.js"
-    ], publicPath+"/js/vendor/ace", null);
+        "theme-tomorrow_night.js",
+        "mode-css.js",
+        "mode-html.js",
+        "mode-less.js",
+        "mode-mysql.js",
+        "mode-php.js",
+        "mode-plain_text.js",
+        "mode-scss.js",
+        "ace.js"
+    ], publicPath+"/js/vendor/ace", publicPath+"/js/vendor/ace");
+
+    // VENDOR scripts
+    mix.scripts([
+        "jquery.js",
+        "bootstrap.js",
+        "ace/all.js"
+    ], publicPath+"/js/vendor.js", publicPath+"/js/vendor");
+
+    // CACHE assets
+    mix.version([
+        // Javascript
+        "js/vendor.js",
+        "js/app.js",
+        // Stylesheets
+        "css/app.css"
+    ]);
 
 });
