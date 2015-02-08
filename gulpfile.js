@@ -15,7 +15,7 @@ var bowerPath = "vendor/bower_components";
 var resourcePath = "resources/assets";
 
 elixir(function(mix) {
-    mix.sass('app.less');
+    mix.sass('app.scss');
 
     mix.copy(bowerPath+"/bootstrap-sass-official/assets/stylesheets", resourcePath+"/sass/bootstrap");
 });
