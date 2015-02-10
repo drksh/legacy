@@ -19,7 +19,7 @@ class CreateSnippetTable extends Migration {
 			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 			$table->string('title');
 			$table->text('body');
-			$table->string('type');
+			$table->string('mode');
 			$table->string('password')->nullable();
 			$table->timestamps();
 		});

@@ -34,17 +34,17 @@ elixir(function(mix) {
     // ACE scripts
     .scripts([
         publicPath+"/js/vendor/codemirror/codemirror.js",
-            publicPath+"/js/vendor/codemirror/mod-xml.js",
-            publicPath+"/js/vendor/codemirror/mod-css.js",
-            publicPath+"/js/vendor/codemirror/mod-clike.js",
-            publicPath+"/js/vendor/codemirror/mod-javascript.js",
-            publicPath+"/js/vendor/codemirror/mod-htmlmixed.js",
-            publicPath+"/js/vendor/codemirror/mod-markdown.js",
-            publicPath+"/js/vendor/codemirror/mod-php.js",
-            publicPath+"/js/vendor/codemirror/mod-sass.js",
+        publicPath+"/js/vendor/codemirror/mod-xml.js",
+        publicPath+"/js/vendor/codemirror/mod-css.js",
+        publicPath+"/js/vendor/codemirror/mod-clike.js",
+        publicPath+"/js/vendor/codemirror/mod-javascript.js",
+        publicPath+"/js/vendor/codemirror/mod-htmlmixed.js",
+        publicPath+"/js/vendor/codemirror/mod-markdown.js",
+        publicPath+"/js/vendor/codemirror/mod-php.js",
+        publicPath+"/js/vendor/codemirror/mod-sass.js",
         publicPath+"/js/vendor/jquery.js",
         publicPath+"/js/vendor/bootstrap.js",
-        publicPath+"/js/pages/snippets.js",
+        publicPath+"/js/pages/snippets/index.js",
         publicPath+"/js/app.js",
     ], publicPath+"/js/application.js", publicPath+"/js")
 
