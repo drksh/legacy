@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Laravel</title>
 
-	<link href="{{ elixir('css/app.css') }}" rel="stylesheet">
+	<link href="{{ elixir('css/application.css') }}" rel="stylesheet">
 	<!-- Fonts -->
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
 
@@ -31,7 +31,6 @@
     </div>
 
 	<!-- Scripts -->
-	<script src="{{ elixir('js/vendor.js') }}"></script>
-	<script src="{{ elixir('js/app.js') }}"></script>
+	<script src="{{ elixir('js/application.js') }}"></script>
 </body>
 </html>

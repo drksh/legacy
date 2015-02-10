@@ -26,31 +26,32 @@ elixir(function(mix) {
     // Stylesheets
     .sass('app.scss')
 
+    .styles([
+        publicPath+"/css/vendor/codemirror/codemirror.css",
+        publicPath+"/css/app.css/"
+    ], publicPath+"/css/application.css", publicPath+"/css")
+
     // ACE scripts
     .scripts([
-        "theme-tomorrow_night.js",
-        "mode-css.js",
-        "mode-html.js",
-        "mode-less.js",
-        "mode-mysql.js",
-        "mode-php.js",
-        "mode-plain_text.js",
-        "mode-scss.js",
-        "ace.js"
-    ], publicPath+"/js/vendor/ace", publicPath+"/js/vendor/ace")
-
-    // VENDOR scripts
-    .scripts([
-        "jquery.js",
-        "bootstrap.js",
-        "/ace/all.js"
-    ], publicPath+"/js/vendor.js", publicPath+"/js/vendor")
+        publicPath+"/js/vendor/codemirror/codemirror.js",
+            publicPath+"/js/vendor/codemirror/mod-xml.js",
+            publicPath+"/js/vendor/codemirror/mod-css.js",
+            publicPath+"/js/vendor/codemirror/mod-clike.js",
+            publicPath+"/js/vendor/codemirror/mod-javascript.js",
+            publicPath+"/js/vendor/codemirror/mod-htmlmixed.js",
+            publicPath+"/js/vendor/codemirror/mod-markdown.js",
+            publicPath+"/js/vendor/codemirror/mod-php.js",
+            publicPath+"/js/vendor/codemirror/mod-sass.js",
+        publicPath+"/js/vendor/jquery.js",
+        publicPath+"/js/vendor/bootstrap.js",
+        publicPath+"/js/pages/snippets.js",
+        publicPath+"/js/app.js",
+    ], publicPath+"/js/application.js", publicPath+"/js")
 
     // CACHE assets
     .version([
-        "js/vendor.js",
-        "js/app.js",
-        "css/app.css"
+        "js/application.js",
+        "css/application.css"
     ]);
 
 
