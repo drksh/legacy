@@ -1,4 +1,4 @@
-<?php namespace MediShare\Commands;
+<?php namespace DarkShare\Commands;
 
 abstract class Command {
 

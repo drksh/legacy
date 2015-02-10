@@ -1,4 +1,4 @@
-<?php namespace MediShare\Submissions\Snippets;
+<?php namespace DarkShare\Submissions\Snippets;
 
 use Illuminate\Database\Eloquent\Model;
 

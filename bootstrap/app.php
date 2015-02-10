@@ -28,17 +28,17 @@ $app = new Illuminate\Foundation\Application(
 
 $app->singleton(
 	'Illuminate\Contracts\Http\Kernel',
-	'MediShare\Http\Kernel'
+	'DarkShare\Http\Kernel'
 );
 
 $app->singleton(
 	'Illuminate\Contracts\Console\Kernel',
-	'MediShare\Console\Kernel'
+	'DarkShare\Console\Kernel'
 );
 
 $app->singleton(
 	'Illuminate\Contracts\Debug\ExceptionHandler',
-	'MediShare\Exceptions\Handler'
+	'DarkShare\Exceptions\Handler'
 );
 
 /*

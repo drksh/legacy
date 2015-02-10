@@ -1,6 +1,6 @@
-<?php namespace MediShare\Providers;
+<?php namespace DarkShare\Providers;
 
-use MediShare\Submissions\Snippets\Snippet;
+use DarkShare\Submissions\Snippets\Snippet;
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -13,7 +13,7 @@ class RouteServiceProvider extends ServiceProvider {
 	 *
 	 * @var string
 	 */
-	protected $namespace = 'MediShare\Http\Controllers';
+	protected $namespace = 'DarkShare\Http\Controllers';
 
 	/**
 	 * Define your route model bindings, pattern filters, etc.

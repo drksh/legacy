@@ -1,6 +1,6 @@
-<?php namespace MediShare\Http\Requests;
+<?php namespace DarkShare\Http\Requests;
 
-use MediShare\Http\Requests\Request;
+use DarkShare\Http\Requests\Request;
 
 class SnippetsRequest extends Request {
 

@@ -1,6 +1,6 @@
-<?php namespace MediShare\Commands;
+<?php namespace DarkShare\Commands;
 
-use MediShare\Commands\Command;
+use DarkShare\Commands\Command;
 
 class StoreNewSnippetCommand extends Command {
 

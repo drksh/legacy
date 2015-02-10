@@ -145,11 +145,11 @@ return [
 		/*
 		 * Application Service Providers...
 		 */
-		'MediShare\Providers\AppServiceProvider',
-		'MediShare\Providers\BusServiceProvider',
-		'MediShare\Providers\ConfigServiceProvider',
-		'MediShare\Providers\EventServiceProvider',
-		'MediShare\Providers\RouteServiceProvider',
+		'DarkShare\Providers\AppServiceProvider',
+		'DarkShare\Providers\BusServiceProvider',
+		'DarkShare\Providers\ConfigServiceProvider',
+		'DarkShare\Providers\EventServiceProvider',
+		'DarkShare\Providers\RouteServiceProvider',
 
 	],
 

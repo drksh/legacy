@@ -1,7 +1,7 @@
-<?php namespace MediShare\Http\Controllers;
+<?php namespace DarkShare\Http\Controllers;
 
-use MediShare\Http\Requests;
-use MediShare\Http\Controllers\Controller;
+use DarkShare\Http\Requests;
+use DarkShare\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 

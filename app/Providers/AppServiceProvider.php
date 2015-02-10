@@ -1,4 +1,4 @@
-<?php namespace MediShare\Providers;
+<?php namespace DarkShare\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -27,7 +27,7 @@ class AppServiceProvider extends ServiceProvider {
 	{
 		$this->app->bind(
 			'Illuminate\Contracts\Auth\Registrar',
-			'MediShare\Services\Registrar'
+			'DarkShare\Services\Registrar'
 		);
 	}
 

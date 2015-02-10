@@ -1,4 +1,4 @@
-<?php namespace MediShare\Users;
+<?php namespace DarkShare\Users;
 
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;

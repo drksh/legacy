@@ -1,9 +1,9 @@
-<?php namespace MediShare\Handlers\Commands;
+<?php namespace DarkShare\Handlers\Commands;
 
-use MediShare\Commands\StoreNewSnippetCommand;
+use DarkShare\Commands\StoreNewSnippetCommand;
 
 use Illuminate\Queue\InteractsWithQueue;
-use MediShare\Submissions\Snippets\Snippet;
+use DarkShare\Submissions\Snippets\Snippet;
 
 class StoreNewSnippetCommandHandler {
 

@@ -1,7 +1,7 @@
-<?php namespace MediShare\Commands;
+<?php namespace DarkShare\Commands;
 
-use MediShare\Commands\Command;
-use MediShare\Submissions\Snippets\Snippet;
+use DarkShare\Commands\Command;
+use DarkShare\Submissions\Snippets\Snippet;
 
 class UpdateSnippetCommand extends Command {
 

@@ -1,4 +1,4 @@
-<?php namespace MediShare\Http\Middleware;
+<?php namespace DarkShare\Http\Middleware;
 
 use Closure;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as BaseVerifier;

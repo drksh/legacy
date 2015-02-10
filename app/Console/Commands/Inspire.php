@@ -1,4 +1,4 @@
-<?php namespace MediShare\Console\Commands;
+<?php namespace DarkShare\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Foundation\Inspiring;

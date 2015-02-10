@@ -1,4 +1,4 @@
-<?php namespace MediShare\Providers;
+<?php namespace DarkShare\Providers;
 
 use Illuminate\Bus\Dispatcher;
 use Illuminate\Support\ServiceProvider;
@@ -16,7 +16,7 @@ class BusServiceProvider extends ServiceProvider {
 		$dispatcher->mapUsing(function($command)
 		{
 			return Dispatcher::simpleMapping(
-				$command, 'MediShare\Commands', 'MediShare\Handlers\Commands'
+				$command, 'DarkShare\Commands', 'DarkShare\Handlers\Commands'
 			);
 		});
 	}

@@ -1,4 +1,4 @@
-<?php namespace MediShare\Providers;
+<?php namespace DarkShare\Providers;
 
 use Illuminate\Support\ServiceProvider;
 

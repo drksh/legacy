@@ -1,13 +1,13 @@
-<?php namespace MediShare\Http\Controllers;
+<?php namespace DarkShare\Http\Controllers;
 
-use MediShare\Commands\StoreNewSnippetCommand;
-use MediShare\Commands\UpdateSnippetCommand;
-use MediShare\Http\Requests;
-use MediShare\Http\Controllers\Controller;
+use DarkShare\Commands\StoreNewSnippetCommand;
+use DarkShare\Commands\UpdateSnippetCommand;
+use DarkShare\Http\Requests;
+use DarkShare\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
-use MediShare\Http\Requests\SnippetsRequest;
-use MediShare\Submissions\Snippets\Snippet;
+use DarkShare\Http\Requests\SnippetsRequest;
+use DarkShare\Submissions\Snippets\Snippet;
 
 class SnippetsController extends Controller {
 

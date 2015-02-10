@@ -1,4 +1,4 @@
-<?php namespace MediShare\Http\Requests;
+<?php namespace DarkShare\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 

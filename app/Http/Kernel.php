@@ -1,4 +1,4 @@
-<?php namespace MediShare\Http;
+<?php namespace DarkShare\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -15,7 +15,7 @@ class Kernel extends HttpKernel {
 		'Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse',
 		'Illuminate\Session\Middleware\StartSession',
 		'Illuminate\View\Middleware\ShareErrorsFromSession',
-		'MediShare\Http\Middleware\VerifyCsrfToken',
+		'DarkShare\Http\Middleware\VerifyCsrfToken',
 	];
 
 	/**
@@ -24,9 +24,9 @@ class Kernel extends HttpKernel {
 	 * @var array
 	 */
 	protected $routeMiddleware = [
-		'auth' => 'MediShare\Http\Middleware\Authenticate',
+		'auth' => 'DarkShare\Http\Middleware\Authenticate',
 		'auth.basic' => 'Illuminate\Auth\Middleware\AuthenticateWithBasicAuth',
-		'guest' => 'MediShare\Http\Middleware\RedirectIfAuthenticated',
+		'guest' => 'DarkShare\Http\Middleware\RedirectIfAuthenticated',
 	];
 
 }

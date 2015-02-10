@@ -1,4 +1,4 @@
-<?php namespace MediShare\Exceptions;
+<?php namespace DarkShare\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;

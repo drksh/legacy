@@ -26,7 +26,7 @@
                 @foreach($snippets as $snippet)
                 <tr>
                     <td>{{ $snippet->id }}</td>
-                    <td>{{ $snippet->title }}</td>
+                    <td><a href="{{ route('snippets.show', $snippet->id)  }}">{{ $snippet->title }}</a></td>
                     <td>{{ str_limit($snippet->body) }}</td>
                     <td>{{ $snippet->mode }}</td>
                     <td>
