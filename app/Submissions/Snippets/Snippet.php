@@ -30,4 +30,9 @@ class Snippet extends Model {
 		$this->attributes['password'] = bcrypt($password);
 	}
 
+	public function getIsProtectedAttribute()
+	{
+		return ! is_null($this->password);
+	}
+
 }

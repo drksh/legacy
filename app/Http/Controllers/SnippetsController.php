@@ -11,6 +11,11 @@ use DarkShare\Submissions\Snippets\Snippet;
 
 class SnippetsController extends Controller {
 
+	function __construct()
+	{
+//		$this->middleware('auth.snippet', ['only' => 'show']);
+	}
+
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -49,6 +54,26 @@ class SnippetsController extends Controller {
 	}
 
 	/**
+	 * Show the form for logging into a protected Snippet
+	 *
+	 * @param Snippet $snippet
+	 */
+	public function login(Snippet $snippet)
+	{
+		return view('snippets.login', compact('snippet'));
+	}
+
+	/**
+	 * Authenticate to a protected Snippet
+	 *
+	 * @param Snippet $snippet
+	 */
+	public function authenticate(Snippet $snippet)
+	{
+
+	}
+
+	/**
 	 * Display the specified resource.
 	 *
 	 * @param  int  $id
@@ -56,6 +81,9 @@ class SnippetsController extends Controller {
 	 */
 	public function show(Snippet $snippet)
 	{
+		if($snippet->isProtected)
+			return redirect()->route('snippets.login', $snippet->id);
+
 		return view('snippets.show', compact('snippet'));
 	}
 
