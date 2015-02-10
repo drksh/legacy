@@ -27,7 +27,6 @@ elixir(function(mix) {
     .sass('app.scss')
 
     .styles([
-        publicPath+"/css/vendor/codemirror/codemirror.css",
         publicPath+"/css/app.css/"
     ], publicPath+"/css/application.css", publicPath+"/css")
 
@@ -45,6 +44,7 @@ elixir(function(mix) {
         publicPath+"/js/vendor/jquery.js",
         publicPath+"/js/vendor/bootstrap.js",
         publicPath+"/js/pages/snippets/index.js",
+        publicPath+"/js/pages/snippets/show.js",
         publicPath+"/js/app.js",
     ], publicPath+"/js/application.js", publicPath+"/js")
 

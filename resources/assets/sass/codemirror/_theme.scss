@@ -3,7 +3,7 @@
 .CodeMirror {
   /* Set height, width, borders, and global font properties here */
   font-family: monospace;
-  height: 300px;
+  height: 500px;
 }
 
 /* PADDING */
@@ -307,3 +307,4 @@ div.CodeMirror-cursors {
 
 /* Help users use markselection to safely style text background */
 span.CodeMirror-selectedtext { background: none; }
+

@@ -30,7 +30,7 @@ $(function(){
             this.globals.theEditor = CodeMirror.fromTextArea(document.getElementById('the-editor'), {
                 theme: "medi-code",
                 lineNumbers: true,
-                mode: (modeType.length) ? modeType : 'htmlmixed'
+                mode: (modeType.length) ? modeType : 'markdown'
             });
         },
 

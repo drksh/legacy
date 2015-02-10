@@ -140,6 +140,7 @@ return [
 		 * Package Service Providers
 		 */
 		'Illuminate\Html\HtmlServiceProvider',
+		'Laracasts\Flash\FlashServiceProvider',
 
 		/*
 		 * Application Service Providers...

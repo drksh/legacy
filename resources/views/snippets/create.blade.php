@@ -3,32 +3,21 @@
 @section("content")
     <div id="snippets" class="row create">
         <div class="col-md-12">
-            <form action="{{ route('snippets.create') }}" method="POST">
-                <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
-                <input type="hidden" name="mode" value=""/>
+            {!! Form::open(['route' => 'snippets.store']) !!}
 
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Title">
-                </div>
+            @include('snippets.form')
 
-                <div class="js-mode-changers">
-                    <button class="btn btn-info" href="#" type="button" data-id="htmlmixed">HTML</button>
-                    <button class="btn btn-info" href="#" type="button" data-id="sass">SASS</button>
-                    <button class="btn btn-info" href="#" type="button" data-id="php">PHP</button>
-                    <button class="btn btn-info" href="#" type="button" data-id="javascript">Javascript</button>
-                    <button class="btn btn-info" href="#" type="button" data-id="markdown">Markdown</button>
-                </div>
+            <div class="form-group">
+                {!! Form::password('password', ['class' => 'form-control', 'placeholder' => 'Password']) !!}
+                <p class="help-block">NOTE: You may only set the password once. And it cannot be reset.</p>
+            </div>
 
-                <hr/>
+            <hr/>
 
-                <textarea name="body" id="the-editor" style="display: none;">var lol = 'lol';</textarea>
+            {!! Form::submit('Submit', ['class' => 'btn btn-success']) !!}
+            <a class="text-warning" href="{{ route('snippets.index') }}">Cancel</a>
 
-                <hr/>
-
-                <input class="btn btn-success" type="submit" value="Submit"/>
-                <a class="text-warning" href="{{ route('snippets.index') }}">Cancel</a>
-
-            </form>
+            {!! Form::close() !!}
         </div>
     </div>
 @stop

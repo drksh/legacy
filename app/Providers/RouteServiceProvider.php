@@ -1,5 +1,6 @@
 <?php namespace MediShare\Providers;
 
+use MediShare\Submissions\Snippets\Snippet;
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -24,7 +25,7 @@ class RouteServiceProvider extends ServiceProvider {
 	{
 		parent::boot($router);
 
-		//
+		$router->model('snippets', Snippet::class);
 	}
 
 	/**
