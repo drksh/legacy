@@ -24,6 +24,8 @@
 	    	@include('layouts.partials.header')
         </div>
 
+		@include('flash::message')
+
         <div class="row">
             @yield('content')
         </div>

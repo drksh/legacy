@@ -1,9 +1,13 @@
 <?php namespace MediShare\Http\Controllers;
 
+use MediShare\Commands\StoreNewSnippetCommand;
+use MediShare\Commands\UpdateSnippetCommand;
 use MediShare\Http\Requests;
 use MediShare\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use MediShare\Http\Requests\SnippetsRequest;
+use MediShare\Submissions\Snippets\Snippet;
 
 class SnippetsController extends Controller {
 
@@ -14,7 +18,9 @@ class SnippetsController extends Controller {
 	 */
 	public function index()
 	{
-		return view('snippets.index');
+		$snippets = Snippet::all();
+
+		return view('snippets.index', compact('snippets'));
 	}
 
 	/**
@@ -24,17 +30,22 @@ class SnippetsController extends Controller {
 	 */
 	public function create()
 	{
-		//
+		return view('snippets.create');
 	}
 
 	/**
 	 * Store a newly created resource in storage.
 	 *
+	 * @param SnippetsRequest $request
 	 * @return Response
 	 */
-	public function store()
+	public function store(SnippetsRequest $request)
 	{
-		//
+		$this->dispatchFrom(StoreNewSnippetCommand::class, $request);
+
+		flash('Snippet was successfully created.');
+
+		return redirect()->route('snippets.index');
 	}
 
 	/**
@@ -43,9 +54,9 @@ class SnippetsController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show(Snippet $snippet)
 	{
-		//
+		return view('snippets.show', compact('snippet'));
 	}
 
 	/**
@@ -54,9 +65,9 @@ class SnippetsController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit(Snippet $snippet)
 	{
-		//
+		return view('snippets.edit', compact('snippet'));
 	}
 
 	/**
@@ -65,9 +76,13 @@ class SnippetsController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(Snippet $snippet, SnippetsRequest $request)
 	{
-		//
+		$this->dispatchFrom(UpdateSnippetCommand::class, $request, compact('snippet'));
+
+		flash('Snippet was successfully updated.');
+
+		return redirect()->route('snippets.index');
 	}
 
 	/**
@@ -78,7 +93,9 @@ class SnippetsController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		Snippet::destroy($id);
+
+		return redirect()->route('snippets.index');
 	}
 
 }

@@ -12,15 +12,22 @@ class Snippet extends Model {
 	protected $table = 'snippets';
 
 	/**
+	 * The hidden attributed that should not be shown
+	 *
+	 * @var array
+	 */
+	protected $hidden = ['password'];
+
+	/**
 	 * The attributes that are mass assignable.
 	 *
 	 * @var array
 	 */
-	protected $fillable = ['user_id', 'title', 'body', 'password'];
+	protected $fillable = ['user_id', 'title', 'body', 'mode', 'password'];
 
 	public function setPasswordAttribute($password)
 	{
-		$this->attributes['password'] = mcrypt($password);
+		$this->attributes['password'] = bcrypt($password);
 	}
 
 }
