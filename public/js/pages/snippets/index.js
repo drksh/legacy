@@ -2,7 +2,7 @@ $(function(){
     var snippetIndex = {
 
         globals: {
-            $page: $('#snippets.index'),
+            $page: $('#snippets.create'),
             $snippetMode: $("input[name='mode']", this.$page),
             theEditor: null
         },
