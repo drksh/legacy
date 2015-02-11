@@ -1,10 +1,10 @@
-@if($errors->any())
-    <ul class="list-group">
-        <li class="list-group-item text-danger">
-            <h1>Woooops</h1>
-            @foreach($errors->all() as $error)
-                <p>&gt; {{ $error }}</p>
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <strong>Whoops!</strong> There were some problems with your input.<br><br>
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
             @endforeach
-        </li>
-    </ul>
+        </ul>
+    </div>
 @endif

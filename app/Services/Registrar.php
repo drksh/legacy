@@ -1,6 +1,6 @@
 <?php namespace DarkShare\Services;
 
-use DarkShare\User;
+use DarkShare\Users\User;
 use Validator;
 use Illuminate\Contracts\Auth\Registrar as RegistrarContract;
 

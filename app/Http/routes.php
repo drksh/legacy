@@ -14,10 +14,33 @@ Route::post('snippets/authenticate/{snippets}', [
 ]);
 
 /*
+ * Auth
+ */
+Route::get('auth/login', [
+	'as' => 'auth.login',
+	'uses'  => 'Auth\AuthController@getLogin'
+]);
+Route::post('auth/login', [
+	'as' => 'auth.login',
+	'uses'  => 'Auth\AuthController@postLogin'
+]);
+Route::get('auth/register', [
+	'as' => 'auth.register',
+	'uses'  => 'Auth\AuthController@getRegister'
+]);
+Route::post('auth/register', [
+	'as' => 'auth.register',
+	'uses'  => 'Auth\AuthController@postRegister'
+]);
+Route::get('auth/logout', [
+	'as' => 'auth.logout',
+	'uses'  => 'Auth\AuthController@getLogout',
+]);
+
+/*
  * Controllers
  */
 Route::controllers([
-	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 	''  =>  'PagesController',
 ]);
