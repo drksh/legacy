@@ -8,8 +8,15 @@ use DarkShare\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use DarkShare\Http\Requests\SnippetsRequest;
 use DarkShare\Submissions\Snippets\Snippet;
+use Illuminate\Session\SessionManager;
+use Illuminate\Session\Store;
 
 class SnippetsController extends Controller {
+
+	function __construct()
+	{
+		$this->middleware('auth.snippet', ['only' => 'show']);
+	}
 
 	/**
 	 * Display a listing of the resource.
@@ -49,13 +56,45 @@ class SnippetsController extends Controller {
 	}
 
 	/**
+	 * Show the form for logging into a protected Snippet
+	 *
+	 * @param Snippet $snippet
+	 */
+	public function login(Snippet $snippet)
+	{
+		return view('snippets.login', compact('snippet'));
+	}
+
+	/**
+	 * Authenticate to a protected Snippet
+	 *
+	 * @param Snippet $snippet
+	 */
+	public function authenticate(Snippet $snippet, Request $request, Store $session)
+	{
+
+		if( ! $snippet->authenticate($request->input('password')))
+		{
+			flash()->warning('Wrong password');
+			return redirect()->back();
+		}
+
+		$session->flash('snippet_auth', true);
+
+		return redirect()->route('snippets.show', $snippet->id);
+	}
+
+	/**
 	 * Display the specified resource.
 	 *
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show(Snippet $snippet)
+	public function show(Snippet $snippet, Store $session)
 	{
+		if($snippet->isProtected && ! $session->get('snippet_auth'))
+			return redirect()->route('snippets.login', $snippet->id);
+
 		return view('snippets.show', compact('snippet'));
 	}
 
@@ -91,9 +130,9 @@ class SnippetsController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy(Snippet $snippet)
 	{
-		Snippet::destroy($id);
+		$snippet->delete();
 
 		return redirect()->route('snippets.index');
 	}
