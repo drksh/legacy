@@ -9,7 +9,7 @@
 
             <hr/>
 
-            {!! Form::open(['route' => ['snippets.auth', $snippet->id], 'method' => 'patch']) !!}
+            {!! Form::open(['route' => ['snippets.auth', $snippet->id], 'method' => 'post']) !!}
 
             {!! Form::password('password', ['class' => 'form-control', 'placeholder' => 'Password']) !!}
 

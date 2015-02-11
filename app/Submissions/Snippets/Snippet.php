@@ -25,6 +25,11 @@ class Snippet extends Model {
 	 */
 	protected $fillable = ['user_id', 'title', 'body', 'mode', 'password'];
 
+	public function authenticate($password)
+	{
+		return \Hash::check($password, $this->password);
+	}
+
 	public function setPasswordAttribute($password)
 	{
 		$this->attributes['password'] = bcrypt($password);
