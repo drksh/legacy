@@ -26,6 +26,7 @@ class StoreNewSnippetCommandHandler {
 	public function handle(StoreNewSnippetCommand $command)
 	{
 		return Snippet::create([
+			'user_id' => $command->user_id,
 			'title' => $command->title,
 			'body'  => $command->body,
 			'mode'  => $command->mode,

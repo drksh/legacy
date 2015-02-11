@@ -5,6 +5,7 @@ use DarkShare\Commands\UpdateSnippetCommand;
 use DarkShare\Http\Requests;
 use DarkShare\Http\Controllers\Controller;
 
+use Illuminate\Auth\Guard;
 use Illuminate\Http\Request;
 use DarkShare\Http\Requests\SnippetsRequest;
 use DarkShare\Submissions\Snippets\Snippet;
@@ -41,9 +42,12 @@ class SnippetsController extends Controller {
 	 * @param SnippetsRequest $request
 	 * @return Response
 	 */
-	public function store(SnippetsRequest $request)
+	public function store(SnippetsRequest $request, Guard $auth)
 	{
-		$this->dispatchFrom(StoreNewSnippetCommand::class, $request);
+		$data = [
+			'user_id' => ($auth->user()) ? $auth->user()->id : null
+		];
+		$this->dispatchFrom(StoreNewSnippetCommand::class, $request, $data);
 
 		flash('Snippet was successfully created.');
 
