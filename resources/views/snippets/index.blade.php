@@ -3,7 +3,12 @@
 @section("content")
     <div id="snippets" class="row index">
         <div class="col-md-12">
-            <h1>Snippets</h1>
+            <h1>
+                Snippets
+                <a class="btn btn-success btn-xs" href="{{ route('snippets.create') }}">Create new</a>
+            </h1>
+
+            <hr/>
 
             <table class="table table-striped table-bordered">
                 <colgroup>

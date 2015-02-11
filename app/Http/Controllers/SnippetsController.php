@@ -13,11 +13,6 @@ use Illuminate\Session\Store;
 
 class SnippetsController extends Controller {
 
-	function __construct()
-	{
-		$this->middleware('auth.snippet', ['only' => 'show']);
-	}
-
 	/**
 	 * Display a listing of the resource.
 	 *
