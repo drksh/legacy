@@ -18,20 +18,24 @@
 	<![endif]-->
 </head>
 <body>
-    <div class="container-fluid">
-	<div class="col-md-8 col-md-offset-2">
-	    <div class="row">
-	    	@include('layouts.partials.header')
-        </div>
+    <div id="container" class="container-fluid">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="row">
+                @include('layouts.partials.header')
+            </div>
 
-		@include('flash::message')
+            @include('flash::message')
 
-        <div class="row">
-            @yield('content')
+            <div class="row">
+                @yield('content')
+            </div>
+
         </div>
     </div>
-    </div>
 
+	<div id="footer" class="row">
+		@include('layouts.partials.footer')
+	</div>
 	<!-- Scripts -->
 	<script src="{{ elixir('js/application.js') }}"></script>
 </body>
