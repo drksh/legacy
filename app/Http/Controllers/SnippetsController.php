@@ -1,7 +1,9 @@
 <?php namespace DarkShare\Http\Controllers;
 
+use Contracts\Models\Protectable;
 use DarkShare\Commands\StoreNewSnippetCommand;
 use DarkShare\Commands\UpdateSnippetCommand;
+use DarkShare\Http\Controllers\Traits\ProtectedTrait;
 use DarkShare\Http\Requests;
 use DarkShare\Http\Controllers\Controller;
 
@@ -13,6 +15,8 @@ use Illuminate\Session\SessionManager;
 use Illuminate\Session\Store;
 
 class SnippetsController extends Controller {
+
+	use ProtectedTrait;
 
 	/**
 	 * Display a listing of the resource.
@@ -44,9 +48,8 @@ class SnippetsController extends Controller {
 	 */
 	public function store(SnippetsRequest $request, Guard $auth)
 	{
-		$data = [
-			'user_id' => ($auth->user()) ? $auth->user()->id : null
-		];
+		$data = ['user_id' => ($auth->user()) ? $auth->user()->id : null];
+
 		$this->dispatchFrom(StoreNewSnippetCommand::class, $request, $data);
 
 		flash('Snippet was successfully created.');
@@ -91,6 +94,7 @@ class SnippetsController extends Controller {
 	 */
 	public function show(Snippet $snippet, Store $session)
 	{
+		dd($snippet);
 		if($snippet->isProtected && ! $session->get('snippet_auth'))
 			return redirect()->route('snippets.login', $snippet->id);
 
