@@ -1,4 +1,4 @@
-<?php namespace Contracts\Models;
+<?php namespace DarkShare\Contracts\Models;
 
 interface Protectable {
 

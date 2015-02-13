@@ -1,7 +1,8 @@
 <?php namespace DarkShare\Submissions\Snippets;
 
-use Contracts\Models\Protectable;
-use Illuminate\Database\Eloquent\Model;
+use DarkShare\Contracts\Models\Protectable;
+use DarkShare\Model;
+use Illuminate\Contracts\Auth\Guard;
 
 class Snippet extends Model implements Protectable {
 
@@ -34,6 +35,13 @@ class Snippet extends Model implements Protectable {
 	public function isProtected()
 	{
 		return ! is_null($this->password);
+	}
+
+	public function hasAccess()
+	{
+		$userId = \Auth::id();
+
+		return $this->isProtected() && $this->user_id == $userId;
 	}
 
 	public function setPasswordAttribute($password)

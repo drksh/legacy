@@ -1,6 +1,6 @@
 <?php namespace DarkShare\Http\Controllers;
 
-use Contracts\Models\Protectable;
+use Contracts\Models\ProtectableContract;
 use DarkShare\Commands\StoreNewSnippetCommand;
 use DarkShare\Commands\UpdateSnippetCommand;
 use DarkShare\Http\Controllers\Traits\ProtectedTrait;
@@ -81,7 +81,7 @@ class SnippetsController extends Controller {
 			return redirect()->back();
 		}
 
-		$session->flash('snippet_auth', true);
+		$session->flash('snippets_auth', true);
 
 		return redirect()->route('snippets.show', $snippet->id);
 	}
@@ -94,9 +94,10 @@ class SnippetsController extends Controller {
 	 */
 	public function show(Snippet $snippet, Store $session)
 	{
-		dd($snippet);
-		if($snippet->isProtected && ! $session->get('snippet_auth'))
-			return redirect()->route('snippets.login', $snippet->id);
+		if($this->protect($snippet, $session))
+		{
+			return redirect()->route('snippets.login', compact('snippet'));
+		}
 
 		return view('snippets.show', compact('snippet'));
 	}

@@ -1,10 +1,19 @@
 <?php namespace DarkShare\Http\Controllers\Traits;
 
+use DarkShare\Contracts\Models\Protectable;
+use Illuminate\Session\Store;
+
 trait ProtectedTrait {
 
-	private function protect(Protectable $model, Store $session)
+	protected function protect(Protectable $model, Store $session)
 	{
-		if($model->isProtected && ! $session->get('snippet_auth'))
-			return redirect()->route('snippets.login', $model->id);
+		$modelName = $this->getModelName($model);
+
+		return $model->isProtected() && ! $session->get($modelName.'_auth');
+	}
+
+	private function getModelName(Protectable $model)
+	{
+		return $model->modelName();
 	}
 }

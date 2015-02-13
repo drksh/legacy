@@ -35,10 +35,16 @@
                     <td>{{ str_limit($snippet->body) }}</td>
                     <td>{{ $snippet->mode }}</td>
                     <td>
+                        @unless($snippet->hasAccess())
                         {!! Form::open(['route' => ['snippets.destroy', $snippet->id], 'method' => 'delete']) !!}
                             <a class="btn btn-primary btn-sm" href="{{ route('snippets.edit', $snippet->id) }}">Edit</a>
                             <button class="btn btn-danger btn-sm" type="submit">Destory</button>
                         {!! Form::close() !!}
+                        @else
+                            <em class="text-info">
+                                Not authorized
+                            </em>
+                        @endunless
                     </td>
                 </tr>
                 @endforeach
