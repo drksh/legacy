@@ -4920,6 +4920,11 @@ a.list-group-item-danger.active:hover, a.list-group-item-danger.active:focus {
 .panel-default > .panel-heading {
   background-color: #464545; }
 
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: url('../../fonts/glyphicons-halflings-regular.eot');
+  src: url('../../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../../fonts/glyphicons-halflings-regular.woff2') format('woff2'), url('../../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg'); }
+
 .cm-s-medi-code.CodeMirror {
   background: #151515;
   color: #e0e0e0; }
@@ -5336,9 +5341,6 @@ span.CodeMirror-selectedtext {
 
 #footer {
   width: 100%;
-  position: fixed;
-  bottom: 0; }
-
-footer {
+  bottom: 0;
   height: 25px;
   background-color: #222222; }

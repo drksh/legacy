@@ -36,14 +36,21 @@
                     <td>{{ $snippet->mode }}</td>
                     <td>
                         @unless($snippet->hasAccess())
-                        {!! Form::open(['route' => ['snippets.destroy', $snippet->id], 'method' => 'delete']) !!}
-                            <a class="btn btn-primary btn-sm" href="{{ route('snippets.edit', $snippet->id) }}">Edit</a>
-                            <button class="btn btn-danger btn-sm" type="submit">Destory</button>
+                        {!! Form::open(['route' => ['snippets.destroy', $snippet->id], 'method' => 'delete', 'class' => 'text-center']) !!}
+                            <a class="btn btn-info btn-sm" href="{{ route('snippets.show', $snippet->id) }}">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                            </a>
+                            <a class="btn btn-primary btn-sm" href="{{ route('snippets.edit', $snippet->id) }}">
+                                <span class="glyphicon glyphicon-edit"></span>
+                            </a>
+                            <button class="btn btn-danger btn-sm" type="submit">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
                         {!! Form::close() !!}
                         @else
-                            <em class="text-info">
-                                Not authorized
-                            </em>
+                            <button class="btn btn-default btn-block disabled">
+                                <span class="glyphicon glyphicon-lock"></span>
+                            </button>
                         @endunless
                     </td>
                 </tr>
