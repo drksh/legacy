@@ -1,5 +1,6 @@
 <?php namespace DarkShare\Users;
 
+use DarkShare\Submissions\Snippets\Snippet;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Passwords\CanResetPassword;
@@ -30,5 +31,10 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 * @var array
 	 */
 	protected $hidden = ['password', 'remember_token'];
+
+	public function snippets()
+	{
+		return $this->hasMany(Snippet::class);
+	}
 
 }

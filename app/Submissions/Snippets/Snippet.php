@@ -2,6 +2,7 @@
 
 use DarkShare\Contracts\Models\Protectable;
 use DarkShare\Model;
+use DarkShare\Users\User;
 use Illuminate\Contracts\Auth\Guard;
 
 class Snippet extends Model implements Protectable {
@@ -26,6 +27,11 @@ class Snippet extends Model implements Protectable {
 	 * @var array
 	 */
 	protected $fillable = ['user_id', 'title', 'body', 'mode', 'password'];
+
+	public function user()
+	{
+		return $this->belongsTo(User::class);
+	}
 
 	public function authenticate($password)
 	{
