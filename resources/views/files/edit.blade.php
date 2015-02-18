@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section("content")
-    <div id="snippets" class="row create">
+    <div id="files" class="row create">
         <div class="col-md-12">
 
             {!! Form::model($file, ['route' => ['files.update', $file->id], 'method' => 'patch']) !!}
