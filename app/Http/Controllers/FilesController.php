@@ -3,6 +3,8 @@
 use DarkShare\Http\Requests;
 use DarkShare\Http\Controllers\Controller;
 
+use DarkShare\Http\Requests\FilesRequest;
+use DarkShare\Submissions\Files\File;
 use Illuminate\Http\Request;
 
 class FilesController extends Controller {
@@ -14,7 +16,7 @@ class FilesController extends Controller {
 	 */
 	public function index()
 	{
-		//
+		return view('files.index');
 	}
 
 	/**
@@ -30,11 +32,17 @@ class FilesController extends Controller {
 	/**
 	 * Store a newly created resource in storage.
 	 *
+	 * @param FilesRequest $request
 	 * @return Response
 	 */
-	public function store()
+	public function store(FilesRequest $request)
 	{
-		//
+
+		// TODO: dispatch command from request
+
+		flash("File successfully uploaded!");
+
+		return redirect()->route('files.index');
 	}
 
 	/**
@@ -43,7 +51,7 @@ class FilesController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show(File $file)
 	{
 		//
 	}
@@ -54,31 +62,38 @@ class FilesController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit(File $file)
 	{
-		//
+		return view('files.edit', compact('file'));
 	}
 
 	/**
 	 * Update the specified resource in storage.
 	 *
-	 * @param  int  $id
+	 * @param  int  File $file
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(File $file, FilesRequest $request)
 	{
-		//
+		// TODO: Dispatch command from request
+		flash('File successfully updated');
+
+		return redirect()->route('files.index');
 	}
 
 	/**
 	 * Remove the specified resource from storage.
 	 *
-	 * @param  int  $id
+	 * @param  int  File $file
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy(File $file)
 	{
-		//
+		$file->delete();
+
+		flash('File successfully deleted');
+
+		return redirect()->route('files.index');
 	}
 
 }
