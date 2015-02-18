@@ -45,6 +45,7 @@ elixir(function(mix) {
         publicPath+"/js/vendor/bootstrap.js",
         publicPath+"/js/pages/snippets/index.js",
         publicPath+"/js/pages/snippets/show.js",
+        publicPath+"/js/pages/files/form.js",
         publicPath+"/js/app.js",
     ], publicPath+"/js/application.js", publicPath+"/js")
 

@@ -14,6 +14,19 @@ Route::post('snippets/authenticate/{snippets}', [
 ]);
 
 /*
+ * Files
+ */
+Route::resource('files', 'FilesController');
+Route::get('files/login/{files}', [
+	'as'    => 'files.login',
+	'uses'  => 'FilesController@login',
+]);
+Route::post('files/authenticate/{files}', [
+	'as'    => 'files.auth',
+	'uses'  => 'FilesController@authenticate',
+]);
+
+/*
  * Auth
  */
 Route::get('auth/login', [
