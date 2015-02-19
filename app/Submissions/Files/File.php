@@ -22,7 +22,7 @@ class File extends Model implements Protectable {
 	 *
 	 * @var array
 	 */
-	protected $fillable = ['name', 'email', 'password'];
+	protected $fillable = ['user_id', 'title', 'path', 'password'];
 
 	/**
 	 * The attributes excluded from the model's JSON form.

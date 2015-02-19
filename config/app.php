@@ -150,6 +150,7 @@ return [
 		'DarkShare\Providers\ConfigServiceProvider',
 		'DarkShare\Providers\EventServiceProvider',
 		'DarkShare\Providers\RouteServiceProvider',
+		'DarkShare\Providers\ValidationProvider',
 
 	],
 

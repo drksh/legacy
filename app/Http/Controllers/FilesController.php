@@ -38,6 +38,7 @@ class FilesController extends Controller {
 	public function store(FilesRequest $request)
 	{
 
+		dd($request->file('path'));
 		// TODO: dispatch command from request
 
 		flash("File successfully uploaded!");
