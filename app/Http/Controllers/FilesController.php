@@ -1,5 +1,6 @@
 <?php namespace DarkShare\Http\Controllers;
 
+use DarkShare\Commands\StoreNewFileCommand;
 use DarkShare\Http\Requests;
 use DarkShare\Http\Controllers\Controller;
 
@@ -37,9 +38,7 @@ class FilesController extends Controller {
 	 */
 	public function store(FilesRequest $request)
 	{
-
-		dd($request->file('path'));
-		// TODO: dispatch command from request
+		$this->dispatchFrom(StoreNewFileCommand::class, $request, ['file' => $request->file('path')]);
 
 		flash("File successfully uploaded!");
 

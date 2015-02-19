@@ -13,7 +13,6 @@ class ValidationProvider extends ServiceProvider {
 	 */
 	public function boot(Validator $validator)
 	{
-		$validator->extend('file', FileValidator::class);
 		$validator->resolver(function($translator, $data, $rules, $messages)
 		{
 			return new FileValidator($translator, $data, $rules, $messages);

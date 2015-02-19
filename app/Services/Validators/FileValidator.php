@@ -7,12 +7,7 @@ class FileValidator extends Validator {
 
 	public function validateFile($attribute, UploadedFile $file, $property)
 	{
-		if ( ! $file->isValid())
-			return false;
-
-		if ( ! )
-
-		return true;
+		return $file->isValid();
 	}
 
 }
