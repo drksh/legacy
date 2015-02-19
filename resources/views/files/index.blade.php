@@ -21,7 +21,6 @@
                 <tr>
                     <th>#</th>
                     <th>Title</th>
-                    <th>Path</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
@@ -30,8 +29,6 @@
                 <tr>
                     <td>{{ $file->id }}</td>
                     <td><a href="{{ route('files.show', $file->id)  }}">{{ $file->title }}</a></td>
-                    <td>{{ str_limit($file->body) }}</td>
-                    <td>{{ $file->mode }}</td>
                     <td>
                         @unless($file->hasAccess())
                         {!! Form::open(['route' => ['files.destroy', $file->id], 'method' => 'delete', 'class' => 'text-center']) !!}

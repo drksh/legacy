@@ -39,7 +39,7 @@ class StoreNewFileCommandHandler {
 			'user_id' => ($this->auth->user()) ? $this->auth->user()->id : null,
 			'title' => $command->title,
 			'path'  => $command->path,
-			'password' => $command->password,
+			'password' => ($command->password) ?: null,
 		]);
 	}
 

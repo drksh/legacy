@@ -8,7 +8,6 @@ trait ProtectedTrait {
 	protected function protect(Protectable $model, Store $session)
 	{
 		$modelName = $this->getModelName($model);
-
 		return $model->isProtected() && ! $session->get($modelName.'_auth');
 	}
 

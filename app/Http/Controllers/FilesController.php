@@ -1,14 +1,16 @@
 <?php namespace DarkShare\Http\Controllers;
 
 use DarkShare\Commands\StoreNewFileCommand;
+use DarkShare\Http\Controllers\Traits\ProtectedTrait;
 use DarkShare\Http\Requests;
-use DarkShare\Http\Controllers\Controller;
 
 use DarkShare\Http\Requests\FilesRequest;
 use DarkShare\Submissions\Files\File;
-use Illuminate\Http\Request;
+use Illuminate\Session\Store;
 
 class FilesController extends Controller {
+
+	use ProtectedTrait;
 
 	/**
 	 * Display a listing of the resource.
@@ -17,7 +19,9 @@ class FilesController extends Controller {
 	 */
 	public function index()
 	{
-		return view('files.index');
+		$files = File::all();
+
+		return view('files.index', compact('files'));
 	}
 
 	/**
@@ -46,14 +50,50 @@ class FilesController extends Controller {
 	}
 
 	/**
+	 * Show the form for logging into a protected Snippet
+	 *
+	 * @param Snippet $snippet
+	 */
+	public function login(File $file)
+	{
+		return view('files.login', compact('file'));
+	}
+
+	/**
+	 * Authenticate to a protected Snippet
+	 *
+	 * @param Snippet $file
+	 */
+	public function authenticate(File $file, Request $request, Store $session)
+	{
+
+		if( ! $file->authenticate($request->input('password')))
+		{
+			flash()->warning('Wrong password');
+			return redirect()->back();
+		}
+
+		$session->flash('files_auth', true);
+
+		return redirect()->route('files.show', $file->id);
+	}
+
+	/**
 	 * Display the specified resource.
 	 *
-	 * @param  int  $id
+	 * @param File  $file
+	 * @param Store $session
 	 * @return Response
+	 * @internal param int $id
 	 */
-	public function show(File $file)
+	public function show(File $file, Store $session)
 	{
-		//
+		if ($this->protect($file, $session))
+		{
+			return redirect()->route('files.login', compact('file'));
+		}
+
+		return response()->download($file->path);
 	}
 
 	/**

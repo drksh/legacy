@@ -37,17 +37,4 @@ class Snippet extends Model implements Protectable {
 	{
 		return $this->belongsTo(User::class);
 	}
-
-	public function authenticate($password)
-	{
-		return \Hash::check($password, $this->password);
-	}
-
-	public function hasAccess()
-	{
-		$userId = \Auth::id();
-
-		return $this->isProtected() && $this->user_id == $userId;
-	}
-
 }
