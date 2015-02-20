@@ -2,10 +2,9 @@
 
 use DarkShare\Commands\StoreNewFileCommand;
 use DarkShare\Http\Controllers\Traits\ProtectedTrait;
-use DarkShare\Http\Requests;
-
 use DarkShare\Http\Requests\FilesRequest;
 use DarkShare\Submissions\Files\File;
+use Illuminate\Http\Request;
 use Illuminate\Session\Store;
 
 class FilesController extends Controller {
@@ -62,17 +61,20 @@ class FilesController extends Controller {
 	/**
 	 * Authenticate to a protected Snippet
 	 *
-	 * @param Snippet $file
+	 * @param Snippet|File     $file
+	 * @param Request $request
+	 * @param Store            $session
+	 * @return \Illuminate\Http\RedirectResponse
 	 */
 	public function authenticate(File $file, Request $request, Store $session)
 	{
-
 		if( ! $file->authenticate($request->input('password')))
 		{
 			flash()->warning('Wrong password');
 			return redirect()->back();
 		}
 
+		flash("hello");
 		$session->flash('files_auth', true);
 
 		return redirect()->route('files.show', $file->id);
@@ -90,6 +92,8 @@ class FilesController extends Controller {
 	{
 		if ($this->protect($file, $session))
 		{
+			flash("Authentication required");
+
 			return redirect()->route('files.login', compact('file'));
 		}
 

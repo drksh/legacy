@@ -30,7 +30,7 @@ class StoreNewSnippetCommandHandler {
 			'title' => $command->title,
 			'body'  => $command->body,
 			'mode'  => $command->mode,
-			'password'  => ($command->password) ?: null,
+			'password' => $command->password,
 		]);
 
 	}

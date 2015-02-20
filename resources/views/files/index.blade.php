@@ -5,7 +5,7 @@
         <div class="col-md-12">
             <h1>
                 Files
-                <a class="btn btn-success btn-xs" href="{{ route('snippets.create') }}">Create new</a>
+                <a class="btn btn-success btn-xs" href="{{ route('files.create') }}">Create new</a>
             </h1>
 
             <hr/>
