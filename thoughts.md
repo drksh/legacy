@@ -11,3 +11,9 @@ When securing files i need to check the following
 When typing a password and a file is uploaded then change the text to either:
 	- "I haz secure file"
 	- A lock icon
+	
+	
+
+# Authentication
+- The model is not password protected
+- If I own/created the model and it is password protected

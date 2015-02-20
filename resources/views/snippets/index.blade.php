@@ -35,7 +35,7 @@
                     <td>{{ str_limit($snippet->body) }}</td>
                     <td>{{ $snippet->mode }}</td>
                     <td>
-                        @unless($snippet->hasAccess())
+                        @if( $snippet->userHasAccess() )
                         {!! Form::open(['route' => ['snippets.destroy', $snippet->id], 'method' => 'delete', 'class' => 'text-center']) !!}
                             <a class="btn btn-info btn-sm" href="{{ route('snippets.show', $snippet->id) }}">
                                 <span class="glyphicon glyphicon-eye-open"></span>
@@ -51,7 +51,7 @@
                             <button class="btn btn-default btn-block disabled">
                                 <span class="glyphicon glyphicon-lock"></span>
                             </button>
-                        @endunless
+                        @endif
                     </td>
                 </tr>
                 @endforeach

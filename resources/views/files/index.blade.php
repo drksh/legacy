@@ -30,7 +30,7 @@
                     <td>{{ $file->id }}</td>
                     <td><a href="{{ route('files.show', $file->id)  }}">{{ $file->title }}</a></td>
                     <td>
-                        @unless($file->hasAccess())
+                        @if( $file->userHasAccess() )
                         {!! Form::open(['route' => ['files.destroy', $file->id], 'method' => 'delete', 'class' => 'text-center']) !!}
                             <a class="btn btn-info btn-sm" href="{{ route('files.show', $file->id) }}">
                                 <span class="glyphicon glyphicon-eye-open"></span>
@@ -46,7 +46,7 @@
                             <button class="btn btn-default btn-block disabled">
                                 <span class="glyphicon glyphicon-lock"></span>
                             </button>
-                        @endunless
+                        @endif
                     </td>
                 </tr>
                 @endforeach
