@@ -1,5 +1,6 @@
 <?php namespace DarkShare\Http\Controllers;
 
+use DarkShare\Commands\DeleteFileCommand;
 use DarkShare\Commands\StoreNewFileCommand;
 use DarkShare\Http\Controllers\Traits\ProtectedTrait;
 use DarkShare\Http\Requests\FilesRequest;
@@ -133,7 +134,7 @@ class FilesController extends Controller {
 	 */
 	public function destroy(File $file)
 	{
-		$file->delete();
+		$this->dispatchFromArray(DeleteFileCommand::class, compact('file'));
 
 		flash('File successfully deleted');
 

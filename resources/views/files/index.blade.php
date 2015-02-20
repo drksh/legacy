@@ -35,9 +35,6 @@
                             <a class="btn btn-info btn-sm" href="{{ route('files.show', $file->id) }}">
                                 <span class="glyphicon glyphicon-eye-open"></span>
                             </a>
-                            <a class="btn btn-primary btn-sm" href="{{ route('files.edit', $file->id) }}">
-                                <span class="glyphicon glyphicon-edit"></span>
-                            </a>
                             <button class="btn btn-danger btn-sm" type="submit">
                                 <span class="glyphicon glyphicon-trash"></span>
                             </button>

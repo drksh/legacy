@@ -16,7 +16,7 @@ Route::post('snippets/authenticate/{snippets}', [
 /*
  * Files
  */
-Route::resource('files', 'FilesController');
+Route::resource('files', 'FilesController', ['except' => ['edit', 'update']]);
 Route::get('files/login/{files}', [
 	'as'    => 'files.login',
 	'uses'  => 'FilesController@login',
