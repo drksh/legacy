@@ -1,15 +1,15 @@
 <?php namespace DarkShare\Users;
 
 use DarkShare\Submissions\Snippets\Snippet;
+use DarkShare\Submissions\Traits\HashPassword;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
-use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
-class User extends Model implements AuthenticatableContract, CanResetPasswordContract {
+class User extends Model implements AuthenticatableContract {
 
-	use Authenticatable, CanResetPassword;
+	use Authenticatable;
+	use HashPassword;
 
 	/**
 	 * The database table used by the model.
@@ -23,7 +23,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 *
 	 * @var array
 	 */
-	protected $fillable = ['name', 'email', 'password'];
+	protected $fillable = ['username', 'email', 'password'];
 
 	/**
 	 * The attributes excluded from the model's JSON form.

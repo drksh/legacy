@@ -31,30 +31,29 @@ Route::post('files/authenticate/{files}', [
  */
 Route::get('auth/login', [
 	'as' => 'auth.login',
-	'uses'  => 'Auth\AuthController@getLogin'
+	'uses'  => 'AuthController@getLogin'
 ]);
 Route::post('auth/login', [
 	'as' => 'auth.login',
-	'uses'  => 'Auth\AuthController@postLogin'
+	'uses'  => 'AuthController@postLogin'
 ]);
 Route::get('auth/register', [
 	'as' => 'auth.register',
-	'uses'  => 'Auth\AuthController@getRegister'
+	'uses'  => 'AuthController@getRegister'
 ]);
 Route::post('auth/register', [
 	'as' => 'auth.register',
-	'uses'  => 'Auth\AuthController@postRegister'
+	'uses'  => 'AuthController@postRegister'
 ]);
 Route::get('auth/logout', [
 	'as' => 'auth.logout',
-	'uses'  => 'Auth\AuthController@getLogout',
+	'uses'  => 'AuthController@getLogout',
 ]);
 
 /*
  * Controllers
  */
 Route::controllers([
-	'password' => 'Auth\PasswordController',
 	''  =>  'PagesController',
 ]);
 

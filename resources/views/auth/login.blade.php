@@ -12,7 +12,7 @@
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                 <div class="form-group">
-                    {!! Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'Email']) !!}
+                    {!! Form::text('username', null, ['class' => 'form-control', 'placeholder' => 'Username']) !!}
                 </div>
 
                 <div class="form-group">

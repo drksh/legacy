@@ -10,11 +10,7 @@
 
                 {!! Form::open(['route' => 'auth.register', 'method' => 'POST']) !!}
                 <div class="form-group">
-                    {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Name']) !!}
-                </div>
-
-                <div class="form-group">
-                    {!! Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'Email']) !!}
+                    {!! Form::text('username', null, ['class' => 'form-control', 'placeholder' => 'Username']) !!}
                 </div>
 
                 <div class="form-group">
@@ -22,7 +18,7 @@
                 </div>
 
                 <div class="form-group">
-                    {!! Form::password('password_confirmation', ['class' => 'form-control', 'placeholder' => 'Password']) !!}
+                    {!! Form::password('password_confirmation', ['class' => 'form-control', 'placeholder' => 'Confirm']) !!}
                 </div>
 
                 <div class="form-group">
