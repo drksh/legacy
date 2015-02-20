@@ -14,13 +14,15 @@
                 <colgroup>
                     <col width="3%"/>
                     <col width="20%"/>
-                    <col width="50%"/>
-                    <col width="10%"/>
+                    <col width="20%"/>
+                    <col width="35%"/>
+                    <col width="5%"/>
                     <col width="17%"/>
                 </colgroup>
                 <thead>
                 <tr>
                     <th>#</th>
+                    <th>By</th>
                     <th>Title</th>
                     <th>Body</th>
                     <th>Mode</th>
@@ -31,6 +33,9 @@
                 @foreach($snippets as $snippet)
                 <tr>
                     <td>{{ $snippet->id }}</td>
+                    <td class="text-primary">
+                        {{ $snippet->user->username or "Anon" }}
+                    </td>
                     <td><a href="{{ route('snippets.show', $snippet->id)  }}">{{ $snippet->title }}</a></td>
                     <td>{{ str_limit($snippet->body) }}</td>
                     <td>{{ $snippet->mode }}</td>

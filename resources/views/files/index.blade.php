@@ -12,7 +12,8 @@
 
             <table class="table table-striped table-bordered">
                 <colgroup>
-                    <col width="25%"/>
+                    <col width="5%"/>
+                    <col width="20%"/>
                     <col width="25%"/>
                     <col width="25%"/>
                     <col width="25%"/>
@@ -20,6 +21,7 @@
                 <thead>
                 <tr>
                     <th>#</th>
+                    <th>By</th>
                     <th>Title</th>
                     <th>Actions</th>
                 </tr>
@@ -28,6 +30,9 @@
                 @foreach($files as $file)
                 <tr>
                     <td>{{ $file->id }}</td>
+                    <td class="text-primary">
+                        {{ $file->user->username or "Anon" }}
+                    </td>
                     <td><a href="{{ route('files.show', $file->id)  }}">{{ $file->title }}</a></td>
                     <td>
                         @if( $file->userHasAccess() )
