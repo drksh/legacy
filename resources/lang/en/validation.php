@@ -86,8 +86,8 @@ return [
 	*/
 
 	'custom' => [
-		'attribute-name' => [
-			'rule-name' => 'custom-message',
+		'path' => [
+			'file' => 'The file you uploaded is not valid.',
 		],
 	],
 

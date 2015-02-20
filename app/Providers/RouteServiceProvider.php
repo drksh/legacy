@@ -1,5 +1,6 @@
 <?php namespace DarkShare\Providers;
 
+use DarkShare\Submissions\Files\File;
 use DarkShare\Submissions\Snippets\Snippet;
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
@@ -26,6 +27,7 @@ class RouteServiceProvider extends ServiceProvider {
 		parent::boot($router);
 
 		$router->model('snippets', Snippet::class);
+		$router->model('files', File::class);
 	}
 
 	/**
