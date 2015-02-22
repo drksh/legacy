@@ -5,7 +5,11 @@
         <div class="col-md-12">
             <h1>
                 Files
-                <a class="btn btn-success btn-xs" href="{{ route('files.create') }}">Create new</a>
+                @if(has_disk_space())
+                    <a class="btn btn-success btn-xs" href="{{ route('files.create') }}">Create new</a>
+                @else
+                    <a class="btn btn-danger disabled btn-xs" href="{{ route('files.create') }}">No diskspace...</a>
+                @endif
             </h1>
 
             <hr/>

@@ -1,3 +1,9 @@
+# General ideas
+Different types of things people can make:
+	- Text (Snippet)
+	- Non-text (File)
+	- URL (URL shortener)
+
 # Files
 When securing files i need to check the following
 	- User has the flashed session key to access the /files/{id} (GET) page
@@ -6,14 +12,8 @@ When securing files i need to check the following
 		2. /f/{id} (GET)
 	- If that is true, get the ID (from the URL) and check if it is the right path for that file
 		- Maybe?
-	
+
 ## Ideas
 When typing a password and a file is uploaded then change the text to either:
 	- "I haz secure file"
 	- A lock icon
-	
-	
-
-# Authentication
-- The model is not password protected
-- If I own/created the model and it is password protected
