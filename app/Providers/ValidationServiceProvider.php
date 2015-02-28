@@ -4,7 +4,7 @@ use DarkShare\Services\Validators\FileValidator;
 use Illuminate\Contracts\Validation\Factory as Validator;
 use Illuminate\Support\ServiceProvider;
 
-class ValidationProvider extends ServiceProvider {
+class ValidationServiceProvider extends ServiceProvider {
 
 	/**
 	 * Bootstrap the application services.

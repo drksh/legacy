@@ -14,6 +14,7 @@
     </label>
     {!! Form::file('path', ['id' => 'file']) !!}
 </div>
+<p class="help-block">NOTE: Max size is {{ get_max_upload_size(true) }}.</p>
 
 <hr/>
 

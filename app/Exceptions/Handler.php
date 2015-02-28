@@ -2,6 +2,7 @@
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
 class Handler extends ExceptionHandler {
 
@@ -36,6 +37,11 @@ class Handler extends ExceptionHandler {
 	 */
 	public function render($request, Exception $e)
 	{
+		if($e instanceof FileException) {
+			flash()->error($e->getMessage());
+			return redirect()->back();
+		}
+
 		return parent::render($request, $e);
 	}
 

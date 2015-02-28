@@ -7,7 +7,20 @@ class FileValidator extends Validator {
 
 	public function validateFile($attribute, UploadedFile $file, $property)
 	{
-		return $file->isValid();
+		if(is_null($file))
+		{
+			return false;
+		}
+		if( ! $file->isValid())
+		{
+			return false;
+		}
+		if($file->getClientSize() > get_max_upload_size())
+		{
+			return false;
+		}
+
+		return true;
 	}
 
 }
