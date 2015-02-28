@@ -12,6 +12,11 @@ class FilesController extends Controller {
 
 	use ProtectedTrait;
 
+	public function __construct()
+	{
+		$this->middleware('app.space', ['only' => ['create', 'store']]);
+	}
+
 	/**
 	 * Display a listing of the resource.
 	 *
