@@ -1,11 +1,11 @@
-<?php namespace DarkShare\Submissions\Files;
+<?php namespace DarkShare\Submissions\Urls;
 
-use DarkShare\Model;
 use DarkShare\Contracts\Models\Protectable;
+use Darkshare\Model;
 use DarkShare\Submissions\Traits\HashPassword;
 use DarkShare\Submissions\Traits\ProtectableTrait;
 
-class File extends Model implements Protectable {
+class Url extends Model implements Protectable {
 
 	use HashPassword;
 	use ProtectableTrait;
@@ -15,20 +15,19 @@ class File extends Model implements Protectable {
 	 *
 	 * @var string
 	 */
-	protected $table = 'files';
+	protected $table = 'urls';
 
 	/**
 	 * The attributes that are mass assignable.
 	 *
 	 * @var array
 	 */
-	protected $fillable = ['user_id', 'title', 'path', 'password'];
+	protected $fillable = ['user_id', 'destination', 'password'];
 
 	/**
 	 * The attributes excluded from the model's JSON form.
 	 *
 	 * @var array
 	 */
-	protected $hidden = ['password'];
-
+	protected $hidden = ['password', 'remember_token'];
 }
