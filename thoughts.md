@@ -4,6 +4,9 @@ Different types of things people can make:
 	- Text (Snippet)
 	- Non-text (File)
 	- URL (URL shortener)
+	
+## Security
+It would maybe be a good idea to make some kind of captcha(?)
 
 ## "Tracking"
 It would be nice to track how many clicks each submission gets
@@ -14,7 +17,7 @@ It would be nice to track how many clicks each submission gets
 - I am able to choose whether I'm browsable or not.
 
 ## Slugs
-All slugs should be a hex ie:
+All slugs should be a hex ie: 
 	id      hex
 	1       1
 	15      f
@@ -26,6 +29,12 @@ Things I need to think about:
 	- How often should the CRON run? 
 	- Fuck the what, I really like this idea
 	- I need to have an "expired" period, so that people are able to tell (ie. forum) that the link is broken.
+	
+## Paths
+Snippets    /s/{slug}
+Files       /f/{slug}
+Custom URLs /u/{slug}
+Optim URLs  /{slug}
 
 # ---- SPECIFICS ----
 ## Files
@@ -43,6 +52,13 @@ When typing a password and a file is uploaded then change the text to either:
 	- A lock icon
 	
 ## URLs
+When creating a new URL:
+	- A LOGGED IN user should only be able to edit the URL if they are authenticated
+	- An anon should be able to choose between a free-text URL, and an optimized one
+		- If it is a free-text url they don't want it super short then it'll fall into the /u/custom-text group
+	
 ### Ideas
-When creating a new URL the shortened version should be the HEX value of the ID. Would that work?
+- When creating a new URL the shortened version should be the HEX value of the ID. Would that work?
+- Create a CRON job that runs through all submissions and check for their status code.
+
 
