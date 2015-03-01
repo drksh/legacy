@@ -1,9 +1,11 @@
 <?php namespace DarkShare\Http\Controllers;
 
+use DarkShare\Commands\CreateNewURLCommand;
 use DarkShare\Http\Requests;
 use DarkShare\Http\Controllers\Controller;
 
-use Illuminate\Http\Request;
+use DarkShare\Http\Requests\UrlsRequest;
+use DarkShare\Submissions\Urls\Url;
 
 class UrlsController extends Controller {
 
@@ -14,7 +16,9 @@ class UrlsController extends Controller {
 	 */
 	public function index()
 	{
-		return view('urls.index');
+		$urls = Url::all();
+
+		return view('urls.index', compact('urls'));
 	}
 
 	/**
@@ -24,17 +28,21 @@ class UrlsController extends Controller {
 	 */
 	public function create()
 	{
-		//
+		return view('urls.create');
 	}
 
 	/**
 	 * Store a newly created url in storage.
 	 *
+	 * @param UrlsRequest $request
 	 * @return Response
 	 */
-	public function store()
+	public function store(UrlsRequest $request)
 	{
-		//
+		$this->dispatchFrom(CreateNewUrlCommand::class, $request);
+
+		flash("Short URL successfully created");
+		return redirect()->route('urls.index');
 	}
 
 	/**

@@ -1,7 +1,7 @@
 <?php namespace DarkShare\Submissions\Urls;
 
 use DarkShare\Contracts\Models\Protectable;
-use Darkshare\Model;
+use DarkShare\Model;
 use DarkShare\Submissions\Traits\HashPassword;
 use DarkShare\Submissions\Traits\ProtectableTrait;
 
