@@ -1,13 +1,17 @@
 <?php namespace DarkShare\Http\Controllers;
 
 use DarkShare\Commands\CreateNewURLCommand;
+use DarkShare\Http\Controllers\Traits\ProtectedTrait;
 use DarkShare\Http\Requests;
-use DarkShare\Http\Controllers\Controller;
 
 use DarkShare\Http\Requests\UrlsRequest;
 use DarkShare\Submissions\Urls\Url;
+use Illuminate\Http\Request;
+use Illuminate\Session\Store;
 
 class UrlsController extends Controller {
+
+	use ProtectedTrait;
 
 	/**
 	 * Display a listing of the urls.
@@ -46,34 +50,68 @@ class UrlsController extends Controller {
 	}
 
 	/**
-	 * Display the specified url.
+	 * Show the form for logging into a protected url.
 	 *
-	 * @param  int  $id
+	 * @param Url $url
+	 * @return \Illuminate\View\View
+	 */
+	public function login(Url $url)
+	{
+		return view('urls.login', compact('url'));
+	}
+
+	/**
+	 * Authenticate to a protected snippet.
+	 *
+	 * @param Url $url
+	 */
+	public function authenticate(Url $url, Request $request, Store $session)
+	{
+
+		if ( ! $url->authenticate($request->input('password'))) {
+			flash()->warning('Wrong password');
+			return redirect()->back();
+		}
+
+		$session->flash('urls_auth', true);
+
+		return redirect()->route('urls.show', $url->id);
+	}
+
+	/**
+	 * Display the specified snippet.
+	 *
+	 * @param Url   $url
+	 * @param Store $session
 	 * @return Response
 	 */
-	public function show($id)
+	public function show(Url $url, Store $session)
 	{
-		//
+		if ($this->protect($url, $session)) {
+			return redirect()->route('urls.login', compact('url'));
+		}
+
+		return redirect()->away($url->destination, 301);
 	}
 
 	/**
 	 * Show the form for editing the specified url.
 	 *
-	 * @param  int  $id
+	 * @param  int  Url $url
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit(Url $url)
 	{
-		//
+		// only authenticated users that own the URL can edit them
 	}
 
 	/**
 	 * Update the specified url in storage.
 	 *
-	 * @param  int  $id
+	 * @param  int  Url $url
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(Url $url)
 	{
 		//
 	}
@@ -81,12 +119,15 @@ class UrlsController extends Controller {
 	/**
 	 * Remove the specified url from storage.
 	 *
-	 * @param  int  $id
+	 * @param  int  Url $url
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy(Url $url)
 	{
-		//
+		$url->delete();
+
+		flash("URL successfully deleted.");
+		return redirect()->route('urls.index');
 	}
 
 }

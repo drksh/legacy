@@ -5,7 +5,6 @@
         <div class="col-md-12">
 
             <h1>Authenticate, please</h1>
-            <h4>Url: {{ $url->title }}</h4>
 
             <hr/>
 
@@ -15,7 +14,7 @@
 
             <hr/>
 
-            {!! Form::submit('Submit', ['class' => 'btn btn-success']) !!}
+            {!! Form::submit('Bring me there', ['class' => 'btn btn-success']) !!}
             <a class="text-warning" href="{{ route('urls.index') }}">Cancel</a>
 
             {!! Form::close() !!}
