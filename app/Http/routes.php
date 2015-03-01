@@ -27,6 +27,19 @@ Route::post('files/authenticate/{files}', [
 ]);
 
 /*
+ * URLs
+ */
+Route::resource('urls', 'UrlsController');
+Route::get('urls/login/{urls}', [
+	'as'    => 'urls.login',
+	'uses'  => 'UrlsController@login',
+]);
+Route::post('urls/authenticate/{urls}', [
+	'as'    => 'urls.auth',
+	'uses'  => 'UrlsController@authenticate',
+]);
+
+/*
  * Auth
  */
 Route::get('auth/login', [
