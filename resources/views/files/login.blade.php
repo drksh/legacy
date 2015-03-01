@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section("content")
-    <div id="files" class="row create">
+    <div id="files" class="row login">
         <div class="col-md-12">
 
             <h1>Authenticate, please</h1>
