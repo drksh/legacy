@@ -12,13 +12,16 @@ class FilesController extends Controller {
 
 	use ProtectedTrait;
 
+	/**
+	 * Create a new files controller instance.
+	 */
 	public function __construct()
 	{
 		$this->middleware('app.space', ['only' => ['create', 'store']]);
 	}
 
 	/**
-	 * Display a listing of the resource.
+	 * Display a listing of files.
 	 *
 	 * @return Response
 	 */
@@ -30,7 +33,7 @@ class FilesController extends Controller {
 	}
 
 	/**
-	 * Show the form for creating a new resource.
+	 * Show the form for creating a new file.
 	 *
 	 * @return Response
 	 */
@@ -40,7 +43,7 @@ class FilesController extends Controller {
 	}
 
 	/**
-	 * Store a newly created resource in storage.
+	 * Store a newly created file in storage.
 	 *
 	 * @param FilesRequest $request
 	 * @return Response
@@ -55,9 +58,10 @@ class FilesController extends Controller {
 	}
 
 	/**
-	 * Show the form for logging into a protected Snippet
+	 * Show the form for logging into a protected file.
 	 *
-	 * @param Snippet $snippet
+	 * @param File $file
+	 * @return \Illuminate\View\View
 	 */
 	public function login(File $file)
 	{
@@ -65,17 +69,16 @@ class FilesController extends Controller {
 	}
 
 	/**
-	 * Authenticate to a protected Snippet
+	 * Authenticate to a protected file.
 	 *
-	 * @param Snippet|File     $file
+	 * @param File    $file
 	 * @param Request $request
-	 * @param Store            $session
+	 * @param Store   $session
 	 * @return \Illuminate\Http\RedirectResponse
 	 */
 	public function authenticate(File $file, Request $request, Store $session)
 	{
-		if( ! $file->authenticate($request->input('password')))
-		{
+		if ( ! $file->authenticate($request->input('password'))) {
 			flash()->warning('Wrong password');
 			return redirect()->back();
 		}
@@ -87,7 +90,7 @@ class FilesController extends Controller {
 	}
 
 	/**
-	 * Display the specified resource.
+	 * Display the specified file.
 	 *
 	 * @param File  $file
 	 * @param Store $session
@@ -96,8 +99,7 @@ class FilesController extends Controller {
 	 */
 	public function show(File $file, Store $session)
 	{
-		if ($this->protect($file, $session))
-		{
+		if ($this->protect($file, $session)) {
 			flash("Authentication required");
 
 			return redirect()->route('files.login', compact('file'));
@@ -107,32 +109,7 @@ class FilesController extends Controller {
 	}
 
 	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit(File $file)
-	{
-		return view('files.edit', compact('file'));
-	}
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  File $file
-	 * @return Response
-	 */
-	public function update(File $file, FilesRequest $request)
-	{
-		// TODO: Dispatch command from request
-		flash('File successfully updated');
-
-		return redirect()->route('files.index');
-	}
-
-	/**
-	 * Remove the specified resource from storage.
+	 * Remove the specified file from storage.
 	 *
 	 * @param  int  File $file
 	 * @return Response

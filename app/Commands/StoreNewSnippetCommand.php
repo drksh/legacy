@@ -5,38 +5,43 @@ use DarkShare\Commands\Command;
 class StoreNewSnippetCommand extends Command {
 
 	/**
-	 * @var
+	 * Snippet title
+	 * @var string
 	 */
 	public $title;
 
 	/**
-	 * @var
+	 * Snippet body
+	 * @var string
 	 */
 	public $body;
 
 	/**
-	 * @var
+	 * Snippet text mode
+	 * @var string
 	 */
 	public $mode;
 
 	/**
-	 * @var
+	 * Snippet password
+	 * @var string
 	 */
 	public $password;
 
 	/**
-	 * @var
+	 * Snippet owner
+	 * @var integer
 	 */
 	public $user_id;
 
 	/**
 	 * Create a new command instance.
 	 *
-	 * @param $title
-	 * @param $body
-	 * @param $mode
-	 * @param $password
-	 * @param $user_id
+	 * @param string    $title
+	 * @param string    $body
+	 * @param string    $mode
+	 * @param string    $password
+	 * @param integer   $user_id
 	 */
 	public function __construct($title, $body, $mode, $password, $user_id)
 	{

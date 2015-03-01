@@ -8,16 +8,6 @@ use DarkShare\Submissions\Snippets\Snippet;
 class UpdateSnippetCommandHandler {
 
 	/**
-	 * Create the command handler.
-	 *
-	 * @return void
-	 */
-	public function __construct()
-	{
-		//
-	}
-
-	/**
 	 * Handle the command.
 	 *
 	 * @param  UpdateSnippetCommand  $command

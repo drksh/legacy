@@ -2,6 +2,11 @@
 
 trait HashPassword {
 
+	/**
+	 * Always hash passwords
+	 *
+	 * @param $password
+	 */
 	public function setPasswordAttribute($password)
 	{
 		if(empty($password))

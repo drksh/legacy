@@ -11,6 +11,8 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 class StoreNewFileCommandHandler {
 
 	/**
+	 * A Guard instance
+	 *
 	 * @var Guard
 	 */
 	private $auth;
@@ -28,7 +30,7 @@ class StoreNewFileCommandHandler {
 	/**
 	 * Handle the command.
 	 *
-	 * @param  StoreNewFileCommand  $command
+	 * @param  StoreNewFileCommand $command
 	 * @return void
 	 */
 	public function handle(StoreNewFileCommand $command)
@@ -38,11 +40,17 @@ class StoreNewFileCommandHandler {
 		return File::create([
 			'user_id' => ($this->auth->user()) ? $this->auth->user()->id : null,
 			'title' => $command->title,
-			'path'  => $command->path,
+			'path' => $command->path,
 			'password' => $command->password,
 		]);
 	}
 
+	/**
+	 * Store the uploaded file and give it's absolute path.
+	 *
+	 * @param UploadedFile $file
+	 * @return string
+	 */
 	private function handleUploadedFile(UploadedFile $file)
 	{
 		$filename = $this->getFileName($file);
@@ -53,11 +61,25 @@ class StoreNewFileCommandHandler {
 		return $resultFile->getRealPath();
 	}
 
+	/**
+	 * Store/move the uploaded file to desired location.
+	 *
+	 * @param UploadedFile $file
+	 * @param string       $location
+	 * @param string       $filename
+	 * @return \Symfony\Component\HttpFoundation\File\File
+	 */
 	private function storeFile(UploadedFile $file, $location, $filename)
 	{
 		return $file->move($location, $filename);
 	}
 
+	/**
+	 * Generate a proper filename.
+	 *
+	 * @param UploadedFile $file
+	 * @return bool|string
+	 */
 	private function getFilename(UploadedFile $file)
 	{
 		$path = date('Y-m-d_H-i-s');

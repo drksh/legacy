@@ -13,8 +13,7 @@ class ValidationServiceProvider extends ServiceProvider {
 	 */
 	public function boot(Validator $validator)
 	{
-		$validator->resolver(function($translator, $data, $rules, $messages)
-		{
+		$validator->resolver(function ($translator, $data, $rules, $messages) {
 			return new FileValidator($translator, $data, $rules, $messages);
 		});
 	}
@@ -24,6 +23,8 @@ class ValidationServiceProvider extends ServiceProvider {
 	 *
 	 * @return void
 	 */
-	public function register(){}
+	public function register()
+	{
+	}
 
 }

@@ -1,30 +1,30 @@
 <?php namespace DarkShare\Http\Controllers;
 
-use Contracts\Models\ProtectableContract;
 use DarkShare\Commands\StoreNewSnippetCommand;
 use DarkShare\Commands\UpdateSnippetCommand;
 use DarkShare\Http\Controllers\Traits\ProtectedTrait;
 use DarkShare\Http\Requests;
-use DarkShare\Http\Controllers\Controller;
 
 use Illuminate\Auth\Guard;
 use Illuminate\Http\Request;
 use DarkShare\Http\Requests\SnippetsRequest;
 use DarkShare\Submissions\Snippets\Snippet;
-use Illuminate\Session\SessionManager;
 use Illuminate\Session\Store;
 
 class SnippetsController extends Controller {
 
 	use ProtectedTrait;
 
+	/**
+	 * Create a new snippets controller instance.
+	 */
 	function __construct()
 	{
 		$this->middleware('app.space', ['only' => ['create', 'store']]);
 	}
 
 	/**
-	 * Display a listing of the resource.
+	 * Display a listing of the snippets.
 	 *
 	 * @return Response
 	 */
@@ -36,7 +36,7 @@ class SnippetsController extends Controller {
 	}
 
 	/**
-	 * Show the form for creating a new resource.
+	 * Show the form for creating a new snippet.
 	 *
 	 * @return Response
 	 */
@@ -46,7 +46,7 @@ class SnippetsController extends Controller {
 	}
 
 	/**
-	 * Store a newly created resource in storage.
+	 * Store a newly created snippet in storage.
 	 *
 	 * @param SnippetsRequest $request
 	 * @return Response
@@ -63,7 +63,7 @@ class SnippetsController extends Controller {
 	}
 
 	/**
-	 * Show the form for logging into a protected Snippet
+	 * Show the form for logging into a protected snippet.
 	 *
 	 * @param Snippet $snippet
 	 */
@@ -73,15 +73,14 @@ class SnippetsController extends Controller {
 	}
 
 	/**
-	 * Authenticate to a protected Snippet
+	 * Authenticate to a protected snippet.
 	 *
 	 * @param Snippet $snippet
 	 */
 	public function authenticate(Snippet $snippet, Request $request, Store $session)
 	{
 
-		if( ! $snippet->authenticate($request->input('password')))
-		{
+		if ( ! $snippet->authenticate($request->input('password'))) {
 			flash()->warning('Wrong password');
 			return redirect()->back();
 		}
@@ -92,15 +91,14 @@ class SnippetsController extends Controller {
 	}
 
 	/**
-	 * Display the specified resource.
+	 * Display the specified snippet.
 	 *
-	 * @param  int  $id
+	 * @param  int $id
 	 * @return Response
 	 */
 	public function show(Snippet $snippet, Store $session)
 	{
-		if($this->protect($snippet, $session))
-		{
+		if ($this->protect($snippet, $session)) {
 			return redirect()->route('snippets.login', compact('snippet'));
 		}
 
@@ -108,9 +106,9 @@ class SnippetsController extends Controller {
 	}
 
 	/**
-	 * Show the form for editing the specified resource.
+	 * Show the form for editing the specified snippet.
 	 *
-	 * @param  int  $id
+	 * @param  int $id
 	 * @return Response
 	 */
 	public function edit(Snippet $snippet)
@@ -119,9 +117,9 @@ class SnippetsController extends Controller {
 	}
 
 	/**
-	 * Update the specified resource in storage.
+	 * Update the specified snippet in storage.
 	 *
-	 * @param  int  $id
+	 * @param  int $id
 	 * @return Response
 	 */
 	public function update(Snippet $snippet, SnippetsRequest $request)
@@ -134,9 +132,9 @@ class SnippetsController extends Controller {
 	}
 
 	/**
-	 * Remove the specified resource from storage.
+	 * Remove the specified snippet from storage.
 	 *
-	 * @param  int  $id
+	 * @param  int $id
 	 * @return Response
 	 */
 	public function destroy(Snippet $snippet)

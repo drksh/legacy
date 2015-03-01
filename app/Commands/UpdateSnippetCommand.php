@@ -6,22 +6,30 @@ use DarkShare\Submissions\Snippets\Snippet;
 class UpdateSnippetCommand extends Command {
 
 	/**
+	 * Snippet to update
+	 *
 	 * @var Snippet
 	 */
 	public $snippet;
 
 	/**
-	 * @var
+	 * Snippet title
+	 *
+	 * @var string
 	 */
 	public $title;
 
 	/**
-	 * @var
+	 * Snippet body
+	 *
+	 * @var string
 	 */
 	public $body;
 
 	/**
-	 * @var
+	 * Snippet text mode
+	 *
+	 * @var string
 	 */
 	public $mode;
 
@@ -29,10 +37,9 @@ class UpdateSnippetCommand extends Command {
 	 * Create a new command instance.
 	 *
 	 * @param Snippet $snippet
-	 * @param         $title
-	 * @param         $body
-	 * @param         $mode
-	 * @internal param $password
+	 * @param string  $title
+	 * @param string  $body
+	 * @param string  $mode
 	 */
 	public function __construct(Snippet $snippet, $title, $body, $mode)
 	{

@@ -4,7 +4,10 @@ use DarkShare\Commands\Command;
 use DarkShare\Submissions\Files\File;
 
 class DeleteFileCommand extends Command {
+
 	/**
+	 * The file to be deleted.
+	 *
 	 * @var File
 	 */
 	public $file;

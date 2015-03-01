@@ -6,7 +6,10 @@ use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Queue\InteractsWithQueue;
 
 class DeleteFileCommandHandler {
+
 	/**
+	 * A filesystem instance.
+	 *
 	 * @var Filesystem
 	 */
 	private $filesystem;
@@ -18,14 +21,13 @@ class DeleteFileCommandHandler {
 	 */
 	public function __construct(Filesystem $filesystem)
 	{
-		//
 		$this->filesystem = $filesystem;
 	}
 
 	/**
-	 * Handle the command.
+	 * Handle the action of deleting a file.
 	 *
-	 * @param  DeleteFileCommand  $command
+	 * @param  DeleteFileCommand $command
 	 * @return void
 	 */
 	public function handle(DeleteFileCommand $command)
@@ -33,7 +35,7 @@ class DeleteFileCommandHandler {
 		$path = str_replace(storage_path('app/'), '', $command->file->path);
 
 		$command->file->delete();
-		
+
 		$this->filesystem->delete($path);
 	}
 

@@ -4,20 +4,31 @@ use DarkShare\Commands\Command;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class StoreNewFileCommand extends Command {
+
 	/**
-	 * @var
+	 * File title
+	 *
+	 * @var string
 	 */
 	public $title;
+
 	/**
-	 * @var
+	 * File path
+	 *
+	 * @var string
 	 */
 	public $path;
+
 	/**
-	 * @var
+	 * File password
+	 *
+	 * @var string
 	 */
 	public $password;
 
 	/**
+	 * The uploaded file
+	 *
 	 * @var UploadedFile
 	 */
 	public $file;
@@ -25,9 +36,9 @@ class StoreNewFileCommand extends Command {
 	/**
 	 * Create a new command instance.
 	 *
-	 * @param              $title
-	 * @param              $path
-	 * @param              $password
+	 * @param string       $title
+	 * @param string       $path
+	 * @param string       $password
 	 * @param UploadedFile $file
 	 */
 	public function __construct($title, $path, $password, UploadedFile $file)
