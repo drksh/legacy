@@ -1,14 +1,15 @@
 <?php namespace DarkShare\Submissions\Urls;
 
 use DarkShare\Contracts\Models\Protectable;
+use DarkShare\Contracts\Models\Sluggable;
 use DarkShare\Model;
-use DarkShare\Submissions\Traits\HashPassword;
+use DarkShare\Submissions\Traits\HashPasswordTrait;
 use DarkShare\Submissions\Traits\ProtectableTrait;
 use DarkShare\Users\User;
 
-class Url extends Model implements Protectable {
+class Url extends Model implements Protectable, Sluggable {
 
-	use HashPassword;
+	use HashPasswordTrait;
 	use ProtectableTrait;
 
 	/**

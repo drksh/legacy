@@ -2,13 +2,13 @@
 
 use DarkShare\Contracts\Models\Protectable;
 use DarkShare\Model;
-use DarkShare\Submissions\Traits\HashPassword;
+use DarkShare\Submissions\Traits\HashPasswordTrait;
 use DarkShare\Submissions\Traits\ProtectableTrait;
 use DarkShare\Users\User;
 
 class Snippet extends Model implements Protectable {
 
-	use HashPassword;
+	use HashPasswordTrait;
 	use ProtectableTrait;
 
 	/**

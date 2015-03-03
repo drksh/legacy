@@ -3,10 +3,11 @@
 use DarkShare\Commands\StoreNewUrlCommand;
 
 use DarkShare\Submissions\Urls\Url;
+use DarkShare\Submissions\Urls\UrlSlug;
 use Illuminate\Auth\Guard;
 use Illuminate\Queue\InteractsWithQueue;
 
-class CreateNewURLCommandHandler {
+class StoreNewUrlCommandHandler {
 
 	/**
 	 * Eloquent authentication guard
@@ -34,11 +35,20 @@ class CreateNewURLCommandHandler {
 	 */
 	public function handle(StoreNewUrlCommand $command)
 	{
-		return Url::create([
+		$url = Url::create([
 			'user_id' => ($this->auth->user()) ? $this->auth->user()->id : null,
 			'destination' => $command->destination,
 			'password' => $command->password,
 		]);
+
+		UrlSlug::create([
+			'url_id' => $url->id,
+			'slug'  => $url,
+		]);
+
+		dd($url);
+
+		return $url;
 	}
 
 }

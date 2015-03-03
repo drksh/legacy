@@ -2,12 +2,12 @@
 
 use DarkShare\Model;
 use DarkShare\Contracts\Models\Protectable;
-use DarkShare\Submissions\Traits\HashPassword;
+use DarkShare\Submissions\Traits\HashPasswordTrait;
 use DarkShare\Submissions\Traits\ProtectableTrait;
 
 class File extends Model implements Protectable {
 
-	use HashPassword;
+	use HashPasswordTrait;
 	use ProtectableTrait;
 
 	/**

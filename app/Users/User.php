@@ -1,7 +1,7 @@
 <?php namespace DarkShare\Users;
 
 use DarkShare\Submissions\Snippets\Snippet;
-use DarkShare\Submissions\Traits\HashPassword;
+use DarkShare\Submissions\Traits\HashPasswordTrait;
 use DarkShare\Submissions\Urls\Url;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
@@ -10,7 +10,7 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 class User extends Model implements AuthenticatableContract {
 
 	use Authenticatable;
-	use HashPassword;
+	use HashPasswordTrait;
 
 	/**
 	 * The database table used by the model.
