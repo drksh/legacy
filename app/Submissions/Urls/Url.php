@@ -4,6 +4,7 @@ use DarkShare\Contracts\Models\Protectable;
 use DarkShare\Model;
 use DarkShare\Submissions\Traits\HashPassword;
 use DarkShare\Submissions\Traits\ProtectableTrait;
+use DarkShare\Users\User;
 
 class Url extends Model implements Protectable {
 
@@ -30,4 +31,9 @@ class Url extends Model implements Protectable {
 	 * @var array
 	 */
 	protected $hidden = ['password', 'remember_token'];
+
+	public function user()
+	{
+		return $this->belongsTo(User::class);
+	}
 }

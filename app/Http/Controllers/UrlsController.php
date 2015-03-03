@@ -1,17 +1,33 @@
 <?php namespace DarkShare\Http\Controllers;
 
-use DarkShare\Commands\CreateNewURLCommand;
+use DarkShare\Commands\StoreNewUrlCommand;
+use DarkShare\Commands\UpdateUrlCommand;
 use DarkShare\Http\Controllers\Traits\ProtectedTrait;
 use DarkShare\Http\Requests;
 
 use DarkShare\Http\Requests\UrlsRequest;
 use DarkShare\Submissions\Urls\Url;
+use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
 use Illuminate\Session\Store;
 
 class UrlsController extends Controller {
 
 	use ProtectedTrait;
+
+	/**
+	 * Authentication instance
+	 *
+	 * @var Guard
+	 */
+	private $auth;
+
+	function __construct(Guard $auth)
+	{
+		$this->auth = $auth;
+
+		$this->middleware('auth', ['only' => ['edit', 'update']]);
+	}
 
 	/**
 	 * Display a listing of the urls.
@@ -43,7 +59,7 @@ class UrlsController extends Controller {
 	 */
 	public function store(UrlsRequest $request)
 	{
-		$this->dispatchFrom(CreateNewUrlCommand::class, $request);
+		$this->dispatchFrom(StoreNewUrlCommand::class, $request);
 
 		flash("Short URL successfully created");
 		return redirect()->route('urls.index');
@@ -102,7 +118,12 @@ class UrlsController extends Controller {
 	 */
 	public function edit(Url $url)
 	{
-		// only authenticated users that own the URL can edit them
+		if ( ! $this->auth->user()->ownsUrl($url)) {
+			flash()->warning("You can only change urls you own. It's not total anarchy.");
+			return redirect()->back(302);
+		}
+
+		return view('urls.edit', compact('url'));
 	}
 
 	/**
@@ -111,9 +132,12 @@ class UrlsController extends Controller {
 	 * @param  int  Url $url
 	 * @return Response
 	 */
-	public function update(Url $url)
+	public function update(UrlsRequest $request, Url $url)
 	{
-		//
+		$this->dispatchFrom(UpdateUrlCommand::class, $request, compact('url'));
+
+		flash("Your URL was updated successfully.");
+		return redirect()->route('urls.index');
 	}
 
 	/**

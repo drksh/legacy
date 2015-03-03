@@ -1,8 +1,7 @@
 <?php namespace DarkShare\Commands;
 
-use DarkShare\Commands\Command;
 
-class CreateNewURLCommand extends Command {
+class StoreNewUrlCommand extends Command {
 
 	/**
 	 * Link destination

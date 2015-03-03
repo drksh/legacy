@@ -1,6 +1,6 @@
 <?php namespace DarkShare\Handlers\Commands;
 
-use DarkShare\Commands\CreateNewURLCommand;
+use DarkShare\Commands\StoreNewUrlCommand;
 
 use DarkShare\Submissions\Urls\Url;
 use Illuminate\Auth\Guard;
@@ -27,11 +27,12 @@ class CreateNewURLCommandHandler {
 
 	/**
 	 * Handle the creation of a new URL
+
 	 *
-	 * @param  CreateNewURLCommand  $command
+*@param  StoreNewUrlCommand  $command
 	 * @return void
 	 */
-	public function handle(CreateNewURLCommand $command)
+	public function handle(StoreNewUrlCommand $command)
 	{
 		return Url::create([
 			'user_id' => ($this->auth->user()) ? $this->auth->user()->id : null,
