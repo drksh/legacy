@@ -7,13 +7,14 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">DarkShare</a>
+            <a class="navbar-brand" href="/">DarkShare</a>
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li><a href="{{ route('snippets.index') }}">Snippets</a></li>
                 <li><a href="{{ route('files.index') }}">Files</a></li>
+                <li><a href="{{ route('urls.index') }}">URLs</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
