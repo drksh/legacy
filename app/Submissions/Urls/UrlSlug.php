@@ -21,4 +21,9 @@ class UrlSlug extends Model {
 	 */
 	protected $fillable = ['url_id', 'slug'];
 
+	public function url()
+	{
+		return $this->belongsTo(Url::class);
+	}
+
 }

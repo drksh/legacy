@@ -1,9 +1,11 @@
 <?php
 
+Route::get('/', 'PagesController@getIndex');
+
 /*
  * Auth
  */
-Route::group(['prefix', 'auth'], function () {
+Route::group(['prefix' => 'auth'], function () {
 	Route::get('login', [
 		'as' => 'auth.login',
 		'uses'  => 'AuthController@getLogin'

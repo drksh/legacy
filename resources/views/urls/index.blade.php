@@ -46,10 +46,10 @@
                     <td>
                         @if( $url->userHasAccess() )
                         {!! Form::open(['route' => ['urls.destroy', $url->id], 'method' => 'delete', 'class' => 'text-center']) !!}
-                            <a class="btn btn-info btn-sm" href="{{ route('urls.show', $url->id) }}">
+                            <a class="btn btn-info btn-sm" href="{{ route('urls.show', $url->slug->slug) }}">
                                 <span class="glyphicon glyphicon-eye-open"></span>
                             </a>
-                            <a class="btn btn-primary btn-sm" href="{{ route('urls.edit', $url->id) }}">
+                            <a class="btn btn-primary btn-sm" href="{{ route('urls.edit', $url->slug->slug) }}">
                                 <span class="glyphicon glyphicon-edit"></span>
                             </a>
                             <button class="btn btn-danger btn-sm" type="submit">

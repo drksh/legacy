@@ -6,7 +6,9 @@ use DarkShare\Http\Controllers\Traits\ProtectedTrait;
 use DarkShare\Http\Requests;
 
 use DarkShare\Http\Requests\UrlsRequest;
+use DarkShare\Services\Slugger;
 use DarkShare\Submissions\Urls\Url;
+use DarkShare\Submissions\Urls\UrlSlug;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
 use Illuminate\Session\Store;
@@ -36,6 +38,9 @@ class UrlsController extends Controller {
 	 */
 	public function index()
 	{
+		$slugger = new Slugger();
+		dd($slugger->make(99));
+
 		$urls = Url::all();
 
 		return view('urls.index', compact('urls'));
@@ -106,7 +111,6 @@ class UrlsController extends Controller {
 		if ($this->protect($url, $session)) {
 			return redirect()->route('urls.login', compact('url'));
 		}
-
 		return redirect()->away($url->destination, 301);
 	}
 

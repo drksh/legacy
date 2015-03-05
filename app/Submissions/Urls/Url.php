@@ -37,4 +37,9 @@ class Url extends Model implements Protectable, Sluggable {
 	{
 		return $this->belongsTo(User::class);
 	}
+
+	public function slug()
+	{
+		return $this->hasOne(UrlSlug::class);
+	}
 }
