@@ -38,9 +38,6 @@ class UrlsController extends Controller {
 	 */
 	public function index()
 	{
-		$slugger = new Slugger();
-		dd($slugger->make(99));
-
 		$urls = Url::all();
 
 		return view('urls.index', compact('urls'));
