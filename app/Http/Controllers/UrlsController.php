@@ -15,144 +15,147 @@ use Illuminate\Session\Store;
 
 class UrlsController extends Controller {
 
-	use ProtectedTrait;
+    use ProtectedTrait;
 
-	/**
-	 * Authentication instance
-	 *
-	 * @var Guard
-	 */
-	private $auth;
+    /**
+     * Authentication instance
+     *
+     * @var Guard
+     */
+    private $auth;
 
-	function __construct(Guard $auth)
-	{
-		$this->auth = $auth;
+    function __construct(Guard $auth)
+    {
+        $this->auth = $auth;
 
-		$this->middleware('auth', ['only' => ['edit', 'update']]);
-	}
+        $this->middleware('auth', ['only' => ['edit', 'update']]);
+    }
 
-	/**
-	 * Display a listing of the urls.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		$urls = Url::all();
+    /**
+     * Display a listing of the urls.
+     *
+     * @return Response
+     */
+    public function index()
+    {
+        $slugger = new Slugger();
+        dd($slugger->make(10));
 
-		return view('urls.index', compact('urls'));
-	}
+        $urls = Url::all();
 
-	/**
-	 * Show the form for creating a new url.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		return view('urls.create');
-	}
+        return view('urls.index', compact('urls'));
+    }
 
-	/**
-	 * Store a newly created url in storage.
-	 *
-	 * @param UrlsRequest $request
-	 * @return Response
-	 */
-	public function store(UrlsRequest $request)
-	{
-		$this->dispatchFrom(StoreNewUrlCommand::class, $request);
+    /**
+     * Show the form for creating a new url.
+     *
+     * @return Response
+     */
+    public function create()
+    {
+        return view('urls.create');
+    }
 
-		flash("Short URL successfully created");
-		return redirect()->route('urls.index');
-	}
+    /**
+     * Store a newly created url in storage.
+     *
+     * @param UrlsRequest $request
+     * @return Response
+     */
+    public function store(UrlsRequest $request)
+    {
+        $this->dispatchFrom(StoreNewUrlCommand::class, $request);
 
-	/**
-	 * Show the form for logging into a protected url.
-	 *
-	 * @param Url $url
-	 * @return \Illuminate\View\View
-	 */
-	public function login(Url $url)
-	{
-		return view('urls.login', compact('url'));
-	}
+        flash("Short URL successfully created");
+        return redirect()->route('urls.index');
+    }
 
-	/**
-	 * Authenticate to a protected snippet.
-	 *
-	 * @param Url $url
-	 */
-	public function authenticate(Url $url, Request $request, Store $session)
-	{
+    /**
+     * Show the form for logging into a protected url.
+     *
+     * @param Url $url
+     * @return \Illuminate\View\View
+     */
+    public function login(Url $url)
+    {
+        return view('urls.login', compact('url'));
+    }
 
-		if ( ! $url->authenticate($request->input('password'))) {
-			flash()->warning('Wrong password');
-			return redirect()->back();
-		}
+    /**
+     * Authenticate to a protected snippet.
+     *
+     * @param Url $url
+     */
+    public function authenticate(Url $url, Request $request, Store $session)
+    {
 
-		$session->flash('urls_auth', true);
+        if ( ! $url->authenticate($request->input('password'))) {
+            flash()->warning('Wrong password');
+            return redirect()->back();
+        }
 
-		return redirect()->route('urls.show', $url->id);
-	}
+        $session->flash('urls_auth', true);
 
-	/**
-	 * Display the specified snippet.
-	 *
-	 * @param Url   $url
-	 * @param Store $session
-	 * @return Response
-	 */
-	public function show(Url $url, Store $session)
-	{
-		if ($this->protect($url, $session)) {
-			return redirect()->route('urls.login', compact('url'));
-		}
-		return redirect()->away($url->destination, 301);
-	}
+        return redirect()->route('urls.show', $url->id);
+    }
 
-	/**
-	 * Show the form for editing the specified url.
-	 *
-	 * @param  int  Url $url
-	 * @return Response
-	 */
-	public function edit(Url $url)
-	{
-		if ( ! $this->auth->user()->ownsUrl($url)) {
-			flash()->warning("You can only change urls you own. It's not total anarchy.");
-			return redirect()->back(302);
-		}
+    /**
+     * Display the specified snippet.
+     *
+     * @param Url   $url
+     * @param Store $session
+     * @return Response
+     */
+    public function show(Url $url, Store $session)
+    {
+        if ($this->protect($url, $session)) {
+            return redirect()->route('urls.login', compact('url'));
+        }
+        return redirect()->away($url->destination, 301);
+    }
 
-		return view('urls.edit', compact('url'));
-	}
+    /**
+     * Show the form for editing the specified url.
+     *
+     * @param  int  Url $url
+     * @return Response
+     */
+    public function edit(Url $url)
+    {
+        if ( ! $this->auth->user()->ownsUrl($url)) {
+            flash()->warning("You can only change urls you own. It's not total anarchy.");
+            return redirect()->back(302);
+        }
 
-	/**
-	 * Update the specified url in storage.
-	 *
-	 * @param  int  Url $url
-	 * @return Response
-	 */
-	public function update(UrlsRequest $request, Url $url)
-	{
-		$this->dispatchFrom(UpdateUrlCommand::class, $request, compact('url'));
+        return view('urls.edit', compact('url'));
+    }
 
-		flash("Your URL was updated successfully.");
-		return redirect()->route('urls.index');
-	}
+    /**
+     * Update the specified url in storage.
+     *
+     * @param  int  Url $url
+     * @return Response
+     */
+    public function update(UrlsRequest $request, Url $url)
+    {
+        $this->dispatchFrom(UpdateUrlCommand::class, $request, compact('url'));
 
-	/**
-	 * Remove the specified url from storage.
-	 *
-	 * @param  int  Url $url
-	 * @return Response
-	 */
-	public function destroy(Url $url)
-	{
-		$url->delete();
+        flash("Your URL was updated successfully.");
+        return redirect()->route('urls.index');
+    }
 
-		flash("URL successfully deleted.");
-		return redirect()->route('urls.index');
-	}
+    /**
+     * Remove the specified url from storage.
+     *
+     * @param  int  Url $url
+     * @return Response
+     */
+    public function destroy(Url $url)
+    {
+        $url->delete();
+
+        flash("URL successfully deleted.");
+        return redirect()->route('urls.index');
+    }
 
 }

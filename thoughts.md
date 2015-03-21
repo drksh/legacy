@@ -6,8 +6,11 @@ Different types of things people can make:
 	- URL (URL shortener)
 	
 ## Security
-It would maybe be a good idea to make some kind of captcha(?)
-
+Make a status mail that imforms me about stats
+	- How many files, snippets and urls have been made
+	- how many users have subscribed 
+	- etc. (?)
+	
 ## "Tracking"
 It would be nice to track how many clicks each submission gets
 	
