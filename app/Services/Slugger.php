@@ -2,31 +2,25 @@
 
 class Slugger {
 
-//	private $acceptableElements = [
-//		'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j',
-//		'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't',
-//		'u', 'v', 'w', 'x', 'y', 'z', 'æ', 'ø', 'å',
-//
-//		'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
-//		'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T',
-//		'U', 'V', 'W', 'X', 'Y', 'Z', 'Æ', 'Ø', 'Å',
-//
-//		'0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
-//
-//		'-', '_', '~', '[', ']', '@', '!', '$', '&', '(',
-//		')', '*', '+', ';', '=', '\'','"', '<', '>', ',',
-//		'%', '^', '§', '¢', '£', '¢', 'π', '∆', ';', '`',
-//	];
+	private $acceptableElements = [
+		'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j',
+		'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't',
+		'u', 'v', 'w', 'x', 'y', 'z', 'æ', 'ø', 'å',
 
-	private $acceptableElements = ['a', 'b', 'c', 'd'];
+		'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
+		'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T',
+		'U', 'V', 'W', 'X', 'Y', 'Z', 'Æ', 'Ø', 'Å',
+
+		'0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+
+		'-', '_', '~', '[', ']', '@', '!', '$', '&', '(',
+		')', '*', '+', ';', '=', '\'','"', '<', '>', ',',
+		'%', '^', '§', '¢', '£', '¢', 'π', '∆', ';', '`',
+	];
 
 	private $acceptableElementNumber;
 
-	private $counter = [];
-
 	private $slugArray = ['a'];
-
-	private $slug = '';
 
 	function __construct()
 	{
@@ -42,93 +36,62 @@ class Slugger {
 	{
 		if ($id > $this->acceptableElementNumber) {
 
-			if (count($this->slugArray) > 1 && ! $this->allPrecedingElementsOfSlugAreFilled()) {
-				$elementLevel = $this->precedingElementsOfSlugAreFilled($this->slugArray);
-				$this->incrementElementOfSlug($elementLevel);
-			} else {
-				$this->prependArrayWithSlugElement();
-			}
+			$this->incrementTensAtIndex($this->getIncrementIndex());
 
 			$this->getIncrementalSlugAtIndex($id - $this->acceptableElementNumber);
 		} else {
 
-			$this->slugArray[count($this->slugArray) - 1] = $this->acceptableElements[$id - 1];
+			$this->slugArray[0] = $this->acceptableElements[$id - 1];
 
 		}
 
-		// Debug
-		$this->counter['slug'] = ($this->getSlugFromArray($this->slugArray));
-		return $this->counter;
-
-		// Real
-		return $this->getSlugFromArray($this->slugArray);
+		return $this->slugFromArray($this->slugArray);
 	}
 
-	private function prependArrayWithSlugElement()
+	private function incrementTensAtIndex($incrementIndex)
 	{
-		if (count($this->slugArray) > 1)
-			$this->normalizeSlugArray();
-
-		$value = $this->acceptableElements[0];
-		array_unshift($this->slugArray, $value);
-	}
-
-	private function normalizeSlugArray()
-	{
-		foreach($this->slugArray as $key => $value) {
-			$this->slugArray[$key] = $this->acceptableElements[0];
+		if ( ! array_key_exists($incrementIndex + 1, $this->slugArray)) {
+			if (count($this->slugArray) > 1 && $this->slugArrayIsFull()) {
+				foreach ($this->slugArray as $key => $value) {
+					$this->slugArray[$key] = $this->acceptableElements[0];
+				}
+			}
+			return $this->slugArray[] = $this->acceptableElements[0];
 		}
+
+
+		$currentValue = $this->slugArray[$incrementIndex + 1];
+		$nextValue = array_search($currentValue, $this->acceptableElements);
+		$this->slugArray[$incrementIndex + 1] = $this->acceptableElements[$nextValue + 1];
+
 	}
 
-	private function incrementElementOfSlug($elementLevel)
+	private function getIncrementIndex()
 	{
-		$incrementKey = count($this->slugArray) - $elementLevel;
-		$currentValue = $this->slugArray[$incrementKey - 1];
-		$nextValueIndex = array_search($currentValue, $this->acceptableElements) + 1;
-		$nextValue = $this->acceptableElements[$nextValueIndex];
+		$maxValue = $this->acceptableElements[$this->acceptableElementNumber - 1];
+		$incrementIndex = 0;
 
-		$this->slugArray[$elementLevel - 1] = $nextValue;
-	}
-
-	private function precedingElementsOfSlugAreFilled($slugArray)
-	{
-		array_pop($slugArray);
-
-		foreach ($slugArray as $key => $value) {
-			$currentElement = $slugArray[$key];
-			$maxAllowedValue = $this->acceptableElements[$this->acceptableElementNumber - 1];
-
-			$this->counter['cur'][] = $currentElement;
-			$this->counter['max'][] = $maxAllowedValue;
-			$this->counter['part'] = $this->slugArray;
-
-			if ($currentElement == $maxAllowedValue) {
-				return $key;
+		foreach ($this->slugArray as $key => $value) {
+			if ($value == $maxValue) {
+				$incrementIndex = $key;
 			}
 		}
 
-		return 1;
+		return $incrementIndex;
 	}
 
-	private function allPrecedingElementsOfSlugAreFilled()
+	private function slugArrayIsFull()
 	{
-		$numberOfFilledElements = 0;
-		$slugArrayCopy = $this->slugArray;
-		array_pop($slugArrayCopy);
-
-		foreach ($slugArrayCopy as $key => $value) {
-			$currentElement = $slugArrayCopy[$key];
-			$maxAllowedValue = $this->acceptableElements[$this->acceptableElementNumber - 1];
-
-			if ($currentElement == $maxAllowedValue) {
-				$numberOfFilledElements++;
-			}
+		$fullCount = 0;
+		foreach($this->slugArray as $value) {
+			if($value == $this->acceptableElements[$this->acceptableElementNumber - 1]);
+				$fullCount++;
 		}
 
-		return $numberOfFilledElements == count($slugArrayCopy);
+		return count($this->slugArray) == $fullCount;
 	}
 
-	private function getSlugFromArray($slugArray)
+	private function slugFromArray($slugArray)
 	{
 		return implode('', $slugArray);
 	}

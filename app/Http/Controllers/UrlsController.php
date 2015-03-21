@@ -38,8 +38,9 @@ class UrlsController extends Controller {
      */
     public function index()
     {
-        $slugger = new Slugger();
-        dd($slugger->make(10));
+		$slugger = new Slugger();
+
+        dd($slugger->make(5000));
 
         $urls = Url::all();
 
