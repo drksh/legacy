@@ -21,7 +21,9 @@ class FileValidator extends Validator {
 		if ( ! $file->isValid()) {
 			return false;
 		}
-		if ($file->getClientSize() > get_max_upload_size()) {
+
+		// compare file sizes in kB units
+		if ($file->getClientSize() / 1000 > get_max_upload_size()) {
 			return false;
 		}
 

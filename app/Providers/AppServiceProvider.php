@@ -1,5 +1,6 @@
 <?php namespace DarkShare\Providers;
 
+use DarkShare\Services\Slugger;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider {
@@ -29,6 +30,10 @@ class AppServiceProvider extends ServiceProvider {
 			'Illuminate\Contracts\Auth\Registrar',
 			'DarkShare\Services\Registrar'
 		);
+
+		$this->app->singleton('slugger', function() {
+			return new Slugger();
+		});
 	}
 
 }

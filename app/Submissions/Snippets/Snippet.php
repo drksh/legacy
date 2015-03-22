@@ -1,14 +1,15 @@
 <?php namespace DarkShare\Submissions\Snippets;
 
 use DarkShare\Contracts\Models\Protectable;
+use DarkShare\Contracts\Models\Sluggable;
 use DarkShare\Model;
-use DarkShare\Submissions\Traits\HashPassword;
+use DarkShare\Submissions\Traits\HashPasswordTrait;
 use DarkShare\Submissions\Traits\ProtectableTrait;
 use DarkShare\Users\User;
 
-class Snippet extends Model implements Protectable {
+class Snippet extends Model implements Protectable, Sluggable {
 
-	use HashPassword;
+	use HashPasswordTrait;
 	use ProtectableTrait;
 
 	/**
@@ -40,5 +41,10 @@ class Snippet extends Model implements Protectable {
 	public function user()
 	{
 		return $this->belongsTo(User::class);
+	}
+
+	public function slug()
+	{
+		return $this->hasOne(SnippetSlug::class);
 	}
 }

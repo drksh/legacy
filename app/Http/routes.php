@@ -1,9 +1,48 @@
 <?php
 
+Route::get('/', 'PagesController@getIndex');
+
+/*
+ * Auth
+ */
+Route::group(['prefix' => 'auth'], function () {
+	Route::get('login', [
+		'as' => 'auth.login',
+		'uses'  => 'AuthController@getLogin'
+	]);
+	Route::post('login', [
+		'as' => 'auth.login',
+		'uses'  => 'AuthController@postLogin'
+	]);
+	Route::get('register', [
+		'as' => 'auth.register',
+		'uses'  => 'AuthController@getRegister'
+	]);
+	Route::post('register', [
+		'as' => 'auth.register',
+		'uses'  => 'AuthController@postRegister'
+	]);
+	Route::get('logout', [
+		'as' => 'auth.logout',
+		'uses'  => 'AuthController@getLogout',
+	]);
+});
+
+/*
+ * Controllers
+ */
+Route::controllers([
+	'p/'  =>  'PagesController',
+]);
+
 /*
  * Snippets
  */
-Route::resource('snippets', 'SnippetsController');
+Route::resource('snippets', 'SnippetsController', ['except', 'show']);
+Route::get('s/{snippets}', [
+	'as'    => 'snippets.show',
+	'uses'  => 'SnippetsController@show'
+]);
 Route::get('snippets/login/{snippets}', [
 	'as'    => 'snippets.login',
 	'uses'  => 'SnippetsController@login',
@@ -16,7 +55,11 @@ Route::post('snippets/authenticate/{snippets}', [
 /*
  * Files
  */
-Route::resource('files', 'FilesController', ['except' => ['edit', 'update']]);
+Route::resource('files', 'FilesController', ['except' => ['edit', 'update', 'show']]);
+Route::get('f/{files}', [
+	'as'    => 'files.show',
+	'uses'  => 'FilesController@show'
+]);
 Route::get('files/login/{files}', [
 	'as'    => 'files.login',
 	'uses'  => 'FilesController@login',
@@ -29,7 +72,11 @@ Route::post('files/authenticate/{files}', [
 /*
  * URLs
  */
-Route::resource('urls', 'UrlsController');
+Route::resource('urls', 'UrlsController', ['except', 'show']);
+Route::get('{urls}', [
+	'as'    => 'urls.show',
+	'uses'  => 'UrlsController@show'
+]);
 Route::get('urls/login/{urls}', [
 	'as'    => 'urls.login',
 	'uses'  => 'UrlsController@login',
@@ -37,36 +84,5 @@ Route::get('urls/login/{urls}', [
 Route::post('urls/authenticate/{urls}', [
 	'as'    => 'urls.auth',
 	'uses'  => 'UrlsController@authenticate',
-]);
-
-/*
- * Auth
- */
-Route::get('auth/login', [
-	'as' => 'auth.login',
-	'uses'  => 'AuthController@getLogin'
-]);
-Route::post('auth/login', [
-	'as' => 'auth.login',
-	'uses'  => 'AuthController@postLogin'
-]);
-Route::get('auth/register', [
-	'as' => 'auth.register',
-	'uses'  => 'AuthController@getRegister'
-]);
-Route::post('auth/register', [
-	'as' => 'auth.register',
-	'uses'  => 'AuthController@postRegister'
-]);
-Route::get('auth/logout', [
-	'as' => 'auth.logout',
-	'uses'  => 'AuthController@getLogout',
-]);
-
-/*
- * Controllers
- */
-Route::controllers([
-	''  =>  'PagesController',
 ]);
 

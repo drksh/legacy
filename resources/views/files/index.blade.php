@@ -37,11 +37,11 @@
                     <td class="text-primary">
                         {{ $file->user->username or "Anon" }}
                     </td>
-                    <td><a href="{{ route('files.show', $file->id)  }}">{{ $file->title }}</a></td>
+                    <td><a href="{{ route('files.show', $file->slug->slug)  }}">{{ $file->title }}</a></td>
                     <td>
                         @if( $file->userHasAccess() )
-                        {!! Form::open(['route' => ['files.destroy', $file->id], 'method' => 'delete', 'class' => 'text-center']) !!}
-                            <a class="btn btn-info btn-sm" href="{{ route('files.show', $file->id) }}">
+                        {!! Form::open(['route' => ['files.destroy', $file->slug->slug], 'method' => 'delete', 'class' => 'text-center']) !!}
+                            <a class="btn btn-info btn-sm" href="{{ route('files.show', $file->slug->slug) }}">
                                 <span class="glyphicon glyphicon-eye-open"></span>
                             </a>
                             <button class="btn btn-danger btn-sm" type="submit">

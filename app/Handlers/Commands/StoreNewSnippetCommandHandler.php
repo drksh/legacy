@@ -2,6 +2,7 @@
 
 use DarkShare\Commands\StoreNewSnippetCommand;
 
+use DarkShare\Submissions\Snippets\SnippetSlug;
 use Illuminate\Queue\InteractsWithQueue;
 use DarkShare\Submissions\Snippets\Snippet;
 
@@ -15,7 +16,7 @@ class StoreNewSnippetCommandHandler {
 	 */
 	public function handle(StoreNewSnippetCommand $command)
 	{
-		return Snippet::create([
+		$snippet =  Snippet::create([
 			'user_id' => $command->user_id,
 			'title' => $command->title,
 			'body'  => $command->body,
@@ -23,6 +24,12 @@ class StoreNewSnippetCommandHandler {
 			'password' => $command->password,
 		]);
 
+		SnippetSlug::create([
+			'snippet_id' => $snippet->id,
+			'slug'      => $snippet,
+		]);
+
+		return $snippet;
 	}
 
 }

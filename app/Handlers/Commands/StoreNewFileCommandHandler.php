@@ -4,6 +4,7 @@ use Carbon\Carbon;
 use DarkShare\Commands\StoreNewFileCommand;
 
 use DarkShare\Submissions\Files\File;
+use DarkShare\Submissions\Files\FileSlug;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Queue\InteractsWithQueue;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -37,12 +38,19 @@ class StoreNewFileCommandHandler {
 	{
 		$command->path = $this->handleUploadedFile($command->file);
 
-		return File::create([
+		$file =  File::create([
 			'user_id' => ($this->auth->user()) ? $this->auth->user()->id : null,
 			'title' => $command->title,
 			'path' => $command->path,
 			'password' => $command->password,
 		]);
+
+		FileSlug::create([
+			'file_id'   => $file->id,
+			'slug'      => $file,
+		]);
+
+		return $file;
 	}
 
 	/**

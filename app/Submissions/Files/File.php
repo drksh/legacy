@@ -1,13 +1,14 @@
 <?php namespace DarkShare\Submissions\Files;
 
+use DarkShare\Contracts\Models\Sluggable;
 use DarkShare\Model;
 use DarkShare\Contracts\Models\Protectable;
-use DarkShare\Submissions\Traits\HashPassword;
+use DarkShare\Submissions\Traits\HashPasswordTrait;
 use DarkShare\Submissions\Traits\ProtectableTrait;
 
-class File extends Model implements Protectable {
+class File extends Model implements Protectable, Sluggable {
 
-	use HashPassword;
+	use HashPasswordTrait;
 	use ProtectableTrait;
 
 	/**
@@ -30,5 +31,14 @@ class File extends Model implements Protectable {
 	 * @var array
 	 */
 	protected $hidden = ['password'];
+
+	/**
+	 * Define the relationship between a slug and it's file.
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\HasOne
+	 */
+	public function slug() {
+		return $this->hasOne(FileSlug::class);
+	}
 
 }

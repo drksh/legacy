@@ -4,11 +4,10 @@ use DarkShare\Commands\StoreNewSnippetCommand;
 use DarkShare\Commands\UpdateSnippetCommand;
 use DarkShare\Http\Controllers\Traits\ProtectedTrait;
 use DarkShare\Http\Requests;
-
-use Illuminate\Auth\Guard;
-use Illuminate\Http\Request;
 use DarkShare\Http\Requests\SnippetsRequest;
 use DarkShare\Submissions\Snippets\Snippet;
+use Illuminate\Auth\Guard;
+use Illuminate\Http\Request;
 use Illuminate\Session\Store;
 
 class SnippetsController extends Controller {
@@ -30,7 +29,7 @@ class SnippetsController extends Controller {
 	 */
 	public function index()
 	{
-		$snippets = Snippet::all();
+		$snippets = Snippet::with('user', 'slug')->get();
 
 		return view('snippets.index', compact('snippets'));
 	}

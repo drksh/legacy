@@ -1,6 +1,6 @@
 <?php namespace DarkShare\Submissions\Traits;
 
-trait HashPassword {
+trait HashPasswordTrait {
 
 	/**
 	 * Always hash passwords
