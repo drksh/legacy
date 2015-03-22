@@ -38,7 +38,7 @@ class UrlsController extends Controller {
      */
     public function index()
     {
-        $urls = Url::all();
+        $urls = Url::with(['slug', 'user'])->get();
 
         return view('urls.index', compact('urls'));
     }

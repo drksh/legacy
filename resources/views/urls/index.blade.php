@@ -19,17 +19,15 @@
                     <col width="3%"/>
                     <col width="20%"/>
                     <col width="20%"/>
-                    <col width="35%"/>
-                    <col width="5%"/>
+                    <col width="40%"/>
                     <col width="17%"/>
                 </colgroup>
                 <thead>
                 <tr>
                     <th>#</th>
                     <th>By</th>
-                    <th>Title</th>
-                    <th>Body</th>
-                    <th>Mode</th>
+                    <th>Slug</th>
+                    <th>Destination</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
@@ -40,12 +38,11 @@
                     <td class="text-primary">
                         {{ $url->user->username or "Anon" }}
                     </td>
-                    <td><a href="{{ route('urls.show', $url->id)  }}">{{ $url->title }}</a></td>
-                    <td>{{ str_limit($url->body) }}</td>
-                    <td>{{ $url->mode }}</td>
+                    <td><a href="{{ route('urls.show', $url->slug->slug)  }}">{{ $url->slug->slug }}</a></td>
+                    <td>{{ str_limit($url->destination) }}</td>
                     <td>
                         @if( $url->userHasAccess() )
-                        {!! Form::open(['route' => ['urls.destroy', $url->id], 'method' => 'delete', 'class' => 'text-center']) !!}
+                        {!! Form::open(['route' => ['urls.destroy', $url->slug->slug], 'method' => 'delete', 'class' => 'text-center']) !!}
                             <a class="btn btn-info btn-sm" href="{{ route('urls.show', $url->slug->slug) }}">
                                 <span class="glyphicon glyphicon-eye-open"></span>
                             </a>

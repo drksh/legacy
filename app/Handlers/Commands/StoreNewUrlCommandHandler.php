@@ -5,6 +5,7 @@ use DarkShare\Commands\StoreNewUrlCommand;
 use DarkShare\Submissions\Urls\Url;
 use DarkShare\Submissions\Urls\UrlSlug;
 use Illuminate\Auth\Guard;
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Queue\InteractsWithQueue;
 
 class StoreNewUrlCommandHandler {
@@ -17,13 +18,19 @@ class StoreNewUrlCommandHandler {
 	private $auth;
 
 	/**
+	 * @var Application
+	 */
+	private $app;
+
+	/**
 	 * Create the command handler.
 	 *
 	 * @return void
 	 */
-	public function __construct(Guard $auth)
+	public function __construct(Guard $auth, Application $app)
 	{
 		$this->auth = $auth;
+		$this->app = $app;
 	}
 
 	/**
@@ -45,8 +52,6 @@ class StoreNewUrlCommandHandler {
 			'url_id' => $url->id,
 			'slug'  => $url,
 		]);
-
-		dd($url);
 
 		return $url;
 	}

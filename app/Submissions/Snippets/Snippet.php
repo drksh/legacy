@@ -41,4 +41,9 @@ class Snippet extends Model implements Protectable {
 	{
 		return $this->belongsTo(User::class);
 	}
+
+	public function slug()
+	{
+		return $this->hasOne(SnippetSlug::class);
+	}
 }
