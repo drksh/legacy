@@ -1,12 +1,13 @@
 <?php namespace DarkShare\Submissions\Snippets;
 
 use DarkShare\Contracts\Models\Protectable;
+use DarkShare\Contracts\Models\Sluggable;
 use DarkShare\Model;
 use DarkShare\Submissions\Traits\HashPasswordTrait;
 use DarkShare\Submissions\Traits\ProtectableTrait;
 use DarkShare\Users\User;
 
-class Snippet extends Model implements Protectable {
+class Snippet extends Model implements Protectable, Sluggable {
 
 	use HashPasswordTrait;
 	use ProtectableTrait;

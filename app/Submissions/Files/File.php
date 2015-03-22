@@ -1,11 +1,12 @@
 <?php namespace DarkShare\Submissions\Files;
 
+use DarkShare\Contracts\Models\Sluggable;
 use DarkShare\Model;
 use DarkShare\Contracts\Models\Protectable;
 use DarkShare\Submissions\Traits\HashPasswordTrait;
 use DarkShare\Submissions\Traits\ProtectableTrait;
 
-class File extends Model implements Protectable {
+class File extends Model implements Protectable, Sluggable {
 
 	use HashPasswordTrait;
 	use ProtectableTrait;

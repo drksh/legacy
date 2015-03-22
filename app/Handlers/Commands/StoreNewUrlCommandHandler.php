@@ -35,9 +35,8 @@ class StoreNewUrlCommandHandler {
 
 	/**
 	 * Handle the creation of a new URL
-
 	 *
-*@param  StoreNewUrlCommand  $command
+	 * @param  StoreNewUrlCommand $command
 	 * @return void
 	 */
 	public function handle(StoreNewUrlCommand $command)
@@ -50,7 +49,7 @@ class StoreNewUrlCommandHandler {
 
 		UrlSlug::create([
 			'url_id' => $url->id,
-			'slug'  => $url,
+			'slug' => $url,
 		]);
 
 		return $url;
