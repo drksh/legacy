@@ -17,7 +17,7 @@ class CreateSnippetSlugsTable extends Migration {
 			$table->increments('id');
 			$table->integer('snippet_id')->unsigned();
 			$table->foreign('snippet_id')->references('id')->on('snippets')->onDelete('cascade');
-			$table->string('slug')->unique();
+			$table->string('slug');
 			$table->timestamps();
 		});
 	}

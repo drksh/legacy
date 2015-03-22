@@ -17,7 +17,7 @@ class CreateUrlSlugsTable extends Migration {
 			$table->increments('id');
 			$table->integer('url_id')->unsigned();
 			$table->foreign('url_id')->references('id')->on('urls')->onDelete('cascade');
-			$table->string('slug')->unique();
+			$table->string('slug');
 			$table->timestamps();
 		});
 	}

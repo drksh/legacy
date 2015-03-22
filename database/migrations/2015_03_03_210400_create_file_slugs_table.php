@@ -17,7 +17,7 @@ class CreateFileSlugsTable extends Migration {
 			$table->increments('id');
 			$table->integer('file_id')->unsigned();
 			$table->foreign('file_id')->references('id')->on('files')->onDelete('cascade');
-			$table->string('slug')->unique();
+			$table->string('slug');
 			$table->timestamps();
 		});
 	}
