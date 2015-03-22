@@ -40,16 +40,16 @@
                     <td class="text-primary">
                         {{ $snippet->user->username or "Anon" }}
                     </td>
-                    <td><a href="{{ route('snippets.show', $snippet->id)  }}">{{ $snippet->title }}</a></td>
+                    <td><a href="{{ route('snippets.show', $snippet->slug->slug)  }}">{{ $snippet->title }}</a></td>
                     <td>{{ str_limit($snippet->body) }}</td>
                     <td>{{ $snippet->mode }}</td>
                     <td>
                         @if( $snippet->userHasAccess() )
-                        {!! Form::open(['route' => ['snippets.destroy', $snippet->id], 'method' => 'delete', 'class' => 'text-center']) !!}
-                            <a class="btn btn-info btn-sm" href="{{ route('snippets.show', $snippet->id) }}">
+                        {!! Form::open(['route' => ['snippets.destroy', $snippet->slug->slug], 'method' => 'delete', 'class' => 'text-center']) !!}
+                            <a class="btn btn-info btn-sm" href="{{ route('snippets.show', $snippet->slug->slug) }}">
                                 <span class="glyphicon glyphicon-eye-open"></span>
                             </a>
-                            <a class="btn btn-primary btn-sm" href="{{ route('snippets.edit', $snippet->id) }}">
+                            <a class="btn btn-primary btn-sm" href="{{ route('snippets.edit', $snippet->slug->slug) }}">
                                 <span class="glyphicon glyphicon-edit"></span>
                             </a>
                             <button class="btn btn-danger btn-sm" type="submit">

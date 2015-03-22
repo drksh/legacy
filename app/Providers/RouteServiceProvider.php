@@ -2,7 +2,9 @@
 
 use DarkShare\Services\Slugger;
 use DarkShare\Submissions\Files\File;
+use DarkShare\Submissions\Files\FileSlug;
 use DarkShare\Submissions\Snippets\Snippet;
+use DarkShare\Submissions\Snippets\SnippetSlug;
 use DarkShare\Submissions\Urls\Url;
 use DarkShare\Submissions\Urls\UrlSlug;
 use Illuminate\Console\Application;
@@ -28,14 +30,14 @@ class RouteServiceProvider extends ServiceProvider {
 	public function boot(Router $router)
 	{
 		parent::boot($router);
-		$router->model('snippets', Snippet::class);
-//		$router->bind('snippets', function ($value) {
-//			return Snippet::find($value);
-//		});
-		$router->model('files', File::class);
-//		$router->model('urls', Url::class);
+
+		$router->bind('snippets', function ($value) {
+			return SnippetSlug::where('slug', $value)->first()->snippet;
+		});
+		$router->bind('files', function($value) {
+			return FileSlug::where('slug', $value)->first()->file;
+		});
 		$router->bind('urls', function($value) {
-//			dd();
 			return UrlSlug::where('slug', $value)->first()->url;
 		});
 	}
