@@ -31,4 +31,13 @@ class File extends Model implements Protectable {
 	 */
 	protected $hidden = ['password'];
 
+	/**
+	 * Define the relationship between a slug and it's file.
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\HasOne
+	 */
+	public function slug() {
+		return $this->hasOne(FileSlug::class);
+	}
+
 }
