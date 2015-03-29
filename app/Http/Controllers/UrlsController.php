@@ -93,11 +93,11 @@ class UrlsController extends Controller {
 
         $session->flash('urls_auth', true);
 
-        return redirect()->route('urls.show', $url->id);
+        return redirect()->route('urls.show', $url->slug->slug);
     }
 
     /**
-     * Display the specified snippet.
+     * Display the specified url.
      *
      * @param Url   $url
      * @param Store $session
@@ -106,7 +106,7 @@ class UrlsController extends Controller {
     public function show(Url $url, Store $session)
     {
         if ($this->protect($url, $session)) {
-            return redirect()->route('urls.login', compact('url'));
+            return redirect()->route('urls.login', $url->slug->slug);
         }
         return redirect()->away($url->destination, 301);
     }
