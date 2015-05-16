@@ -10,7 +10,8 @@ class DatabaseSeeder extends Seeder {
      * @var array
      */
     protected $tables = [
-        'users', 'snippets', 'files', 'urls',
+        'users',
+        'snippets', 'files', 'urls',
         'snippet_slugs', 'file_slugs', 'url_slugs',
     ];
 
@@ -23,6 +24,7 @@ class DatabaseSeeder extends Seeder {
         'UsersTableSeeder',
 		'SnippetsTableSeeder',
 		'FilesTableSeeder',
+		'UrlsTableSeeder',
     ];
 
     /**
