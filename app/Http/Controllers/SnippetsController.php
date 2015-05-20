@@ -98,7 +98,7 @@ class SnippetsController extends Controller {
 	public function show(Snippet $snippet, Store $session)
 	{
 		if ($this->protect($snippet, $session)) {
-			return redirect()->route('snippets.login', compact('snippet'));
+			return redirect()->route('snippets.login', $snippet->slug->slug);
 		}
 
 		return view('snippets.show', compact('snippet'));

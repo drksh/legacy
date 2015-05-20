@@ -8,35 +8,20 @@ class Slugger {
 	 * @var array
 	 */
 	private $acceptableElements = [
-		'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j',
-		'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't',
-		'u', 'v', 'w', 'x', 'y', 'z',
+		'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', // 1-10
+		'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', // 11-20
+		'u', 'v', 'w', 'x', 'y', 'z', // 21-26
 
-		'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
-		'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T',
-		'U', 'V', 'W', 'X', 'Y', 'Z',
+		'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', // 27-36
+		'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', // 37-46
+		'U', 'V', 'W', 'X', 'Y', 'Z', // 47-52
 
-		'0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+		'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', // 53-62
 
-		'-', '_', '~', '[', ']', '@', '!', '$', '&', '(',
-		')', '*', '+', ';', '=', '\'', '"', '<', '>', ',',
-		'^', ';', '`',
+		'-', '_', '~', '[', ']', '@', '!', '$', '&', '(', // 63-72
+		')', '*', '+', ';', '=', '\'', '"', '<', '>', ',', // 73-82
+		'^', ';', '`', // 83-85
 	];
-
-	/**
-	 * The number of acceptable slug elements
-	 *
-	 * @var int
-	 */
-	private $acceptableElementNumber;
-
-	/**
-	 * Create a new Slugger instance
-	 */
-	function __construct()
-	{
-		$this->acceptableElementNumber = count($this->acceptableElements);
-	}
 
 	/**
 	 * Make the conversion
@@ -45,7 +30,7 @@ class Slugger {
 	 */
 	public function make($id)
 	{
-		return $this->intToAlphaBaseN($id - 1, $this->acceptableElements);
+		return $this->decimalToForeign($id, $this->acceptableElements);
 	}
 
 
@@ -57,15 +42,20 @@ class Slugger {
 	 * @param array $characterArray
 	 * @return string
 	 */
-	private function intToAlphaBaseN($number, $characterArray)
+	private function decimalToForeign($number, $characterArray)
 	{
+		$slug = [];
+		$cipher = 0;
 		$length = count($characterArray);
-		$slug = '';
-		for ($i = 1; $number >= 0 && $i < 10; $i++) {
-			$slug = $characterArray[($number % pow($length, $i) / pow($length, $i - 1))] . $slug;
-			$number -= pow($length, $i);
+		while($number > $length) {
+			$i = $number % $length;
+			$slug[$cipher] = $characterArray[$i];
+			$number = floor($number / $length);
+			$cipher++;
 		}
-		return $slug;
+		$slug[$cipher] = $characterArray[$number - 1];
+
+		return implode('', array_reverse($slug));
 	}
 
 }

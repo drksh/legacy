@@ -27,7 +27,7 @@ class FilesController extends Controller {
 	 */
 	public function index()
 	{
-		$files = File::all();
+		$files = File::with('user', 'slug')->get();
 
 		return view('files.index', compact('files'));
 	}
