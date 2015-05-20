@@ -13,7 +13,7 @@ class UrlsTableSeeder extends Seeder {
 
 		$users = User::lists('id');
 
-		foreach (range(1, 500) as $index) {
+		foreach (range(1, 100) as $index) {
 			$url = Url::create([
 				'user_id' => ($faker->boolean()) ? $faker->randomElement($users) : null,
 				'destination' => $faker->url,
