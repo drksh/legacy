@@ -38,9 +38,7 @@ class UrlsController extends Controller {
      */
     public function index()
     {
-        $urls = Url::with(['slug', 'user'])->get();
-
-        return view('urls.index', compact('urls'));
+        return redirect()->route('urls.create');
     }
 
     /**

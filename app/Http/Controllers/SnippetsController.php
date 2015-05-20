@@ -29,9 +29,7 @@ class SnippetsController extends Controller {
 	 */
 	public function index()
 	{
-		$snippets = Snippet::with('user', 'slug')->get();
-
-		return view('snippets.index', compact('snippets'));
+	    return redirect()->route('snippets.create');
 	}
 
 	/**
