@@ -1,95 +1,62 @@
 .cm-s-medi-code.CodeMirror {
-  background: #151515;
-  color: #e0e0e0;
 
-  div.CodeMirror-selected {
-    background: #303030 !important;
+  font-size: 1em;
+  line-height: 1.5em;
+  font-family: inconsolata, monospace;
+  letter-spacing: 0.3px;
+  word-spacing: 1px;
+  background: #FFFFFF;
+  color: #000000;
+
+  .CodeMirror-lines {
+    padding: 8px 0;
   }
-
   .CodeMirror-gutters {
-    background: #151515;
-    border-right: 0px;
+    box-shadow: 1px 0 2px 0 rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 1px 0 2px 0 rgba(0, 0, 0, 0.5);
+    background-color: #FFFFFF;
+    padding-right: 10px;
+    z-index: 3;
+    border: none;
   }
-
-  .CodeMirror-guttermarker {
-    color: #ac4142;
+  div.CodeMirror-cursor {
+    border-left: 3px solid #000000;
   }
-
-  .CodeMirror-guttermarker-subtle {
-    color: #505050;
-  }
-
-  .CodeMirror-linenumber {
-    color: #505050;
-  }
-
-  .CodeMirror-cursor {
-    border-left: 1px solid #b0b0b0 !important;
-  }
-
-  span.cm-comment {
-    color: #8f5536;
-  }
-
-  span.cm-header {
-    color: #aa759f;
-  }
-
-  span.cm-atom {
-    color: #aa759f;
-  }
-
-  span.cm-number {
-    color: #aa759f;
-  }
-
-  span.cm-property, span.cm-attribute {
-    color: #90a959;
-  }
-
-  span.cm-keyword {
-    color: #ac4142;
-  }
-
-  span.cm-string {
-    color: #f4bf75;
-  }
-
-  span.cm-variable {
-    color: #90a959;
-  }
-
-  span.cm-variable-2 {
-    color: #6a9fb5;
-  }
-
-  span.cm-def {
-    color: #d28445;
-  }
-
-  span.cm-bracket {
-    color: #e0e0e0;
-  }
-
-  span.cm-tag {
-    color: #ac4142;
-  }
-
-  span.cm-link {
-    color: #aa759f;
-  }
-
-  span.cm-error {
-    background: #ac4142;
-    color: #b0b0b0;
-  }
-
   .CodeMirror-activeline-background {
-    background: #202020 !important;
+    background: #EEF1F5;
   }
-
-  .CodeMirror-matchingbracket {
-    text-decoration: underline;
-    color: white !important;
+  .CodeMirror-selected {
+    background: #A7CAFF;
+  }
+  .cm-comment {
+    font-style: italic;
+    color: #3C802C;
+  }
+  .cm-string {
+    color: #ED7722;
+  }
+  .cm-number {
+    color: #7520AF;
+  }
+  .cm-atom {
+    color: #7520AF;
+  }
+  .cm-keyword {
+    color: #AA2063;
+  }
+  .cm-variable {
+    color: #053369;
+  }
+  .cm-def {
+    color: #053369;
+  }
+  .cm-variable-2 {
+    color: #881181;
+  }
+  .cm-property {
+    color: #7520AF;
+  }
+  .cm-operator {
+    color: #AA2063;
   }
 }

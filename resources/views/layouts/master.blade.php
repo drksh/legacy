@@ -6,7 +6,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Laravel</title>
 
-	<link href="{{ elixir('css/application.css') }}" rel="stylesheet">
+{{--	<link href="{{ elixir('css/application.css') }}" rel="stylesheet">--}}
+    <link rel="stylesheet" href="{{ url('css/application.css') }}"/>
 	<!-- Fonts -->
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
 
@@ -37,6 +38,7 @@
 		@include('layouts.partials.footer')
 	</div>
 	<!-- Scripts -->
-	<script src="{{ elixir('js/application.js') }}"></script>
+	{{--<script src="{{ elixir('js/application.js') }}"></script>--}}
+    <script src="{{ url('js/application.js') }}"></script>
 </body>
 </html>

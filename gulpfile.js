@@ -50,10 +50,10 @@ elixir(function(mix) {
     ], publicPath+"/js/application.js", publicPath+"/js")
 
     // CACHE assets
-    .version([
-        "js/application.js",
-        "css/application.css"
-    ]);
+    //.version([
+    //    "js/application.js",
+    //    "css/application.css"
+    //]);
 
 
 });

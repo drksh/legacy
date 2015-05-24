@@ -1,0 +1,10 @@
+@font-face {
+  font-family: 'Fira Mono';
+  src: url('/fonts/FiraMono-Regular.eot'); /* IE9 Compat Modes */
+  src: url('/fonts/FiraMono-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('/fonts/FiraMono-Regular.woff') format('woff'), /* Modern Browsers */
+       url('/fonts/FiraMono-Regular.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('/fonts/FiraMono-Regular.svg#9456d1cc0626332b448f6f4ca181a90c') format('svg'); /* Legacy iOS */
+  font-style:   normal;
+  font-weight:  400;
+}
