@@ -27,9 +27,7 @@ class FilesController extends Controller {
 	 */
 	public function index()
 	{
-		$files = File::with('user', 'slug')->get();
-
-		return view('files.index', compact('files'));
+	    return redirect()->route('files.create');
 	}
 
 	/**

@@ -1,5 +1,6 @@
 <?php namespace DarkShare\Users;
 
+use DarkShare\Submissions\Files\File;
 use DarkShare\Submissions\Snippets\Snippet;
 use DarkShare\Submissions\Traits\HashPasswordTrait;
 use DarkShare\Submissions\Urls\Url;
@@ -52,6 +53,16 @@ class User extends Model implements AuthenticatableContract {
 	{
 		return $this->hasMany(Url::class);
 	}
+
+    /**
+     * Defines the relationship between a user and its files
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+	public function files()
+    {
+        return $this->hasMany(File::class);
+    }
 
 	public function ownsUrl(Url $url)
 	{
