@@ -42,7 +42,11 @@ $(function(){
 
             // I proxy so that /this/ remains in the correct scope
             $modeChangers.on('click', 'button', $.proxy(function(evt) {
-                var modeId = $(evt.currentTarget).data('id');
+                var $this = $(evt.currentTarget);
+                var modeId = $this.data('id');
+
+                $this.siblings().removeClass('active');
+                $this.addClass('active');
 
                 this.globals.$snippetMode.val(modeId);
                 this.globals.theEditor.setOption('mode', modeId);

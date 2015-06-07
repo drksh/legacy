@@ -11,7 +11,7 @@
     <button class="btn btn-info btn-sm" href="#" type="button" data-id="sass">SASS</button>
     <button class="btn btn-info btn-sm" href="#" type="button" data-id="php">PHP</button>
     <button class="btn btn-info btn-sm" href="#" type="button" data-id="javascript">Javascript</button>
-    <button class="btn btn-info btn-sm" href="#" type="button" data-id="markdown">Markdown</button>
+    <button class="btn btn-info btn-sm active" href="#" type="button" data-id="markdown">Markdown</button>
 </div>
 
 <hr/>
