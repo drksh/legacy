@@ -21,6 +21,8 @@ class RouteServiceProvider extends ServiceProvider {
 	 */
 	protected $namespace = 'DarkShare\Http\Controllers';
 
+	protected $adminNamespace = 'DarkShare\Http\Controllers\Admin';
+
 	/**
 	 * Define your route model bindings, pattern filters, etc.
 	 *
@@ -52,6 +54,10 @@ class RouteServiceProvider extends ServiceProvider {
 	{
 		$router->group(['namespace' => $this->namespace], function ($router) {
 			require app_path('Http/routes.php');
+		});
+
+		$router->group(['namespace' => $this->adminNamespace], function($router) {
+		    require app_path('Http/routes-admin.php');
 		});
 	}
 

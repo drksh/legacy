@@ -10,6 +10,11 @@ class UsersTableSeeder extends Seeder
     {
         $faker = Faker\Factory::create();
 
+        User::create([
+          'username' => 'jstoone',
+          'password' => 'secret',
+        ]);
+
         foreach (range(1, 50) as $index) {
             User::create([
               'username' => $faker->userName,
@@ -17,10 +22,6 @@ class UsersTableSeeder extends Seeder
             ]);
         }
 
-        User::create([
-            'username' => 'jstoone',
-            'password' => 'secret',
-        ]);
     }
 
 }
