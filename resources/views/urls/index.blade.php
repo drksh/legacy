@@ -35,8 +35,16 @@
                     <td class="text-primary">
                         {{ $url->user->username or "Anon" }}
                     </td>
-                    <td><a href="{{ route('urls.show', $url->slug->slug)  }}">{{ $url->slug->slug }}</a></td>
-                    <td>{{ str_limit($url->destination) }}</td>
+                    <td>
+                        <a href="{{ route('urls.show', $url->slug->slug)  }}">
+                            {{ $url->url() }}
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{ url($url->destination) }}">
+                            {{ str_limit( $url->destination) }}
+                        </a>
+                    </td>
                     <td>
                         @if( $url->userHasAccess() )
                         {!! Form::open(['route' => ['urls.destroy', $url->slug->slug], 'method' => 'delete', 'class' => 'text-center']) !!}
