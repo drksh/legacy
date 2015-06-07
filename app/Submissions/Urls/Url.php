@@ -42,4 +42,9 @@ class Url extends Model implements Protectable, Sluggable {
 	{
 		return $this->hasOne(UrlSlug::class);
 	}
+
+	public function url()
+    {
+        return 'drk.sh/' . $this->slug->slug;
+    }
 }

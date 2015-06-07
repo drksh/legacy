@@ -27,7 +27,7 @@ class FilesController extends Controller {
 	 */
 	public function index()
 	{
-	    return redirect()->route('files.create');
+	    return view('files.create');
 	}
 
 	/**

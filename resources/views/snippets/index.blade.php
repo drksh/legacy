@@ -16,16 +16,14 @@
 
             <table class="table table-striped table-bordered">
                 <colgroup>
-                    <col width="3%"/>
                     <col width="20%"/>
                     <col width="20%"/>
                     <col width="35%"/>
                     <col width="5%"/>
-                    <col width="17%"/>
+                    <col width="22%"/>
                 </colgroup>
                 <thead>
                 <tr>
-                    <th>#</th>
                     <th>By</th>
                     <th>Title</th>
                     <th>Body</th>
@@ -36,7 +34,6 @@
                 <tbody>
                 @foreach($snippets as $snippet)
                 <tr>
-                    <td>{{ $snippet->id }}</td>
                     <td class="text-primary">
                         {{ $snippet->user->username or "Anon" }}
                     </td>
