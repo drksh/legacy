@@ -16,15 +16,13 @@
 
             <table class="table table-striped table-bordered">
                 <colgroup>
-                    <col width="3%"/>
                     <col width="20%"/>
-                    <col width="20%"/>
+                    <col width="23%"/>
                     <col width="40%"/>
                     <col width="17%"/>
                 </colgroup>
                 <thead>
                 <tr>
-                    <th>#</th>
                     <th>By</th>
                     <th>Slug</th>
                     <th>Destination</th>
@@ -34,7 +32,6 @@
                 <tbody>
                 @foreach($urls as $url)
                 <tr>
-                    <td>{{ $url->id }}</td>
                     <td class="text-primary">
                         {{ $url->user->username or "Anon" }}
                     </td>

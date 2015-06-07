@@ -29,7 +29,7 @@ class SnippetsController extends Controller {
 	 */
 	public function index()
 	{
-	    return redirect()->route('snippets.create');
+	    return view('snippets.create');
 	}
 
 	/**
@@ -52,11 +52,11 @@ class SnippetsController extends Controller {
 	{
 		$data = ['user_id' => ($auth->user()) ? $auth->user()->id : null];
 
-		$this->dispatchFrom(StoreNewSnippetCommand::class, $request, $data);
+		$snippet = $this->dispatchFrom(StoreNewSnippetCommand::class, $request, $data);
 
 		flash('Snippet was successfully created.');
 
-		return redirect()->route('snippets.index');
+		return redirect()->route('snippets.show', $snippet->slug->slug);
 	}
 
 	/**

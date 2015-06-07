@@ -38,7 +38,7 @@ class UrlsController extends Controller {
      */
     public function index()
     {
-        return redirect()->route('urls.create');
+        return view('urls.create');
     }
 
     /**
@@ -59,9 +59,9 @@ class UrlsController extends Controller {
      */
     public function store(UrlsRequest $request)
     {
-        $this->dispatchFrom(StoreNewUrlCommand::class, $request);
+        $url = $this->dispatchFrom(StoreNewUrlCommand::class, $request);
 
-        flash("Short URL successfully created");
+        flash("Short URL created: " . 'http://drk.sh/'.$url->slug->slug);
         return redirect()->route('urls.index');
     }
 
