@@ -52,13 +52,14 @@ class RouteServiceProvider extends ServiceProvider {
 	 */
 	public function map(Router $router)
 	{
+        $router->group(['namespace' => $this->adminNamespace], function($router) {
+            require app_path('Http/routes-admin.php');
+        });
+
 		$router->group(['namespace' => $this->namespace], function ($router) {
 			require app_path('Http/routes.php');
 		});
 
-		$router->group(['namespace' => $this->adminNamespace], function($router) {
-		    require app_path('Http/routes-admin.php');
-		});
 	}
 
 }

@@ -1,5 +1,15 @@
 @extends('admin.layouts.master')
 
-<h1>Hello!</h1>
+
+@section('content')
+
+<table>
+    <thead>
+
+    </thead>
+    <tbody>
+
+    </tbody>
+</table>
 
 @stop

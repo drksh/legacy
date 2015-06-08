@@ -1,6 +1,9 @@
 <?php
 
-Route::get('/', 'PagesController@getIndex');
+Route::get('/', [
+    'as' => 'home',
+    'uses' => 'PagesController@getIndex'
+]);
 
 /*
  * Auth

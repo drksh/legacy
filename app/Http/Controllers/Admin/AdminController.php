@@ -3,18 +3,24 @@
 use DarkShare\Http\Requests;
 use DarkShare\Http\Controllers\Controller;
 
+use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller {
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
+    function __construct()
+    {
+        $this->middleware('admin.protect');
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \DarkShare\Http\Controllers\Admin\Response
+     */
 	public function index()
 	{
-		//
+		return view('admin.index');
 	}
 
 	/**

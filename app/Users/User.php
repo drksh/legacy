@@ -65,6 +65,7 @@ class User extends Model implements AuthenticatableContract {
     }
 
     /**
+     * Determine whether current user is an admin
      *
      * @return bool
      */
