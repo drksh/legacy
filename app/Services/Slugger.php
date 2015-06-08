@@ -47,13 +47,21 @@ class Slugger {
 		$slug = [];
 		$cipher = 0;
 		$length = count($characterArray);
-		while($number > $length) {
+		$number--;
+
+		while($number >= $length) {
 			$i = $number % $length;
 			$slug[$cipher] = $characterArray[$i];
-			$number = floor($number / $length);
+//			$number = floor($number / $length);
+            $number = floor( ($number - $i) / $length);
 			$cipher++;
 		}
-		$slug[$cipher] = $characterArray[$number - 1];
+
+        if($cipher == 1) {
+            $slug[$cipher] = $characterArray[$number - 1];
+        } else {
+            $slug[$cipher] = $characterArray[$number];
+        }
 
 		return implode('', array_reverse($slug));
 	}
