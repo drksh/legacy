@@ -29,11 +29,15 @@ class AdminProtect {
 
 	    $user = $this->auth->user();
 
-	    if(is_null($user)) {
+	    if( ! $user) {
 	        return redirect()->home();
 	    }
 
 	    if( ! $user->isAdmin()) {
+	        return redirect()->home();
+	    }
+
+	    if( ! $request->authcode) {
 	        return redirect()->home();
 	    }
 
