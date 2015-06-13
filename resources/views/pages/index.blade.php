@@ -54,10 +54,10 @@
 <code>
 <pre>
 &lt;?php
-    $username = jakobsteinn;
+    $username = "jakobsteinn";
     $seperator = "@";
-    $provider = lavaboom;
-    $domain = .com;
+    $provider = "lavaboom";
+    $domain = ".com";
 
     $email = $username . $seperator . $provider . $domain
 ?&gt;
