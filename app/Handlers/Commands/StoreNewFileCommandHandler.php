@@ -38,6 +38,10 @@ class StoreNewFileCommandHandler {
 	{
 		$command->path = $this->handleUploadedFile($command->file);
 
+		if(empty($command->title)) {
+		    $command->title = htmlentities($command->file->getClientOriginalName());
+		}
+
 		$file =  File::create([
 			'user_id' => ($this->auth->user()) ? $this->auth->user()->id : null,
 			'title' => $command->title,
