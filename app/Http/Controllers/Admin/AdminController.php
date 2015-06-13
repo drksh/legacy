@@ -59,21 +59,21 @@ class AdminController extends Controller {
     {
         $snippets = $user->snippets;
 
-        return view('snippets.index', compact('snippets'));
+        return view('admin.snippets', compact('snippets'));
     }
 
     public function files($code, User $user)
     {
         $files = $user->files;
 
-        return view('files.index', compact('files'));
+        return view('admin.files', compact('files'));
     }
 
     public function urls($code, User $user)
     {
         $urls = $user->urls;
 
-        return view('urls.index', compact('urls'));
+        return view('admin.urls', compact('urls'));
     }
 
 

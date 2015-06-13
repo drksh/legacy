@@ -17,6 +17,9 @@ class UsersController extends Controller
     {
         $this->auth = $auth;
 
+        if($auth->user())
+            view()->share(['user' => $auth->user()]);
+
         $this->middleware('auth');
     }
 

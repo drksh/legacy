@@ -48,11 +48,11 @@ class FilesController extends Controller {
 	 */
 	public function store(FilesRequest $request)
 	{
-		$this->dispatchFrom(StoreNewFileCommand::class, $request, ['file' => $request->file('path')]);
+		$file = $this->dispatchFrom(StoreNewFileCommand::class, $request, ['file' => $request->file('path')]);
 
 		flash("File successfully uploaded!");
 
-		return redirect()->route('files.index');
+		return redirect()->route('files.show', $file->slug->slug);
 	}
 
 	/**
