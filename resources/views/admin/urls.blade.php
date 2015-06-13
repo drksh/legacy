@@ -4,25 +4,27 @@
     <div id="urls" class="row index">
         <div class="col-md-12">
             <h1>
-                Urls: <small>by {{ $user->username }}</small>
+                Urls
+                @if(has_disk_space())
+                    <a class="btn btn-success btn-xs" href="{{ route('urls.create') }}">Create new</a>
+                @else
+                    <a class="btn btn-danger disabled btn-xs" href="{{ route('urls.create') }}">No diskspace..</a>
+                @endif
             </h1>
-            @if(has_disk_space())
-                <a class="btn btn-success btn-xs" href="{{ route('urls.create') }}">Create new</a>
-            @else
-                <a class="btn btn-danger disabled btn-xs" href="{{ route('urls.create') }}">No diskspace..</a>
-            @endif
 
             <hr/>
 
             <table class="table table-striped table-bordered">
                 <colgroup>
+                    <col width="20%"/>
                     <col width="23%"/>
-                    <col width="60%"/>
+                    <col width="40%"/>
                     <col width="17%"/>
                 </colgroup>
                 <thead>
                 <tr>
-                    <th>Share this \o/</th>
+                    <th>By</th>
+                    <th>Slug</th>
                     <th>Destination</th>
                     <th>Actions</th>
                 </tr>
@@ -30,6 +32,9 @@
                 <tbody>
                 @forelse($urls as $url)
                 <tr>
+                    <td class="text-primary">
+                        {{ $url->user->username or "Anon" }}
+                    </td>
                     <td>
                         <a href="{{ route('urls.show', $url->slug->slug)  }}">
                             {{ $url->url() }}
@@ -37,12 +42,15 @@
                     </td>
                     <td>
                         <a href="{{ url($url->destination) }}">
-                            {{ $url->destination }}
+                            {{ str_limit( $url->destination) }}
                         </a>
                     </td>
                     <td>
                         @if( $url->userHasAccess() )
                         {!! Form::open(['route' => ['urls.destroy', $url->slug->slug], 'method' => 'delete', 'class' => 'text-center']) !!}
+                            <a class="btn btn-info btn-sm" href="{{ route('urls.show', $url->slug->slug) }}">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                            </a>
                             <a class="btn btn-primary btn-sm" href="{{ route('urls.edit', $url->slug->slug) }}">
                                 <span class="glyphicon glyphicon-edit"></span>
                             </a>
