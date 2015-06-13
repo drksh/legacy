@@ -5,9 +5,6 @@
     <div class="col-md-12">
         <h1>User: <small>{{$user->username}}</small></h1>
 
-        <p>
-            {{ $user }}
-        </p>
         <hr/>
     </div>
 
