@@ -59,7 +59,10 @@ class UrlsController extends Controller {
     {
         $url = $this->dispatchFrom(StoreNewUrlCommand::class, $request);
 
-        flash("Short URL created: " . 'http://drk.sh/'.$url->slug->slug);
+        flash(
+            "Short URL created: " .
+            "<a href=\"{$url->url()}\">{$url->url()}</a>"
+        );
         return redirect()->route('urls.index');
     }
 
