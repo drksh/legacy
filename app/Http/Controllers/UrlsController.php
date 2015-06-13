@@ -4,11 +4,9 @@ use DarkShare\Commands\StoreNewUrlCommand;
 use DarkShare\Commands\UpdateUrlCommand;
 use DarkShare\Http\Controllers\Traits\ProtectedTrait;
 use DarkShare\Http\Requests;
-
 use DarkShare\Http\Requests\UrlsRequest;
-use DarkShare\Services\Slugger;
 use DarkShare\Submissions\Urls\Url;
-use DarkShare\Submissions\Urls\UrlSlug;
+
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
 use Illuminate\Session\Store;
@@ -79,7 +77,10 @@ class UrlsController extends Controller {
     /**
      * Authenticate to a protected snippet.
      *
-     * @param Url $url
+     * @param Url                       $url
+     * @param \Illuminate\Http\Request  $request
+     * @param \Illuminate\Session\Store $session
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function authenticate(Url $url, Request $request, Store $session)
     {
@@ -128,8 +129,9 @@ class UrlsController extends Controller {
     /**
      * Update the specified url in storage.
      *
-     * @param  int  Url $url
-     * @return Response
+     * @param \DarkShare\Http\Requests\UrlsRequest $request
+     * @param                                      int  Url $url
+     * @return \DarkShare\Http\Controllers\Response
      */
     public function update(UrlsRequest $request, Url $url)
     {

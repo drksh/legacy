@@ -73,12 +73,13 @@ class SnippetsController extends Controller {
     /**
      * Authenticate to a protected snippet.
      *
-     * @param Snippet $snippet
+     * @param Snippet                   $snippet
+     * @param \Illuminate\Http\Request  $request
+     * @param \Illuminate\Session\Store $session
      * @return \Illuminate\Http\RedirectResponse
      */
 	public function authenticate(Snippet $snippet, Request $request, Store $session)
 	{
-
 		if ( ! $snippet->authenticate($request->input('password'))) {
 			flash()->warning('Wrong password');
 			return redirect()->back();
@@ -86,7 +87,7 @@ class SnippetsController extends Controller {
 
 		$session->flash('snippets_auth', true);
 
-		return redirect()->route('snippets.show', $snippet->id);
+		return redirect()->route('snippets.show', $snippet->slug->slug);
 	}
 
     /**

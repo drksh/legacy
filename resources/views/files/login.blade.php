@@ -9,7 +9,7 @@
 
             <hr/>
 
-            {!! Form::open(['route' => ['files.auth', $file->id], 'method' => 'post']) !!}
+            {!! Form::open(['route' => ['files.auth', $file->slug->slug], 'method' => 'post']) !!}
 
             {!! Form::password('password', ['class' => 'form-control', 'placeholder' => 'Password']) !!}
 

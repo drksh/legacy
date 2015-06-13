@@ -1,13 +1,13 @@
 <?php namespace DarkShare;
 
-use DarkShare\Submissions\Traits\TypeTrait;
 use Illuminate\Database\Eloquent\Model as EloquentModel;
 
 class Model extends EloquentModel {
 
-	public function setModelNameAttribute()
+
+	public function modelName()
 	{
-		return strtolower(class_basename(self::class));
+		return $this->table;
 	}
 
 }

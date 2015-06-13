@@ -81,10 +81,9 @@ class FilesController extends Controller {
 			return redirect()->back();
 		}
 
-		flash("hello");
 		$session->flash('files_auth', true);
 
-		return redirect()->route('files.show', $file->id);
+		return redirect()->route('files.show', $file->slug->slug);
 	}
 
 	/**

@@ -1,12 +1,17 @@
 <?php namespace DarkShare\Submissions\Traits;
 
 use DarkShare\Contracts\Models\Sluggable;
-use DarkShare\Services\Slugger;
 use Illuminate\Support\Facades\App;
 
 trait IncrementalSlugTrait {
 
-	public function setSlugAttribute(Sluggable $sluggableModel) {
+    /**
+     * Automatically slug submissions
+     *
+     * @param \DarkShare\Contracts\Models\Sluggable $sluggableModel
+     * @return void
+     */
+    public function setSlugAttribute(Sluggable $sluggableModel) {
 
 		$slugger = App::make('slugger');
 

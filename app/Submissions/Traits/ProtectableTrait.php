@@ -15,9 +15,9 @@ trait ProtectableTrait {
 	}
 
 	/**
+     * Check whether submission belongs to the authenticated user
 	 *
-	 *
-	 * @return bool
+     * @return bool
 	 */
 	private function isMine()
 	{
@@ -30,6 +30,8 @@ trait ProtectableTrait {
 	}
 
 	/**
+     * Check whether a user has access to the submission
+     *
 	 * @return bool
 	 */
 	public function userHasAccess()

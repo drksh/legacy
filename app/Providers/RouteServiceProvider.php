@@ -1,14 +1,9 @@
 <?php namespace DarkShare\Providers;
 
-use DarkShare\Services\Slugger;
-use DarkShare\Submissions\Files\File;
 use DarkShare\Submissions\Files\FileSlug;
-use DarkShare\Submissions\Snippets\Snippet;
 use DarkShare\Submissions\Snippets\SnippetSlug;
-use DarkShare\Submissions\Urls\Url;
 use DarkShare\Submissions\Urls\UrlSlug;
 use DarkShare\Users\User;
-use Illuminate\Console\Application;
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
