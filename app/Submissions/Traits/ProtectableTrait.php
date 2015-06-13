@@ -9,7 +9,7 @@ trait ProtectableTrait {
 	 *
 	 * @return bool
 	 */
-	private function isProtected()
+	public function isProtected()
 	{
 		return (is_null($this->password)) ? false : true;
 	}
