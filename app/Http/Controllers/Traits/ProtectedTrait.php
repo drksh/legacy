@@ -27,6 +27,6 @@ trait ProtectedTrait {
 	 */
 	private function getModelName(Protectable $model)
 	{
-		return $model->modelName();
+		return $model->modelName;
 	}
 }
