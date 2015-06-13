@@ -18,11 +18,11 @@ class StoreNewFileCommandHandler {
 	 */
 	private $auth;
 
-	/**
-	 * Create the command handler.
-	 *
-	 * @return void
-	 */
+    /**
+     * Create the command handler.
+     *
+     * @param \Illuminate\Contracts\Auth\Guard $auth
+     */
 	public function __construct(Guard $auth)
 	{
 		$this->auth = $auth;
@@ -90,8 +90,8 @@ class StoreNewFileCommandHandler {
 	 */
 	private function getFilename(UploadedFile $file)
 	{
-		$path = date('Y-m-d_H-i-s');
-		$path .= '_' . md5($file->getClientOriginalName());
+        $path = $file->getClientOriginalName();
+		$path .= '_' . dechex(time());
 		$path .= '.' . $file->getClientOriginalExtension();
 
 		return $path;
