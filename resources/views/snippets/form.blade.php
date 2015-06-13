@@ -1,6 +1,6 @@
 @include('layouts.partials.errors')
 
-{!! Form::hidden('mode', null, null) !!}
+{!! Form::hidden('mode', 'markdown', null) !!}
 
 <div class="form-group">
     {!! Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'Title']) !!}
