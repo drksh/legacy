@@ -12,7 +12,7 @@ class SnippetsTableSeeder extends Seeder {
 
 		$users = \DarkShare\Users\User::lists('id');
 
-		foreach (range(1, 7300) as $index) {
+		foreach (range(1, 100) as $index) {
 			$snippet = Snippet::create([
 				'user_id' => ($faker->boolean()) ? $faker->randomElement($users) : null,
 				'title' => $faker->sentence(),

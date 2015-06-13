@@ -7,6 +7,7 @@ use DarkShare\Submissions\Snippets\Snippet;
 use DarkShare\Submissions\Snippets\SnippetSlug;
 use DarkShare\Submissions\Urls\Url;
 use DarkShare\Submissions\Urls\UrlSlug;
+use DarkShare\Users\User;
 use Illuminate\Console\Application;
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
@@ -41,6 +42,9 @@ class RouteServiceProvider extends ServiceProvider {
 		});
 		$router->bind('urls', function($value) {
 			return UrlSlug::where('slug', $value)->first()->url;
+		});
+		$router->bind('username', function($value) {
+		    return User::where('username', $value)->first();
 		});
 	}
 

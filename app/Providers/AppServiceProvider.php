@@ -1,6 +1,7 @@
 <?php namespace DarkShare\Providers;
 
 use DarkShare\Services\Slugger;
+use Illuminate\Http\Request;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider {
@@ -12,7 +13,6 @@ class AppServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-		//
 	}
 
 	/**

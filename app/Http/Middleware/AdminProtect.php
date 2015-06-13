@@ -45,6 +45,11 @@ class AdminProtect {
 	        return redirect()->home();
 	    }
 
+        // Share the authentication code through all views
+        view()->share([
+          'authcode' => $request->authcode,
+        ]);
+
 		return $next($request);
 	}
 

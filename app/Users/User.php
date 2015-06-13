@@ -7,6 +7,7 @@ use DarkShare\Submissions\Urls\Url;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Query\Builder;
 
 class User extends Model implements AuthenticatableContract {
 

@@ -3,88 +3,57 @@
 use DarkShare\Http\Requests;
 use DarkShare\Http\Controllers\Controller;
 
+use DarkShare\Submissions\Snippets\Snippet;
+use DarkShare\Users\User;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller {
 
-    function __construct()
+    function __construct(Request $request)
     {
         $this->middleware('admin.protect');
     }
 
     /**
-     * Display a listing of the resource.
+     * Display a listing of most active users
+     * - ordered by snippets, files and urls
      *
      * @return \DarkShare\Http\Controllers\Admin\Response
      */
 	public function index()
 	{
-		return view('admin.index');
+        $snippetsUsers = User::with('snippets')->get()->sortByDesc(function($query)
+        {
+            return $query->snippets->count();
+        })->take(15);
+
+        $filesUsers = User::with('files')->get()->sortByDesc(function($query)
+        {
+            return $query->files->count();
+        })->take(15);
+
+        $urlsUsers = User::with('urls')->get()->sortByDesc(function($query)
+        {
+            return $query->urls->count();
+        })->take(15);
+
+		return view('admin.index', compact('snippetsUsers', 'filesUsers', 'urlsUsers'));
 	}
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
-	}
+    /**
+     * Display a listing of a users latest content
+     *
+     * @param                       $code
+     * @param \DarkShare\Users\User $user
+     * @return \Illuminate\View\View
+     */
+    public function user($code, User $user)
+    {
+        $user->load(['snippets', 'files', 'urls']);
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
-	}
+        return view('admin.users', compact('user'));
+    }
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
-	}
 
 }
