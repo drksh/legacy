@@ -59,24 +59,27 @@ class SnippetsController extends Controller {
 		return redirect()->route('snippets.show', $snippet->slug->slug);
 	}
 
-	/**
-	 * Show the form for logging into a protected snippet.
-	 *
-	 * @param Snippet $snippet
-	 */
+    /**
+     * Show the form for logging into a protected snippet.
+     *
+     * @param Snippet $snippet
+     * @return \Illuminate\View\View
+     */
 	public function login(Snippet $snippet)
 	{
 		return view('snippets.login', compact('snippet'));
 	}
 
-	/**
-	 * Authenticate to a protected snippet.
-	 *
-	 * @param Snippet $snippet
-	 */
+    /**
+     * Authenticate to a protected snippet.
+     *
+     * @param Snippet                   $snippet
+     * @param \Illuminate\Http\Request  $request
+     * @param \Illuminate\Session\Store $session
+     * @return \Illuminate\Http\RedirectResponse
+     */
 	public function authenticate(Snippet $snippet, Request $request, Store $session)
 	{
-
 		if ( ! $snippet->authenticate($request->input('password'))) {
 			flash()->warning('Wrong password');
 			return redirect()->back();
@@ -84,15 +87,16 @@ class SnippetsController extends Controller {
 
 		$session->flash('snippets_auth', true);
 
-		return redirect()->route('snippets.show', $snippet->id);
+		return redirect()->route('snippets.show', $snippet->slug->slug);
 	}
 
-	/**
-	 * Display the specified snippet.
-	 *
-	 * @param  int $id
-	 * @return Response
-	 */
+    /**
+     * Display the specified snippet.
+     *
+     * @param \DarkShare\Submissions\Snippets\Snippet $snippet
+     * @param \Illuminate\Session\Store               $session
+     * @return \DarkShare\Http\Controllers\Response
+     */
 	public function show(Snippet $snippet, Store $session)
 	{
 		if ($this->protect($snippet, $session)) {
@@ -102,23 +106,24 @@ class SnippetsController extends Controller {
 		return view('snippets.show', compact('snippet'));
 	}
 
-	/**
-	 * Show the form for editing the specified snippet.
-	 *
-	 * @param  int $id
-	 * @return Response
-	 */
+    /**
+     * Show the form for editing the specified snippet.
+     *
+     * @param \DarkShare\Submissions\Snippets\Snippet $snippet
+     * @return \DarkShare\Http\Controllers\Response
+     */
 	public function edit(Snippet $snippet)
 	{
 		return view('snippets.edit', compact('snippet'));
 	}
 
-	/**
-	 * Update the specified snippet in storage.
-	 *
-	 * @param  int $id
-	 * @return Response
-	 */
+    /**
+     * Update the specified snippet in storage.
+     *
+     * @param \DarkShare\Submissions\Snippets\Snippet  $snippet
+     * @param \DarkShare\Http\Requests\SnippetsRequest $request
+     * @return \DarkShare\Http\Controllers\Response
+     */
 	public function update(Snippet $snippet, SnippetsRequest $request)
 	{
 		$this->dispatchFrom(UpdateSnippetCommand::class, $request, compact('snippet'));
@@ -128,12 +133,13 @@ class SnippetsController extends Controller {
 		return redirect()->route('snippets.index');
 	}
 
-	/**
-	 * Remove the specified snippet from storage.
-	 *
-	 * @param  int $id
-	 * @return Response
-	 */
+    /**
+     * Remove the specified snippet from storage.
+     *
+     * @param \DarkShare\Submissions\Snippets\Snippet $snippet
+     * @return \DarkShare\Http\Controllers\Response
+     * @throws \Exception
+     */
 	public function destroy(Snippet $snippet)
 	{
 		$snippet->delete();

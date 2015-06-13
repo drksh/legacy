@@ -52,5 +52,19 @@ class AuthController extends Controller {
 			]);
 	}
 
+    /**
+     * Log the user out of the application.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getLogout()
+    {
+        $this->auth->logout();
+
+        flash('Please come back soon...');
+
+        return redirect()->route('auth.login');
+    }
+
 
 }

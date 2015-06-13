@@ -39,7 +39,13 @@ Files       /f/{slug}
 Custom URLs /u/{slug}
 Optim URLs  /{slug}
 
-# ---- SPECIFICS ----
+# SPECIFICS
+## Admin panel
+- Having a list of ~15 most active users, ordered by snippets, files and urls.
+- When clicking a user you should see that users most recent items, s/f/u that is.
+	- there should be a search page for that user
+		- needs more thinking...
+
 ## Files
 When securing files i need to check the following
 	- User has the flashed session key to access the /files/{id} (GET) page

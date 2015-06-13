@@ -8,7 +8,7 @@
 
             <hr/>
 
-            {!! Form::open(['route' => ['urls.auth', $url->id], 'method' => 'post']) !!}
+            {!! Form::open(['route' => ['urls.auth', $url->slug->slug], 'method' => 'post']) !!}
 
             {!! Form::password('password', ['class' => 'form-control', 'placeholder' => 'Password']) !!}
 

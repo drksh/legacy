@@ -23400,7 +23400,7 @@ $(function(){
     var snippetIndex = {
 
         globals: {
-            $page: $('#snippets.create'),
+            $page: $('#snippets.create, #snippets.edit'),
             $snippetMode: $("input[name='mode']", this.$page),
             theEditor: null
         },

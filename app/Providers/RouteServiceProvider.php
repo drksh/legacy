@@ -1,13 +1,9 @@
 <?php namespace DarkShare\Providers;
 
-use DarkShare\Services\Slugger;
-use DarkShare\Submissions\Files\File;
 use DarkShare\Submissions\Files\FileSlug;
-use DarkShare\Submissions\Snippets\Snippet;
 use DarkShare\Submissions\Snippets\SnippetSlug;
-use DarkShare\Submissions\Urls\Url;
 use DarkShare\Submissions\Urls\UrlSlug;
-use Illuminate\Console\Application;
+use DarkShare\Users\User;
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -20,6 +16,8 @@ class RouteServiceProvider extends ServiceProvider {
 	 * @var string
 	 */
 	protected $namespace = 'DarkShare\Http\Controllers';
+
+	protected $adminNamespace = 'DarkShare\Http\Controllers\Admin';
 
 	/**
 	 * Define your route model bindings, pattern filters, etc.
@@ -40,6 +38,9 @@ class RouteServiceProvider extends ServiceProvider {
 		$router->bind('urls', function($value) {
 			return UrlSlug::where('slug', $value)->first()->url;
 		});
+		$router->bind('username', function($value) {
+		    return User::where('username', $value)->first();
+		});
 	}
 
 	/**
@@ -50,9 +51,14 @@ class RouteServiceProvider extends ServiceProvider {
 	 */
 	public function map(Router $router)
 	{
+        $router->group(['namespace' => $this->adminNamespace], function($router) {
+            require app_path('Http/routes-admin.php');
+        });
+
 		$router->group(['namespace' => $this->namespace], function ($router) {
 			require app_path('Http/routes.php');
 		});
+
 	}
 
 }
