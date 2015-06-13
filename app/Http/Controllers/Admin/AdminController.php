@@ -55,5 +55,26 @@ class AdminController extends Controller {
         return view('admin.users', compact('user'));
     }
 
+    public function snippets($code, User $user)
+    {
+        $snippets = $user->snippets;
+
+        return view('snippets.index', compact('snippets'));
+    }
+
+    public function files($code, User $user)
+    {
+        $files = $user->files;
+
+        return view('files.index', compact('files'));
+    }
+
+    public function urls($code, User $user)
+    {
+        $urls = $user->urls;
+
+        return view('urls.index', compact('urls'));
+    }
+
 
 }
