@@ -130,7 +130,7 @@ class SnippetsController extends Controller {
 
 		flash('Snippet was successfully updated.');
 
-		return redirect()->route('snippets.index');
+		return redirect()->route('snippets.show', $snippet->slug->slug);
 	}
 
     /**
@@ -144,7 +144,7 @@ class SnippetsController extends Controller {
 	{
 		$snippet->delete();
 
-		return redirect()->route('snippets.index');
+		return redirect()->back();
 	}
 
 }

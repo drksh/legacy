@@ -30,7 +30,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($urls as $url)
+                @forelse($urls as $url)
                 <tr>
                     <td class="text-primary">
                         {{ $url->user->username or "Anon" }}
@@ -65,7 +65,13 @@
                         @endif
                     </td>
                 </tr>
-                @endforeach
+                @empty
+                    <tr>
+                        <td colspan="4" class="text-center">
+                            <strong>No urls, yet!</strong>
+                        </td>
+                    </tr>
+                @endforelse
                 </tbody>
             </table>
         </div>

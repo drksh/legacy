@@ -4,7 +4,7 @@
     <div id="snippets" class="row edit">
         <div class="col-md-12">
 
-            {!! Form::model($snippet, ['route' => ['snippets.update', $snippet->id], 'method' => 'patch']) !!}
+            {!! Form::model($snippet, ['route' => ['snippets.update', $snippet->slug->slug], 'method' => 'patch']) !!}
 
             @include('snippets.form')
 

@@ -152,7 +152,7 @@ class UrlsController extends Controller {
         $url->delete();
 
         flash("URL successfully deleted.");
-        return redirect()->route('urls.index');
+        return redirect()->back();
     }
 
 }

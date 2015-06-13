@@ -28,7 +28,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($files as $file)
+                @forelse($files as $file)
                 <tr>
                     <td class="text-primary">
                         {{ $file->user->username or "Anon" }}
@@ -51,7 +51,13 @@
                         @endif
                     </td>
                 </tr>
-                @endforeach
+                @empty
+                    <tr>
+                        <td colspan="3" class="text-center">
+                            <strong>No files, yet!</strong>
+                        </td>
+                    </tr>
+                @endforelse
                 </tbody>
             </table>
         </div>

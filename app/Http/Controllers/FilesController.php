@@ -102,8 +102,13 @@ class FilesController extends Controller {
 			return redirect()->route('files.login', compact('file'));
 		}
 
-		return response()->download($file->path);
+        return view('files.show', compact('file'));
 	}
+
+	public function download(File $file)
+    {
+        return response()->download($file->path);
+    }
 
 	/**
 	 * Remove the specified file from storage.
@@ -117,7 +122,7 @@ class FilesController extends Controller {
 
 		flash('File successfully deleted');
 
-		return redirect()->route('files.index');
+		return redirect()->back();
 	}
 
 }

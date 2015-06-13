@@ -32,7 +32,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($snippets as $snippet)
+                @forelse($snippets as $snippet)
                 <tr>
                     <td class="text-primary">
                         {{ $snippet->user->username or "Anon" }}
@@ -60,7 +60,13 @@
                         @endif
                     </td>
                 </tr>
-                @endforeach
+                @empty
+                    <tr>
+                        <td colspan="5" class="text-center">
+                            <strong>No snippets, yet!</strong>
+                        </td>
+                    </tr>
+                @endforelse
                 </tbody>
             </table>
         </div>

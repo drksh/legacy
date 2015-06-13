@@ -4,7 +4,7 @@
     <div id="urls" class="row edit">
         <div class="col-md-12">
 
-            {!! Form::model($url, ['route' => ['urls.update', $url->id], 'method' => 'patch']) !!}
+            {!! Form::model($url, ['route' => ['urls.update', $url->slug->slug], 'method' => 'patch']) !!}
 
             @include('urls.form')
 

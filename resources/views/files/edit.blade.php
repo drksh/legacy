@@ -4,7 +4,7 @@
     <div id="files" class="row edit">
         <div class="col-md-12">
 
-            {!! Form::model($file, ['route' => ['files.update', $file->id], 'method' => 'patch']) !!}
+            {!! Form::model($file, ['route' => ['files.update', $file->slug->slug], 'method' => 'patch']) !!}
 
             @include('files.form')
 

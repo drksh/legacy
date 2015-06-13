@@ -79,6 +79,10 @@ Route::get('f/{files}', [
   'as' => 'files.show',
   'uses' => 'FilesController@show',
 ]);
+Route::get('f/download/{files}', [
+  'as' => 'files.download',
+  'uses' => 'FilesController@download',
+]);
 Route::get('files/login/{files}', [
   'as' => 'files.login',
   'uses' => 'FilesController@login',
