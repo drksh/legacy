@@ -22,7 +22,7 @@ class FilesRequest extends Request {
 	public function rules()
 	{
 		return [
-			'title' => 'required',
+			'title' => '',
 			'path'  => 'required|file',
 			'password' => 'sometimes|min:3'
 		];
