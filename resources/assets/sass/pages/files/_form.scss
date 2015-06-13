@@ -1,0 +1,29 @@
+#files {
+
+  .file-upload {
+    position: relative;
+    border: 1px dashed $gray;
+    border-radius: 10px;
+
+    label {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      right: 0px;
+      bottom: 0px;
+
+      padding-top: 15px;
+
+      text-align: center;
+
+      &.has-file { color: $brand-success; }
+
+    } // End label
+
+    #file {
+      width: 100%;
+      height: 50px;
+      opacity: 0;
+    }
+  } // End .file-upload
+} // End #files

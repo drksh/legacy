@@ -1,0 +1,20 @@
+// Bootstrap variables
+@import "bootstrap-simpler/variables";
+
+// Bootstrap Defaults
+@import "bootstrap/bootstrap-sprockets";
+@import "bootstrap/bootstrap";
+
+// Theme customizations
+@import "bootstrap-simpler/theme";
+@import "bootstrap-simpler/glyphicons";
+@import "codemirror/codemirror";
+@import "codemirror/theme";
+
+@import "global";
+
+// Pages
+@import "pages/snippets/index";
+
+// Files
+@import "pages/files/form";

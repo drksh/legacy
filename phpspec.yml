@@ -1,0 +1,5 @@
+suites:
+    main:
+        namespace: DarkShare
+        psr4_prefix: DarkShare
+        src_path: app
