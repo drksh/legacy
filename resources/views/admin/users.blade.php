@@ -10,9 +10,16 @@
 
     {{-- Snippets list --}}
     <div class="col-md-4">
-        <h1>Snippets</h1>
+        <h1>
+            <a href="{{ route('admin.users.snippets', [$authcode, $user->username]) }}">
+                Snippets
+            </a>
+        </h1>
         @forelse($user->snippets->reverse() as $snippet)
-            {{$snippet->title}} <br/>
+            <a href="{{ route('snippets.show', $snippet->slug->slug) }}">
+                {{ $snippet->title }}
+            </a>
+            <br/>
         @empty
             <strong>None...</strong>
         @endforelse
@@ -20,9 +27,16 @@
 
     {{-- Files list --}}
     <div class="col-md-4">
-        <h1>Files</h1>
+        <h1>
+            <a href="{{ route('admin.users.files', [$authcode, $user->username]) }}">
+                Files
+            </a>
+        </h1>
         @forelse($user->files->reverse() as $file)
-            {{$file->title}} <br/>
+            <a href="{{ route('files.show', $file->slug->slug) }}">
+                {{$file->title}}
+            </a>
+            <br/>
         @empty
             <strong>None...</strong>
         @endforelse
@@ -30,9 +44,16 @@
 
     {{-- Urls list --}}
     <div class="col-md-4">
-        <h1>Urls</h1>
+        <h1>
+            <a href="{{ route('admin.users.urls', [$authcode, $user->username]) }}">
+                Urls
+            </a>
+        </h1>
         @forelse($user->urls->reverse() as $url)
-            {{$url->destination}} <br/>
+            <a href="{{$url->destination}}">
+                {{$url->destination}}
+            </a>
+            <br/>
         @empty
             <strong>None...</strong>
         @endforelse
