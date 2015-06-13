@@ -4,25 +4,24 @@
     <div id="snippets" class="row index">
         <div class="col-md-12">
             <h1>
-                Files
-                @if(has_disk_space())
-                    <a class="btn btn-success btn-xs" href="{{ route('files.create') }}">Create new</a>
-                @else
-                    <a class="btn btn-danger disabled btn-xs" href="{{ route('files.create') }}">No diskspace...</a>
-                @endif
+                Files: <small>by {{ $user->username }}</small>
             </h1>
+
+            @if(has_disk_space())
+                <a class="btn btn-success btn-xs" href="{{ route('files.create') }}">Create new</a>
+            @else
+                <a class="btn btn-danger disabled btn-xs" href="{{ route('files.create') }}">No diskspace...</a>
+            @endif
 
             <hr/>
 
             <table class="table table-striped table-bordered">
                 <colgroup>
-                    <col width="20%"/>
-                    <col width="62%"/>
+                    <col width="82%"/>
                     <col width="17%"/>
                 </colgroup>
                 <thead>
                 <tr>
-                    <th>By</th>
                     <th>Title</th>
                     <th>Actions</th>
                 </tr>
@@ -30,9 +29,6 @@
                 <tbody>
                 @forelse($files as $file)
                 <tr>
-                    <td class="text-primary">
-                        {{ $file->user->username or "Anon" }}
-                    </td>
                     <td><a href="{{ route('files.show', $file->slug->slug)  }}">{{ $file->title }}</a></td>
                     <td>
                         @if( $file->userHasAccess() )
