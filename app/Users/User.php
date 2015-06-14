@@ -1,17 +1,21 @@
 <?php namespace DarkShare\Users;
 
 use DarkShare\Model;
+use DarkShare\Submissions\Analytics\Activity;
 use DarkShare\Submissions\Files\File;
 use DarkShare\Submissions\Snippets\Snippet;
 use DarkShare\Submissions\Traits\HashPasswordTrait;
+use DarkShare\Submissions\Traits\RecordsActivity;
 use DarkShare\Submissions\Urls\Url;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Contracts\Auth\Guard;
 
 class User extends Model implements AuthenticatableContract {
 
     use Authenticatable;
     use HashPasswordTrait;
+    use RecordsActivity;
 
     /**
      * The database table used by the model.
