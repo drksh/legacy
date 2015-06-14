@@ -1,4 +1,4 @@
-nde<?php namespace DarkShare\Http\Controllers;
+<?php namespace DarkShare\Http\Controllers;
 
 use DarkShare\Commands\StoreNewUrlCommand;
 use DarkShare\Commands\UpdateUrlCommand;
