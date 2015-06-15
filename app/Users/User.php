@@ -1,7 +1,6 @@
 <?php namespace DarkShare\Users;
 
 use DarkShare\Model;
-use DarkShare\Submissions\Analytics\Activity;
 use DarkShare\Submissions\Files\File;
 use DarkShare\Submissions\Snippets\Snippet;
 use DarkShare\Submissions\Traits\HashPasswordTrait;
@@ -9,7 +8,6 @@ use DarkShare\Submissions\Traits\RecordsActivity;
 use DarkShare\Submissions\Urls\Url;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
-use Illuminate\Contracts\Auth\Guard;
 
 class User extends Model implements AuthenticatableContract {
 
@@ -45,17 +43,7 @@ class User extends Model implements AuthenticatableContract {
      */
     public function snippets()
     {
-        return $this->hasMany(Snippet::class);
-    }
-
-    /**
-     * Defines the relationship between a user and its urls.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function urls()
-    {
-        return $this->hasMany(Url::class);
+        return $this->hasMany(Snippet::class)->with('slug')->latest();
     }
 
     /**
@@ -65,7 +53,17 @@ class User extends Model implements AuthenticatableContract {
      */
     public function files()
     {
-        return $this->hasMany(File::class);
+        return $this->hasMany(File::class)->with('slug')->latest();
+    }
+
+    /**
+     * Defines the relationship between a user and its urls.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function urls()
+    {
+        return $this->hasMany(Url::class)->with('slug')->latest();
     }
 
     /**

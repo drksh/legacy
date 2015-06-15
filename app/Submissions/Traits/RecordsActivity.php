@@ -4,12 +4,11 @@ use DarkShare\Submissions\Analytics\Activity;
 
 trait RecordsActivity {
 
-    protected static function boot() {
-        parent::boot();
+    protected static function bootRecordsActivity() {
 
         foreach(static::getModelEvents() as $event) {
             static::$event(function($subject) use ($event) {
-                $subject->addModelEvent($event);
+                $subject->recordActivity($event);
             });
         }
 
@@ -22,7 +21,7 @@ trait RecordsActivity {
         return $action . '_' . $name;
     }
 
-    protected function addModelEvent($event) {
+    public function recordActivity($event) {
         Activity::create([
           'subject_id'     => $this->id,
           'subject_type'   => get_class($this),
