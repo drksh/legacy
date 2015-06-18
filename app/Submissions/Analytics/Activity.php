@@ -1,6 +1,7 @@
 <?php namespace DarkShare\Submissions\Analytics;
 
 use DarkShare\Model;
+use DarkShare\Users\User;
 
 class Activity extends Model {
 
@@ -26,5 +27,23 @@ class Activity extends Model {
     protected $hidden = [];
 
 
+    /**
+     * Define the relationship between a activity and a user
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
+    /**
+     * Morph to the defined subject type
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
+     */
+    public function subject()
+    {
+        return $this->morphTo();
+    }
 }
