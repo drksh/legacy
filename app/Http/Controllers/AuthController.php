@@ -1,7 +1,7 @@
 <?php namespace DarkShare\Http\Controllers;
 
+use DarkShare\Users\User;
 use Illuminate\Contracts\Auth\Guard;
-use Illuminate\Contracts\Auth\Registrar;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Http\Request;
 
@@ -11,19 +11,18 @@ class AuthController extends Controller {
 
 	public $redirectPath = '/';
 
+
     /**
      * Create a new authentication controller instance.
      *
-     * @param  \Illuminate\Contracts\Auth\Guard     $auth
-     * @param  \Illuminate\Contracts\Auth\Registrar $registrar
+     * @param \Illuminate\Contracts\Auth\Guard $auth
      */
-	public function __construct(Guard $auth, Registrar $registrar)
+	public function __construct(Guard $auth)
 	{
-		$this->auth = $auth;
-		$this->registrar = $registrar;
+        $this->auth = $auth;
 
 		$this->middleware('guest', ['except' => 'getLogout']);
-	}
+    }
 
 	/**
 	 * Handle a login request to the application.
@@ -65,5 +64,35 @@ class AuthController extends Controller {
         return redirect()->route('auth.login');
     }
 
+    /**
+     * Get a validator for an incoming registration request.
+     *
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    public function validator(array $data)
+    {
+        return \Validator::make($data, [
+          'username' => 'required|max:255|unique:users',
+          'password' => 'required|confirmed|min:6',
+        ]);
+    }
+
+    /**
+     * Create a new user instance after a valid registration.
+     *
+     * @param  array  $data
+     * @return User
+     */
+    public function create(array $data)
+    {
+        $user = User::create([
+          'username' => $data['username'],
+          'password' => $data['password'],
+        ]);
+
+        flash()->success("Welcome " . $user->username . "!");
+        return $user;
+    }
 
 }
