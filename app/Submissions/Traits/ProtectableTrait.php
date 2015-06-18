@@ -46,6 +46,9 @@ trait ProtectableTrait {
 		if ($this->isMine() && $this->isProtected())
 			return true;
 
+        if( ! is_null(Auth::user()) && Auth::user()->isAdmin())
+            return true;
+
 		return false;
 	}
 
