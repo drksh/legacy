@@ -25,7 +25,7 @@ class Kernel extends HttpKernel {
 	 */
 	protected $routeMiddleware = [
 		'auth' => 'DarkShare\Http\Middleware\Authenticate',
-		'auth.basic' => 'Illuminate\Auth\Middleware\AuthenticateWithBasicAuth',
+        'auth.basic' => 'DarkShare\Http\Middleware\AuthenticateBasic',
 		'admin.protect' => 'DarkShare\Http\Middleware\AdminProtect',
 		'guest' => 'DarkShare\Http\Middleware\RedirectIfAuthenticated',
 		'app.space' => 'DarkShare\Http\Middleware\BlockIfOutOfSpace',
