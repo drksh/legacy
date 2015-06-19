@@ -10,7 +10,7 @@ class SnippetsTableSeeder extends Seeder {
 	{
 		$faker = Faker\Factory::create();
 
-		$users = \DarkShare\Users\User::lists('id');
+		$users = \DarkShare\Users\User::lists('id')->all();
 
 		foreach (range(1, 100) as $index) {
 			$snippet = Snippet::create([

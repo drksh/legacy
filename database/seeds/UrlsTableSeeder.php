@@ -11,7 +11,7 @@ class UrlsTableSeeder extends Seeder {
 	{
 		$faker = Faker\Factory::create();
 
-		$users = User::lists('id');
+		$users = User::lists('id')->all();
 
 		foreach (range(1, 100) as $index) {
 			$url = Url::create([

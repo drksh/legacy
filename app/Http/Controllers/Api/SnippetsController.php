@@ -1,25 +1,28 @@
 <?php namespace DarkShare\Http\Controllers\Api;
 
 use DarkShare\Commands\StoreNewSnippetCommand;
-use DarkShare\Commands\UpdateSnippetCommand;
 use DarkShare\Http\Controllers\Controller;
-use DarkShare\Http\Controllers\Traits\ProtectedTrait;
 use DarkShare\Http\Requests;
 use DarkShare\Http\Requests\SnippetsRequest;
 use DarkShare\Submissions\Snippets\Snippet;
 use Illuminate\Auth\Guard;
-use Illuminate\Http\Request;
-use Illuminate\Session\Store;
 
 class SnippetsController extends Controller {
 
-    use ProtectedTrait;
+    /**
+     * Authentication instance
+     *
+     * @var \Illuminate\Auth\Guard
+     */
+    protected $auth;
 
     /**
      * Create a new snippets controller instance.
      */
-    function __construct()
+    function __construct(Guard $auth)
     {
+        $this->auth = $auth;
+
         $this->middleware('app.space', ['only' => ['create', 'store']]);
     }
 
@@ -27,18 +30,17 @@ class SnippetsController extends Controller {
      * Display the specified snippet.
      *
      * @param \DarkShare\Submissions\Snippets\Snippet $snippet
-     * @param \Illuminate\Auth\Guard                  $auth
      * @return string
      */
-    public function show(Snippet $snippet, Guard $auth)
+    public function show(Snippet $snippet)
     {
         if( ! $snippet->isProtected())
             return $snippet->body;
 
-        if( ! $auth->check())
+        if( ! $this->auth->check())
             return "Not authorized";
 
-        if($auth->id() != $snippet->user->id)
+        if($this->auth->id() != $snippet->user->id)
             return "Not authorized";
 
         return $snippet->body;
@@ -50,10 +52,10 @@ class SnippetsController extends Controller {
      * @param SnippetsRequest $request
      * @return Response
      */
-    public function store(SnippetsRequest $request, Guard $auth)
+    public function store(SnippetsRequest $request)
     {
         $data = [
-            'user_id' => ($auth->user()) ? $auth->user()->id : null,
+            'user_id' => ($this->auth->user()) ? $this->auth->user()->id : null,
             'password'  => ($request->input('password') ?: null),
         ];
 
@@ -70,15 +72,15 @@ class SnippetsController extends Controller {
      * @return \DarkShare\Http\Controllers\Response
      * @throws \Exception
      */
-    public function destroy(Snippet $snippet, Guard $auth)
+    public function destroy(Snippet $snippet)
     {
         if( ! $snippet->user)
             return "Anon snippets, cannot get deleted";
 
-        if( ! $auth->check())
+        if( ! $this->auth->check())
             return "Not authorized";
 
-        if($auth->id() != $snippet->user->id)
+        if($this->auth->id() != $snippet->user->id)
             return "Not authorized";
 
         $snippet->delete();
