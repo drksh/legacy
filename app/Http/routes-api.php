@@ -18,6 +18,21 @@ Route::group(['middleware' => 'auth.basic:username'], function () {
       'uses'    => 'SnippetsController@store',
     ]);
 
+    /*
+     * Files
+     */
+    Route::post('f', [
+      'as'    => 'files.store',
+      'uses'  => 'FilesController@store'
+    ]);
+    Route::get('f/{files}', [
+      'as'    => 'files.show',
+      'uses'  => 'FilesController@show',
+    ]);
+    Route::delete('f/{files}', [
+      'as'    => 'files.destory',
+      'uses'  => 'FilesController@destroy'
+    ]);
 
     /*
      * URL's

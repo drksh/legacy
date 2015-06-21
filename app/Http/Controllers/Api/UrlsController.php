@@ -60,6 +60,7 @@ class UrlsController extends Controller {
         $data = [
             'password' => ($request->input('password') ?: null),
         ];
+
         $url = $this->dispatchFrom(StoreNewUrlCommand::class, $request, $data);
 
         return 'Success! http://drk.sh/' . $url->slug->slug;
@@ -74,7 +75,7 @@ class UrlsController extends Controller {
     public function destroy(Url $url)
     {
         if( ! $url->user)
-            return "Anon snippets, cannot get deleted.";
+            return "Anon URL's, cannot get deleted.";
 
         if( ! $this->auth->check())
             return "Not authorized";

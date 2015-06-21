@@ -56,7 +56,7 @@ Route::group(['before' => 'auth', 'prefix' => 'ego'], function () {
 /*
  * Snippets
  */
-Route::resource('snippets', 'SnippetsController', ['except', 'show']);
+Route::resource('snippets', 'SnippetsController', ['except' => ['index', 'show']]);
 Route::get('s/{snippets}', [
   'as' => 'snippets.show',
   'uses' => 'SnippetsController@show',

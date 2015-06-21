@@ -61,18 +61,16 @@ class RouteServiceProvider extends ServiceProvider {
             $router->group(['namespace' => $this->apiNamespace], function($router) {
                 require app_path('Http/routes-api.php');
             });
+        } else {
+            $router->group(['namespace' => $this->adminNamespace], function($router) {
+                require app_path('Http/routes-admin.php');
+            });
 
-            // If it is API domain don't load other routes
-            return;
+            $router->group(['namespace' => $this->namespace], function ($router) {
+                require app_path('Http/routes.php');
+            });
         }
 
-        $router->group(['namespace' => $this->adminNamespace], function($router) {
-            require app_path('Http/routes-admin.php');
-        });
-
-		$router->group(['namespace' => $this->namespace], function ($router) {
-			require app_path('Http/routes.php');
-		});
 
 	}
 
