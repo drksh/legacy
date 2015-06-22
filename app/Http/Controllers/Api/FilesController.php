@@ -42,11 +42,14 @@ class FilesController extends Controller {
         if( ! $file->isProtected())
             return response()->download($file->path);
 
+        if(is_null($file->user))
+            return "Not authorized" . PHP_EOL;
+
         if( ! $this->auth->check())
-            return "Not authorized";
+            return "Not authorized" . PHP_EOL;
 
         if($this->auth->id() != $file->user->id)
-            return "Not authorized";
+            return "Not authorized" . PHP_EOL;
 
         return response()->download($file->path);
     }
@@ -68,7 +71,7 @@ class FilesController extends Controller {
 
 		$file = $this->dispatchFrom(StoreNewFileCommand::class, $request, $data);
 
-        return 'Success! http://drk.sh/' . $file->slug->slug;
+        return 'Success! http://drk.sh/' . $file->slug->slug . PHP_EOL;
 	}
 
 	/**
@@ -81,17 +84,17 @@ class FilesController extends Controller {
 	{
 
         if( ! $file->user)
-            return "Anon files, cannot get deleted.";
+            return "Not authorized." . PHP_EOL;
 
         if( ! $this->auth->check())
-            return "Not authorized";
+            return "Not authorized." . PHP_EOL;
 
         if($this->auth->id() != $file->user->id)
-            return "Not authorized";
+            return "Not authorized." . PHP_EOL;
 
         $this->dispatchFromArray(DeleteFileCommand::class, compact('file'));
 
-        return "File successfully deleted!";
+        return "File deleted!" . PHP_EOL;
 	}
 
 }

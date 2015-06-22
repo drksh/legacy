@@ -35,13 +35,16 @@ class SnippetsController extends Controller {
     public function show(Snippet $snippet)
     {
         if( ! $snippet->isProtected())
-            return $snippet->body;
+            return $snippet->body . PHP_EOL;
+
+        if(is_null($snippet->user))
+            return "Not authorized.". PHP_EOL;
 
         if( ! $this->auth->check())
-            return "Not authorized";
+            return "Not authorized." . PHP_EOL;
 
         if($this->auth->id() != $snippet->user->id)
-            return "Not authorized";
+            return "Not authorized." . PHP_EOL;
 
         return $snippet->body;
     }
@@ -57,12 +60,13 @@ class SnippetsController extends Controller {
         $data = [
             'user_id' => ($this->auth->user()) ? $this->auth->user()->id : null,
             'password'  => ($request->input('password') ?: null),
+            'mode'  => ($request->input('mode') ?: 'markdown'),
         ];
 
         $snippet = $this->dispatchFrom(StoreNewSnippetCommand::class, $request, $data);
 
 
-        return 'Success! http://drk.sh/s/' . $snippet->slug->slug;
+        return 'http://drk.sh/s/' . $snippet->slug->slug . PHP_EOL;
     }
 
     /**
@@ -75,17 +79,17 @@ class SnippetsController extends Controller {
     public function destroy(Snippet $snippet)
     {
         if( ! $snippet->user)
-            return "Anon snippets, cannot get deleted";
+            return "Anon snippets, cannot get deleted". PHP_EOL;
 
         if( ! $this->auth->check())
-            return "Not authorized";
+            return "Not authorized" . PHP_EOL;
 
         if($this->auth->id() != $snippet->user->id)
-            return "Not authorized";
+            return "Not authorized" . PHP_EOL;
 
         $snippet->delete();
 
-        return "Snippet successfully deleted!";
+        return "Snippet successfully deleted!" . PHP_EOL;
     }
 
 }

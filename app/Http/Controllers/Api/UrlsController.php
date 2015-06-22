@@ -38,15 +38,18 @@ class UrlsController extends Controller {
     public function show(Url $url)
     {
         if( ! $url->isProtected())
-            return $url->destination;
+            return $url->destination . PHP_EOL;
+
+        if(is_null($url->user))
+            return "Not authorized." . PHP_EOL;
 
         if( ! $this->auth->check())
-            return "Not authorized";
+            return "Not authorized." . PHP_EOL;
 
         if($this->auth->id() != $url->user->id)
-            return "Not authorized";
+            return "Not authorized." . PHP_EOL;
 
-        return $url->destination;
+        return $url->destination . PHP_EOL;
     }
 
     /**
@@ -63,7 +66,7 @@ class UrlsController extends Controller {
 
         $url = $this->dispatchFrom(StoreNewUrlCommand::class, $request, $data);
 
-        return 'Success! http://drk.sh/' . $url->slug->slug;
+        return 'http://drk.sh/' . $url->slug->slug . PHP_EOL;
     }
 
     /**
@@ -75,17 +78,17 @@ class UrlsController extends Controller {
     public function destroy(Url $url)
     {
         if( ! $url->user)
-            return "Anon URL's, cannot get deleted.";
+            return "Not authorized." . PHP_EOL;
 
         if( ! $this->auth->check())
-            return "Not authorized";
+            return "Not authorized." . PHP_EOL;
 
         if($this->auth->id() != $url->user->id)
-            return "Not authorized";
+            return "Not authorized." . PHP_EOL;
 
         $url->delete();
 
-        return "URL successfully deleted!";
+        return "URL deleted!" . PHP_EOL;
     }
 
 }
