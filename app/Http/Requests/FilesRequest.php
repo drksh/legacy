@@ -1,7 +1,5 @@
 <?php namespace DarkShare\Http\Requests;
 
-use DarkShare\Http\Requests\Request;
-
 class FilesRequest extends Request {
 
 	/**

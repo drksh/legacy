@@ -21,7 +21,6 @@
 
                 <div class="form-group">
                     {!! Form::submit('Login', ['class' => 'btn btn-primary']) !!}
-                    <a href="/password/email">Forgot Your Password?</a>
                 </div>
             </form>
         </div>

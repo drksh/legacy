@@ -16,7 +16,7 @@
             <hr/>
 
             {!! Form::submit('Download', ['class' => 'btn btn-success']) !!}
-            <a class="text-warning" href="{{ route('files.index') }}">Cancel</a>
+            <a class="text-warning" href="{{ route('files.create') }}">Cancel</a>
 
             {!! Form::close() !!}
         </div>

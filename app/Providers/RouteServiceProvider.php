@@ -19,6 +19,8 @@ class RouteServiceProvider extends ServiceProvider {
 
 	protected $adminNamespace = 'DarkShare\Http\Controllers\Admin';
 
+	protected $apiNamespace = 'DarkShare\Http\Controllers\Api';
+
 	/**
 	 * Define your route model bindings, pattern filters, etc.
 	 *
@@ -51,13 +53,24 @@ class RouteServiceProvider extends ServiceProvider {
 	 */
 	public function map(Router $router)
 	{
-        $router->group(['namespace' => $this->adminNamespace], function($router) {
-            require app_path('Http/routes-admin.php');
-        });
 
-		$router->group(['namespace' => $this->namespace], function ($router) {
-			require app_path('Http/routes.php');
-		});
+        $requestHost = app()->request->headers->get('host');
+
+        // The host starts with with "api."
+        if(strpos($requestHost, 'api.') === 0 || $this->app->runningInConsole()) {
+            $router->group(['namespace' => $this->apiNamespace], function($router) {
+                require app_path('Http/routes-api.php');
+            });
+        } else {
+            $router->group(['namespace' => $this->adminNamespace], function($router) {
+                require app_path('Http/routes-admin.php');
+            });
+
+            $router->group(['namespace' => $this->namespace], function ($router) {
+                require app_path('Http/routes.php');
+            });
+        }
+
 
 	}
 
