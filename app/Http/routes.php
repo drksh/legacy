@@ -74,7 +74,7 @@ Route::post('snippets/authenticate/{snippets}', [
  * Files
  */
 Route::resource('files', 'FilesController',
-  ['except' => ['edit', 'update', 'show']]);
+  ['except' => ['edit', 'update', 'show', 'index']]);
 Route::get('f/{files}', [
   'as' => 'files.show',
   'uses' => 'FilesController@show',

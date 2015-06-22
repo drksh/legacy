@@ -18,13 +18,13 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                @if (Auth::guest())
+                @if ( ! $currentUser)
                     <li><a href="{{ route('auth.login') }}">Login</a></li>
                     <li><a href="{{ route('auth.register') }}">Register</a></li>
                 @else
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            {{ Auth::user()->username }} <span class="caret"></span>
+                            {{ $currentUser->username }} <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{{ route('users.snippets') }}">Snippets</a></li>

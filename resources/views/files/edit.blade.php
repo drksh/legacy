@@ -9,7 +9,6 @@
             @include('files.form')
 
             {!! Form::submit('Submit', ['class' => 'btn btn-success']) !!}
-            <a class="text-warning" href="{{ route('files.index') }}">Cancel</a>
 
             {!! Form::close() !!}
         </div>
