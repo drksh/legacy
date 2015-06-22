@@ -63,7 +63,7 @@ class UrlsController extends Controller {
             "Short URL created: " .
             "<a href=\"{$url->url()}\">{$url->url()}</a>"
         );
-        return redirect()->route('urls.index');
+        return redirect()->route('create.index');
     }
 
     /**
@@ -141,7 +141,7 @@ class UrlsController extends Controller {
         $this->dispatchFrom(UpdateUrlCommand::class, $request, compact('url'));
 
         flash("Your URL was updated successfully.");
-        return redirect()->route('urls.index');
+        return redirect()->route('create.index');
     }
 
     /**

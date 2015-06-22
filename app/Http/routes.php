@@ -56,7 +56,7 @@ Route::group(['before' => 'auth', 'prefix' => 'ego'], function () {
 /*
  * Snippets
  */
-Route::resource('snippets', 'SnippetsController', ['except', 'show']);
+Route::resource('snippets', 'SnippetsController', ['except' => ['index', 'show']]);
 Route::get('s/{snippets}', [
   'as' => 'snippets.show',
   'uses' => 'SnippetsController@show',
@@ -74,7 +74,7 @@ Route::post('snippets/authenticate/{snippets}', [
  * Files
  */
 Route::resource('files', 'FilesController',
-  ['except' => ['edit', 'update', 'show']]);
+  ['except' => ['edit', 'update', 'show', 'index']]);
 Route::get('f/{files}', [
   'as' => 'files.show',
   'uses' => 'FilesController@show',

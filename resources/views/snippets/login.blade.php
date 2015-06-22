@@ -16,7 +16,7 @@
             <hr/>
 
             {!! Form::submit('Submit', ['class' => 'btn btn-success']) !!}
-            <a class="text-warning" href="{{ route('snippets.index') }}">Cancel</a>
+            <a class="text-warning" href="{{ route('snippets.create') }}">Cancel</a>
 
             {!! Form::close() !!}
         </div>

@@ -40,6 +40,39 @@ Custom URLs /u/{slug}
 Optim URLs  /{slug}
 
 # SPECIFICS
+## CLI
+### Snippets
+`drk.sh -s http://drk.sh/ab`    
+	Get snippet from slug `ab`
+
+`drk.sh -s -c ~/path/to/file.txt`    
+	Create snippet from file or input
+
+`drk.sh -s -d ab`    
+	Delete snippet with slug `ab`
+
+### Files
+`drk.sh -f http://drk.sh/ab`    
+	Get file with slug `ab`
+
+`drk.sh -f -c ~/path/to/file.jpg`    
+	Upload file from path
+
+`drk.sh -f -d ab`    
+	Delete file with slug `ab`
+
+### Urls
+If `-s or -f or -u` is not there, `-u` for URL is assumed.
+
+`drk.s http://dr.sh/ab`    
+	Get destination of slug `ab`
+
+`drk.sh -c http://duckduckgo.com?long=string`    
+	Create a new short URL
+
+`drk.sh -d ab`    
+	Delete URL with slug `ab`
+
 ## Admin panel
 - Having a list of ~15 most active users, ordered by snippets, files and urls.
 - When clicking a user you should see that users most recent items, s/f/u that is.

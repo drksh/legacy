@@ -15,7 +15,6 @@
             <hr/>
 
             {!! Form::submit('Submit', ['class' => 'btn btn-success']) !!}
-            <a class="text-warning" href="{{ route('urls.index') }}">Cancel</a>
 
             {!! Form::close() !!}
         </div>

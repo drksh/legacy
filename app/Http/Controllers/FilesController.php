@@ -21,16 +21,6 @@ class FilesController extends Controller {
 	}
 
 	/**
-	 * Display a listing of files.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-	    return view('files.create');
-	}
-
-	/**
 	 * Show the form for creating a new file.
 	 *
 	 * @return Response
