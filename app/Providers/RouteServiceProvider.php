@@ -54,10 +54,13 @@ class RouteServiceProvider extends ServiceProvider {
 	public function map(Router $router)
 	{
 
-        $requestHost = app()->request->headers->get('host');
+        $requestUserAgent = app()->request->headers->get('user-agent');
+
+        $isCurl = strpos(strtolower($requestUserAgent), 'curl') !== false;
+        $isWget = strpos(strtolower($requestUserAgent), 'wget') !== false;
 
         // The host starts with with "api."
-        if(strpos($requestHost, 'api.') === 0 || $this->app->runningInConsole()) {
+        if($isCurl || $isWget || $this->app->runningInConsole()) {
             $router->group(['namespace' => $this->apiNamespace], function($router) {
                 require app_path('Http/routes-api.php');
             });
