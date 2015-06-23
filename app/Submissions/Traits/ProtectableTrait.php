@@ -11,7 +11,7 @@ trait ProtectableTrait {
 	 */
 	public function isProtected()
 	{
-		return (is_null($this->password)) ? false : true;
+		return ! is_null($this->password);
 	}
 
 	/**
@@ -43,8 +43,10 @@ trait ProtectableTrait {
 		if ($this->isMine() && $this->isProtected())
 			return true;
 
+
         if( ! is_null(Auth::user()) && Auth::user()->isAdmin())
             return true;
+
 
 		return false;
 	}
