@@ -32,16 +32,16 @@ class RouteServiceProvider extends ServiceProvider {
 		parent::boot($router);
 
 		$router->bind('snippets', function ($value) {
-			return SnippetSlug::where('slug', $value)->first()->snippet;
+			return SnippetSlug::where('slug', $value)->firstOrFail()->snippet;
 		});
 		$router->bind('files', function($value) {
-			return FileSlug::where('slug', $value)->first()->file;
+			return FileSlug::where('slug', $value)->firstOrFail()->file;
 		});
 		$router->bind('urls', function($value) {
-			return UrlSlug::where('slug', $value)->first()->url;
+			return UrlSlug::where('slug', $value)->firstOrFail()->url;
 		});
 		$router->bind('username', function($value) {
-		    return User::where('username', $value)->first();
+		    return User::where('username', $value)->firstOrFail();
 		});
 	}
 
@@ -55,12 +55,14 @@ class RouteServiceProvider extends ServiceProvider {
 	{
 
         $requestUserAgent = app()->request->headers->get('user-agent');
+        $requestHost = app()->request->headers->get('host');
 
         $isCurl = strpos(strtolower($requestUserAgent), 'curl') !== false;
         $isWget = strpos(strtolower($requestUserAgent), 'wget') !== false;
+        $isApi  = strpos(strtolower($requestHost), 'api.') === 0;
 
         // The host starts with with "api."
-        if($isCurl || $isWget || $this->app->runningInConsole()) {
+        if($isCurl || $isWget || $isApi || $this->app->runningInConsole()) {
             $router->group(['namespace' => $this->apiNamespace], function($router) {
                 require app_path('Http/routes-api.php');
             });

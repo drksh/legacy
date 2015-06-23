@@ -34,16 +34,10 @@ class SnippetsController extends Controller {
      */
     public function show(Snippet $snippet)
     {
-        if( ! $snippet->isProtected())
+        if( $snippet->isProtected() && \Hash::check(app()->request->password, $snippet->password))
             return $snippet->body . PHP_EOL;
 
-        if(is_null($snippet->user))
-            return "Not authorized.". PHP_EOL;
-
-        if( ! $this->auth->check())
-            return "Not authorized." . PHP_EOL;
-
-        if($this->auth->id() != $snippet->user->id)
+        if( ! $snippet->userHasAccess())
             return "Not authorized." . PHP_EOL;
 
         return $snippet->body;
@@ -57,8 +51,10 @@ class SnippetsController extends Controller {
      */
     public function store(SnippetsRequest $request)
     {
+        $this->auth->basic('username');
+
         $data = [
-            'user_id' => ($this->auth->user()) ? $this->auth->user()->id : null,
+            'user_id' => ($this->auth->user()) ? $this->auth->id() : null,
             'password'  => ($request->input('password') ?: null),
             'mode'  => ($request->input('mode') ?: 'markdown'),
         ];
@@ -67,29 +63,6 @@ class SnippetsController extends Controller {
 
 
         return 'http://drk.sh/s/' . $snippet->slug->slug . PHP_EOL;
-    }
-
-    /**
-     * Remove the specified snippet from storage.
-     *
-     * @param \DarkShare\Submissions\Snippets\Snippet $snippet
-     * @return \DarkShare\Http\Controllers\Response
-     * @throws \Exception
-     */
-    public function destroy(Snippet $snippet)
-    {
-        if( ! $snippet->user)
-            return "Anon snippets, cannot get deleted". PHP_EOL;
-
-        if( ! $this->auth->check())
-            return "Not authorized" . PHP_EOL;
-
-        if($this->auth->id() != $snippet->user->id)
-            return "Not authorized" . PHP_EOL;
-
-        $snippet->delete();
-
-        return "Snippet successfully deleted!" . PHP_EOL;
     }
 
 }

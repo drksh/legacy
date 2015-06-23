@@ -39,9 +39,6 @@ trait ProtectableTrait {
 		if ( ! $this->isProtected())
 			return true;
 
-		if( Auth::user() && Auth::user()->isAdmin())
-		    return true;
-
 		// the file is mine and it's password protected
 		if ($this->isMine() && $this->isProtected())
 			return true;
