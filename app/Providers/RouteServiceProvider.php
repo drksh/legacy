@@ -32,13 +32,13 @@ class RouteServiceProvider extends ServiceProvider {
 		parent::boot($router);
 
 		$router->bind('snippets', function ($value) {
-			return SnippetSlug::where('slug', $value)->firstOrFail()->snippet;
+			return SnippetSlug::where(\DB::raw('BINARY slug'), $value)->firstOrFail()->snippet;
 		});
 		$router->bind('files', function($value) {
-			return FileSlug::where('slug', $value)->firstOrFail()->file;
+			return FileSlug::where(\DB::raw('BINARY slug'), $value)->firstOrFail()->file;
 		});
 		$router->bind('urls', function($value) {
-			return UrlSlug::where('slug', $value)->firstOrFail()->url;
+			return UrlSlug::where(\DB::raw('BINARY slug'), $value)->firstOrFail()->url;
 		});
 		$router->bind('username', function($value) {
 		    return User::where('username', $value)->firstOrFail();
