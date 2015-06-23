@@ -54,6 +54,7 @@ class SnippetsController extends Controller {
         $this->auth->basic('username');
 
         $data = [
+            'title' => ($request->input('title') ?: null),
             'user_id' => ($this->auth->user()) ? $this->auth->id() : null,
             'password'  => ($request->input('password') ?: null),
             'mode'  => ($request->input('mode') ?: 'markdown'),
