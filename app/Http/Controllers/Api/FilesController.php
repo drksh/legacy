@@ -35,21 +35,14 @@ class FilesController extends Controller {
      *
      * @param File  $file
      * @return Response
-     * @internal param int $id
      */
     public function show(File $file)
     {
-        if( ! $file->isProtected())
+        if( $file->isProtected() && \Hash::check(app()->request->password, $file->password))
             return response()->download($file->path);
 
-        if(is_null($file->user))
-            return "Not authorized" . PHP_EOL;
-
-        if( ! $this->auth->check())
-            return "Not authorized" . PHP_EOL;
-
-        if($this->auth->id() != $file->user->id)
-            return "Not authorized" . PHP_EOL;
+        if( ! $file->userHasAccess())
+            return "Not authorized." . PHP_EOL;
 
         return response()->download($file->path);
     }
@@ -62,6 +55,8 @@ class FilesController extends Controller {
 	 */
 	public function store(FilesRequest $request)
 	{
+	    $this->auth->basic('username');
+
         $data = [
           'title'   => ($request->input('title') ?: null),
           'password' => ($request->input('password') ?: null),
@@ -71,30 +66,7 @@ class FilesController extends Controller {
 
 		$file = $this->dispatchFrom(StoreNewFileCommand::class, $request, $data);
 
-        return 'Success! http://drk.sh/' . $file->slug->slug . PHP_EOL;
-	}
-
-	/**
-	 * Remove the specified file from storage.
-	 *
-	 * @param  int  File $file
-	 * @return Response
-	 */
-	public function destroy(File $file)
-	{
-
-        if( ! $file->user)
-            return "Not authorized." . PHP_EOL;
-
-        if( ! $this->auth->check())
-            return "Not authorized." . PHP_EOL;
-
-        if($this->auth->id() != $file->user->id)
-            return "Not authorized." . PHP_EOL;
-
-        $this->dispatchFromArray(DeleteFileCommand::class, compact('file'));
-
-        return "File deleted!" . PHP_EOL;
+        return 'http://drk.sh/' . $file->slug->slug . PHP_EOL;
 	}
 
 }

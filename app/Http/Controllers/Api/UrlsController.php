@@ -37,17 +37,12 @@ class UrlsController extends Controller {
      */
     public function show(Url $url)
     {
-        if( ! $url->isProtected())
+        if( $url->isProtected() && \Hash::check(app()->request->password, $url->password))
             return $url->destination . PHP_EOL;
 
-        if(is_null($url->user))
+        if( ! $url->userHasAccess())
             return "Not authorized." . PHP_EOL;
 
-        if( ! $this->auth->check())
-            return "Not authorized." . PHP_EOL;
-
-        if($this->auth->id() != $url->user->id)
-            return "Not authorized." . PHP_EOL;
 
         return $url->destination . PHP_EOL;
     }
@@ -60,6 +55,9 @@ class UrlsController extends Controller {
      */
     public function store(UrlsRequest $request)
     {
+
+        $this->auth->basic('username');
+
         $data = [
             'password' => ($request->input('password') ?: null),
         ];
@@ -67,28 +65,6 @@ class UrlsController extends Controller {
         $url = $this->dispatchFrom(StoreNewUrlCommand::class, $request, $data);
 
         return 'http://drk.sh/' . $url->slug->slug . PHP_EOL;
-    }
-
-    /**
-     * Remove the specified url from storage.
-     *
-     * @param  int  Url $url
-     * @return Response
-     */
-    public function destroy(Url $url)
-    {
-        if( ! $url->user)
-            return "Not authorized." . PHP_EOL;
-
-        if( ! $this->auth->check())
-            return "Not authorized." . PHP_EOL;
-
-        if($this->auth->id() != $url->user->id)
-            return "Not authorized." . PHP_EOL;
-
-        $url->delete();
-
-        return "URL deleted!" . PHP_EOL;
     }
 
 }

@@ -22,11 +22,12 @@ class StoreNewUrlCommandHandler {
 	 */
 	private $app;
 
-	/**
-	 * Create the command handler.
-	 *
-	 * @return void
-	 */
+    /**
+     * Create the command handler.
+     *
+     * @param \Illuminate\Auth\Guard                       $auth
+     * @param \Illuminate\Contracts\Foundation\Application $app
+     */
 	public function __construct(Guard $auth, Application $app)
 	{
 		$this->auth = $auth;
