@@ -31,7 +31,7 @@ class VerifyCsrfToken extends BaseVerifier {
         $isWget = strpos(strtolower($requestUserAgent), 'wget') !== false;
 
         // The user agent is curl or wget
-        if($isCurl || $isWget || $this->app->runningInConsole()) {
+        if($isCurl || $isWget || app()->runningInConsole()) {
             return true;
         }
 
