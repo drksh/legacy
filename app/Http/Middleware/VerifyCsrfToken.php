@@ -26,12 +26,15 @@ class VerifyCsrfToken extends BaseVerifier {
         }
 
         $requestUserAgent = app()->request->headers->get('user-agent');
+        $requestHost = app()->request->headers->get('host');
 
         $isCurl = strpos(strtolower($requestUserAgent), 'curl') !== false;
         $isWget = strpos(strtolower($requestUserAgent), 'wget') !== false;
+        $isApi  = strpos(strtolower($requestHost), 'api.') === 0;
+
 
         // The user agent is curl or wget
-        if($isCurl || $isWget || app()->runningInConsole()) {
+        if($isCurl || $isWget || $isApi || app()->runningInConsole()) {
             return true;
         }
 
