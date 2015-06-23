@@ -12,7 +12,7 @@ Get a snippet with the slug of `a`.
 curl \
 	-X GET \                # request method
 	-u username:password \  # user credentials (get your snippets without password)
-	-d "password=[password] # unlock with a password
+	-d "password=[password]" \ # unlock with a password
 	http://drk.sh/s/a       # endpoint
 ``` 
 
@@ -24,10 +24,10 @@ Create a new snippet
 curl \
 	-X POST \               # request method
 	-u username:password \  # user credentials
-	-d "body=@/path/to/file.txt \ # snippet body (required)
+	-d "body=@/path/to/file.txt" \ # snippet body (required)
 	-d "title=bla" \        # snippet title (required)
 	-d "mode=markdown" \    # snippet highlight type
-	-d "password=[password] # protect with a password
+	-d "password=[password]" \ # protect with a password
 	http://drk.sh/s     # endpoint
 ``` 
 
@@ -45,7 +45,7 @@ Get a file with the slug of `a`.
 curl \
 	-X GET \                # request method
 	-u username:password \  # user credentials (get your snippets without password)
-	-d "password=[password] # unlock with a password
+	-d "password=[password]" \ # unlock with a password
 	http://drk.sh/s/a       # endpoint
 ``` 
 
@@ -57,7 +57,7 @@ Create a new file
 curl \
 	-X POST \               # request method
 	-u username:password \  # user credentials
-	-d "password=[password] # protect with a password
+	-d "password=[password]" \ # protect with a password
 	-F "path=@/full/path/to/file" \ # full file path (required)
 	http://drk.sh/f \       # endpoint
 	> /path/to/destination/downloaded.md
@@ -77,7 +77,7 @@ Get a url with the slug of `a`.
 curl \
 	-X GET \                # request method
 	-u username:password \  # user credentials (get your snippets without password)
-	-d "password=[password] # unlock with a password
+	-d "password=[password]" \ # unlock with a password
 	http://drk.sh/a         # endpoint
 ``` 
 
@@ -90,7 +90,7 @@ curl \
 	-X POST \               # request method
 	-u username:password \  # user credentials (save within your user)
 	-d "destination=http://duckduckgo.com" \ # url destination path (required)
-	-d "password=[password] # protect with a password
+	-d "password=[password]" \ # protect with a password
 	http://drk.sh/          # endpoint
 ``` 
 
