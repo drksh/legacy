@@ -17,7 +17,7 @@ class Activity extends Model {
      *
      * @var array
      */
-    protected $fillable = ['user_id', 'subject_id', 'subject_type', 'name'];
+    protected $fillable = ['user_id', 'subject_id', 'subject_type', 'name', 'ip'];
 
     /**
      * The attributes excluded from the model's JSON form.
