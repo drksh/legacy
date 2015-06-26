@@ -18,12 +18,12 @@ class SnippetsController extends Controller {
 
     /**
      * Create a new snippets controller instance.
+     *
+     * @param \Illuminate\Auth\Guard $auth
      */
     function __construct(Guard $auth)
     {
         $this->auth = $auth;
-
-        $this->middleware('app.space', ['only' => ['create', 'store']]);
     }
 
     /**
@@ -34,6 +34,7 @@ class SnippetsController extends Controller {
      */
     public function show(Snippet $snippet)
     {
+        die(var_dump("test"));
         if( $snippet->isProtected() && \Hash::check(app()->request->password, $snippet->password))
             return $snippet->body . PHP_EOL;
 
