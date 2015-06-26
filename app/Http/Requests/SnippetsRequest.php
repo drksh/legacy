@@ -22,7 +22,7 @@ class SnippetsRequest extends Request {
 	public function rules()
 	{
 		return [
-			'title' => 'required',
+			'title' => '',
 			'body'  => 'required',
 			'mode'  => '',
 			'password' => 'sometimes|min:3'

@@ -1,6 +1,8 @@
 <?php namespace DarkShare\Exceptions;
 
+use DarkShare\Services\DarkShare;
 use Exception;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
@@ -40,6 +42,26 @@ class Handler extends ExceptionHandler {
 		if($e instanceof FileException) {
 			flash()->error($e->getMessage());
 			return redirect()->back();
+		}
+
+		if($e instanceof ModelNotFoundException) {
+
+            if(DarkShare::isApi()) {
+                return "Submission not found." . PHP_EOL;
+            }
+
+		    flash()->error("Sorry, couldn't find that Submission...");
+		    return redirect()->home();
+		}
+
+		if($e instanceof TooManySubmissionsException) {
+
+            if(DarkShare::isApi()) {
+                return redirect()->route('api.limit');
+            }
+
+            flash()->error($e->getMessage());
+            return redirect()->home();
 		}
 
 		return parent::render($request, $e);

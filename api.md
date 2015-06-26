@@ -1,6 +1,6 @@
 # #darkshare API documentation
 
-These examples will juse cURL.
+These examples will use cURL.
 
 ## Snippets
 

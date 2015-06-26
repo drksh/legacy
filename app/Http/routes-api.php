@@ -2,6 +2,11 @@
 
 Route::group([], function () {
 
+    Route::get('limit', [
+        'as'    => 'api.limit',
+        'uses'  => 'ApiController@limit',
+    ]);
+
     /*
      * Snippets
      */

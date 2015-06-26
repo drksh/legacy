@@ -15,7 +15,7 @@
                 <li><a href="{{ route('snippets.create') }}">Snippets</a></li>
                 <li><a href="{{ route('files.create') }}">Files</a></li>
                 <li><a href="{{ route('urls.create') }}">URLs</a></li>
-                <li><a href="https://github.com/jstoone/darkshare/blob/master/api.md">API</a></li>
+                <li><a href="https://github.com/jstoone/darkshare/blob/master/api.md" target="_blank">API</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
