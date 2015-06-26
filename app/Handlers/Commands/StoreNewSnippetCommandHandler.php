@@ -16,6 +16,10 @@ class StoreNewSnippetCommandHandler {
 	 */
 	public function handle(StoreNewSnippetCommand $command)
 	{
+	    if(empty($command->title)) {
+	        $command->title = str_limit($command->body, 10);
+	    }
+
 		$snippet =  Snippet::create([
 			'user_id' => $command->user_id,
 			'title' => $command->title,
