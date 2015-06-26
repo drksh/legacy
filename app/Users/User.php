@@ -4,6 +4,7 @@ use DarkShare\Model;
 use DarkShare\Submissions\Files\File;
 use DarkShare\Submissions\Snippets\Snippet;
 use DarkShare\Submissions\Traits\HashPasswordTrait;
+use DarkShare\Submissions\Traits\ProtectedFromBots;
 use DarkShare\Submissions\Traits\RecordsActivity;
 use DarkShare\Submissions\Urls\Url;
 use Illuminate\Auth\Authenticatable;
@@ -14,6 +15,7 @@ class User extends Model implements AuthenticatableContract {
     use Authenticatable;
     use HashPasswordTrait;
     use RecordsActivity;
+    use ProtectedFromBots;
 
     /**
      * The database table used by the model.

@@ -1,5 +1,6 @@
 <?php namespace DarkShare\Providers;
 
+use DarkShare\Services\DarkShare;
 use DarkShare\Submissions\Files\FileSlug;
 use DarkShare\Submissions\Snippets\SnippetSlug;
 use DarkShare\Submissions\Urls\UrlSlug;
@@ -53,16 +54,7 @@ class RouteServiceProvider extends ServiceProvider {
 	 */
 	public function map(Router $router)
 	{
-
-        $requestUserAgent = app()->request->headers->get('user-agent');
-        $requestHost = app()->request->headers->get('host');
-
-        $isCurl = strpos(strtolower($requestUserAgent), 'curl') !== false;
-        $isWget = strpos(strtolower($requestUserAgent), 'wget') !== false;
-        $isApi  = strpos(strtolower($requestHost), 'api.') === 0;
-
-        // The host starts with with "api."
-        if($isCurl || $isWget || $isApi || $this->app->runningInConsole()) {
+        if(DarkShare::isApi()) {
             $router->group(['namespace' => $this->apiNamespace], function($router) {
                 require app_path('Http/routes-api.php');
             });
