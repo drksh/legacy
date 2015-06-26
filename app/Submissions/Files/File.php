@@ -5,6 +5,7 @@ use DarkShare\Model;
 use DarkShare\Contracts\Models\Protectable;
 use DarkShare\Submissions\Traits\HashPasswordTrait;
 use DarkShare\Submissions\Traits\ProtectableTrait;
+use DarkShare\Submissions\Traits\ProtectedFromBots;
 use DarkShare\Submissions\Traits\RecordsActivity;
 use DarkShare\Users\User;
 
@@ -13,6 +14,7 @@ class File extends Model implements Protectable, Sluggable {
 	use HashPasswordTrait;
 	use ProtectableTrait;
 	use RecordsActivity;
+	use ProtectedFromBots;
 
 	/**
 	 * The database table used by the model.
