@@ -63,7 +63,7 @@ class UrlsController extends Controller {
             "Short URL created: " .
             "<a href=\"{$url->url()}\">{$url->url()}</a>"
         );
-        return redirect()->route('create.index');
+        return redirect()->route('urls.index');
     }
 
     /**
