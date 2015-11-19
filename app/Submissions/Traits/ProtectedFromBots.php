@@ -30,7 +30,8 @@ trait ProtectedFromBots {
      */
     protected function protectFromBots()
     {
-        $userIP = app()->request->getClientIp();
+        // Hashing user's IP addresses, for anonymity's sake
+        $userIP = hash('sha256', app()->request->getClientIp());
 
         $todayStart = (new Carbon('now'))->startOfDay();
         $todayEnd = (new Carbon('now'))->endOfDay();

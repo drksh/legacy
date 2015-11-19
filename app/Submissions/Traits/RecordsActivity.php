@@ -27,7 +27,7 @@ trait RecordsActivity {
           'subject_type'   => get_class($this),
           'name'        => $this->getActivityName($this, $event),
           'user_id'     => \Auth::id(),
-          'ip'          => app()->request->getClientIp(),
+          'ip'          => hash('sha256', app()->request->getClientIp()),
         ]);
     }
 
