@@ -26,7 +26,7 @@ $(function(){
             var modeType = this.globals.theEditor.getAttribute('data-id');
 
             this.globals.theEditor = CodeMirror.fromTextArea(document.getElementById('the-editor'), {
-                theme: "medi-code",
+                theme: "default",
                 lineNumbers: true,
                 mode: (modeType.length) ? modeType : 'markdown'
             });
