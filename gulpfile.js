@@ -27,7 +27,7 @@ elixir(function(mix) {
     .sass('app.scss')
 
     .styles([
-        publicPath+"/css/app.css/"
+        publicPath+"/css/app.css"
     ], publicPath+"/css/application.css", publicPath+"/css")
 
     // ACE scripts
