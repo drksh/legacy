@@ -18,6 +18,9 @@ trait ProtectedFromBots {
      */
     protected static function bootProtectedFromBots()
     {
+        if(app()->runningInConsole()) {
+            return;
+        }
 
         static::creating(function ($subject) {
             $subject->protectFromBots();
