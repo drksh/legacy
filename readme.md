@@ -41,11 +41,11 @@ If that's a bit too much you can always email me. Let's do some manual obfuscati
 ```php
 <?php
     $username = "jakobsteinn";
-    $seperator = "@";
+    $separator = "@";
     $provider = "protonmail";
     $domain = ".com";
 
-    $email = $username . $seperator . $provider . $domain
+    $email = $username . $separator . $provider . $domain
 ?>
 ```
  
