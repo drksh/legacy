@@ -41,16 +41,16 @@ If that's a bit too much you can always email me. Let's do some manual obfuscati
 ```php
 <?php
     $username = "jakobsteinn";
-    $seperator = "@";
-    $provider = "lavaboom";
+    $separator = "@";
+    $provider = "protonmail";
     $domain = ".com";
 
-    $email = $username . $seperator . $provider . $domain
+    $email = $username . $separator . $provider . $domain
 ?>
 ```
  
 # Upcomming features/stuff
 
 * Update to Laravel 5.1
-* Views/clicks. Know how many clicked/viewd your content
+* Views/clicks. Know how many clicked/viewed your content
 
