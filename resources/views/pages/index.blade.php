@@ -32,7 +32,7 @@
         <p>
             Well, sure you can. <br/>
             <strong>BUT NOTICE</strong>, if I get a complaint against something you darksharers put up on here, I am
-            entitled to put it down imidiately, without noticing you. Or, probably I'll tell everyone that you've been a
+            entitled to put it down immidiately, without noticing you. Or, probably I'll tell everyone that you've been a
             bad boy.
             <br/>
             <em>(Worst case senario I'll have to block your user, and destroy your associated content,
@@ -54,10 +54,10 @@
 <code>
 <pre>
 &lt;?php
-    $username = "jakobsteinn";
+    $username = "jstoone";
     $seperator = "@";
-    $provider = "lavaboom";
-    $domain = ".com";
+    $provider = "drk";
+    $domain = ".sh";
 
     $email = $username . $seperator . $provider . $domain
 ?&gt;
